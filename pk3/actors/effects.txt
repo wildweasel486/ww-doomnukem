@@ -45,6 +45,53 @@ Actor BlueSparkSpawner
 	}
 }
 
+Actor GreenSparkSpawner
+{
+  Height 8
+  Radius 4
+  +NoBlockMap
+  +NoGravity
+  +NoInteraction
+  +ClientSideOnly
+  +NoClip
+  States
+  {
+  Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(256, 1, 2, 3, 4, 5, 6)
+		TNT1 A 1 A_SpawnItemEx("SparkFlare_G1", 0, 0, 0, 0, 0, 0, 0, 128)
+		Goto SpawnSparks
+		TNT1 A 1 A_SpawnItemEx("SparkFlare_G2", 0, 0, 0, 0, 0, 0, 0, 128)
+		Goto SpawnSparks
+		TNT1 A 1 A_SpawnItemEx("SparkFlare_G3", 0, 0, 0, 0, 0, 0, 0, 128)
+		Goto SpawnSparks
+		TNT1 A 1 A_SpawnItemEx("SparkFlare_G4", 0, 0, 0, 0, 0, 0, 0, 128)
+		Goto SpawnSparks
+		TNT1 A 1 A_SpawnItemEx("SparkFlare_G5", 0, 0, 0, 0, 0, 0, 0, 128)
+		Goto SpawnSparks
+		TNT1 A 1 A_SpawnItemEx("SparkFlare_G6", 0, 0, 0, 0, 0, 0, 0, 128)
+		Goto SpawnSparks
+	SpawnSparks:
+		TNT1 AA 0 A_CustomMissile("Spark_G1", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_G2", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_G3", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_G4", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_G5", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_G6", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_G7", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_G8", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_G9", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_G10", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_G11", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_G12", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_G13", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_G14", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_G15", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_G16", 0, 0, Random(0, 360), 2, Random(67, 113))
+		Stop
+	}
+}
+
 //Flares
 
 Actor SparkFlare_B1
@@ -73,6 +120,33 @@ Actor SparkFlare_B4 : SparkFlare_B1 { States { Spawn: SPKB D 1 Bright A_FadeOut(
 Actor SparkFlare_B5 : SparkFlare_B1 { States { Spawn: SPKB E 1 Bright A_FadeOut(0.1) Loop } }
 Actor SparkFlare_B6 : SparkFlare_B1 { States { Spawn: SPKB F 1 Bright A_FadeOut(0.1) Loop } }
 
+Actor SparkFlare_G1
+{
+  Height 0
+  Radius 0
+  Mass 0
+  +Missile
+  +NoBlockMap
+  +NoClip
+  +NoGravity
+  +NoInteraction
+  RenderStyle Add
+  Scale 0.25
+  States
+  {
+  Spawn:
+    SPKG A 1 Bright A_FadeOut(0.1)
+    Loop
+  }
+}
+
+Actor SparkFlare_G2 : SparkFlare_G1 { States { Spawn: SPKG B 1 Bright A_FadeOut(0.1) Loop } }
+Actor SparkFlare_G3 : SparkFlare_G1 { States { Spawn: SPKG C 1 Bright A_FadeOut(0.1) Loop } }
+Actor SparkFlare_G4 : SparkFlare_G1 { States { Spawn: SPKG D 1 Bright A_FadeOut(0.1) Loop } }
+Actor SparkFlare_G5 : SparkFlare_G1 { States { Spawn: SPKG E 1 Bright A_FadeOut(0.1) Loop } }
+Actor SparkFlare_G6 : SparkFlare_G1 { States { Spawn: SPKG F 1 Bright A_FadeOut(0.1) Loop } }
+
+
 //Sparks
 
 Actor Spark_B1
@@ -83,7 +157,6 @@ Actor Spark_B1
   Speed 0.25
   +Missile
   +NoBlockMap
-  +LowGravity
   RenderStyle Add
   Scale 0.025
   States
@@ -112,3 +185,40 @@ Actor Spark_B13 : Spark_B1 { Speed 3.25 }
 Actor Spark_B14 : Spark_B1 { Speed 3.5  }
 Actor Spark_B15 : Spark_B1 { Speed 3.75 }
 Actor Spark_B16 : Spark_B1 { Speed 4.0  }
+
+Actor Spark_G1
+{
+  Height 1
+  Radius 2
+  Mass 0
+  Speed 0.25
+  +Missile
+  +NoBlockMap
+  RenderStyle Add
+  Scale 0.025
+  States
+  {
+  Spawn:
+    SPKG E 1 Bright
+    Loop
+  Death:
+    SPKG E 1 Bright A_FadeOut(0.1)
+    Loop
+  }
+}
+
+Actor Spark_G2 : Spark_G1  { Speed 0.5  }
+Actor Spark_G3 : Spark_G1  { Speed 0.75 }
+Actor Spark_G4 : Spark_G1  { Speed 1.0  }
+Actor Spark_G5 : Spark_G1  { Speed 1.25 }
+Actor Spark_G6 : Spark_G1  { Speed 1.5  }
+Actor Spark_G7 : Spark_G1  { Speed 1.75 }
+Actor Spark_G8 : Spark_G1  { Speed 2.0  }
+Actor Spark_G9 : Spark_G1  { Speed 2.25 }
+Actor Spark_G10 : Spark_G1 { Speed 2.5  }
+Actor Spark_G11 : Spark_G1 { Speed 2.75 }
+Actor Spark_G12 : Spark_G1 { Speed 3.0  }
+Actor Spark_G13 : Spark_G1 { Speed 3.25 }
+Actor Spark_G14 : Spark_G1 { Speed 3.5  }
+Actor Spark_G15 : Spark_G1 { Speed 3.75 }
+Actor Spark_G16 : Spark_G1 { Speed 4.0  }

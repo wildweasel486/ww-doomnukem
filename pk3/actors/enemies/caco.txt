@@ -86,7 +86,7 @@ ACTOR BallLightning
 		CAFB AB 6 Bright
 		Loop
 	Death:
-		CAFB CC 1 A_SpawnItemEx("BlueSparkSpawner")
+		CAFB CC 1 A_SpawnItemEx("GreenSparkSpawner")
 		CAFB C 1 Bright A_Scream
 		CAFB DEFG 3 Bright
 		Stop
