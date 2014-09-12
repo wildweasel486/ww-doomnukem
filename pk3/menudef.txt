@@ -35,6 +35,6 @@ OptionMenu "wwatmoptions"
 	Slider "Blood Lifespan", "blood_secs", 5, 300, 5
 	Slider "Blood Opacity", "blood_alpha", 0.5, 1.0, 0.05
 	Slider "Blood Velocity", "blood_rand", 0.5, 2.0, 0.1
-	
+	StaticText " "
 	StaticText "Further options will be implemented later -ww"
 }
