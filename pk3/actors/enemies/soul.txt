@@ -2,8 +2,8 @@ ACTOR ConflagSoul replaces LostSoul
 { 
 	obituary "%o was made extra-crispy by a Conflagrated Soul."
 	health 100
-	radius 20
-	height 40
+	radius 16
+	height 32
 	mass 400
 	speed 5
 	damage 5
