@@ -54,7 +54,7 @@ ACTOR Revolver : DNWeapon Replaces Chainsaw
 		REVI A 0 A_GunFlash
 		PISF A 0 A_FireCustomMissile("GunSmokeSpawner",0,0,0,8)
 		REVF A 1 BRIGHT A_FireBullets (0.1, 0.1, -1, 40, "BulletPuff")
-		REVF B 1 Offset(0,38) A_SetPitch (pitch - 0.5)
+		REVF B 1 BRIGHT Offset(0,38) A_SetPitch (pitch - 0.5)
 		REVF C 1 Offset(0,44) A_SetPitch (pitch - 0.9)
 		REVF D 1 Offset(0,56) A_SetPitch (pitch - 1.4)
 		REVF C 1 Offset(0,52) A_AlertMonsters
@@ -77,9 +77,9 @@ ACTOR Revolver : DNWeapon Replaces Chainsaw
 		Goto AltDryfire
 		REVF I 1 Offset(0,36)
 		REVF J 0 A_TakeInventory("RevolverAmmo",1,TIF_NOTAKEINFINITE)
-		REVF J 1 Offset(0,37) A_FireBullets (3, 3, -1, 40, "BulletPuff",0)
+		REVF J 1 BRIGHT Offset(0,37) A_FireBullets (3, 3, -1, 40, "BulletPuff",0)
 		PISF A 0 A_FireCustomMissile("GunSmokeSpawner",0,0,0,8)
-		REVF K 1 Offset(0,38) A_SetPitch (pitch - 0.7)
+		REVF K 1 BRIGHT Offset(0,38) A_SetPitch (pitch - 0.7)
 		REVF L 1 Offset(0,44) A_SetPitch (pitch - 0.7)
 		REVF L 1 Offset(0,46) A_SetPitch (pitch + 0.4)
 		REVF M 1 Offset(0,48) A_AlertMonsters
