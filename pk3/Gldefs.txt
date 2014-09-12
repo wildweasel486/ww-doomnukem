@@ -1,0 +1,555 @@
+#include "BMAPS/SHOTGUN.txt"
+#include "BMAPS/PISTOL.txt"
+#include "BMAPS/RIFLE.txt"
+#include "BMAPS/ROCKET.txt"
+#include "BMAPS/CHAINGUN.txt"
+#include "BMAPS/ITEMS.txt"
+
+pointlight DNBFGFLIGHT
+{
+    color 0.1 1.0 0.1
+    size 128
+}
+
+Object DNBFGBall
+{
+    frame NBFP { light DNBFGFLIGHT }
+}
+pulselight DNBFGFLASH
+{
+    color 0.2 1.0 0.2
+    size 256
+    secondarySize 0
+    interval 1.25
+}
+
+Object DNBFGGLDEFThingy
+{
+    frame TNT1A { light DNBFGFLASH }
+}
+
+pointlight PUFFFLASH
+{
+    color 1.0 0.9 0.4
+    size 7
+}
+
+Object BuellerPuff_Main
+{
+    frame "####" { light PUFFFLASH }
+}
+
+pointlight DNMISSILEFLIGHT
+{
+    color 1.0 0.4 0.1
+    size 32
+}
+
+Object NebRocket
+{
+    frame MNSSA { light DNMISSILEFLIGHT }
+}
+
+pulselight DNMISSILEBLAST
+{
+    color 1.0 0.3 0.1
+    size 96
+    secondarySize 0
+    interval 0.6
+}
+
+Object DN_Blastage
+{
+    frame TNT1A { light DNMISSILEBLAST }
+}
+
+pointlight SMALLIMPBALL
+{
+    color 1.0 0.5 0.0
+    size 48
+}
+
+flickerlight SMALLIMPBALL_X1
+{
+    color 0.7 0.2 0.0
+    size 60
+    secondarySize 66
+    chance 0.25
+}
+
+flickerlight SMALLIMPBALL_X2
+{
+    color 0.4 0.0 0.0
+    size 72
+    secondarySize 78
+    chance 0.25
+}
+
+flickerlight SMALLIMPBALL_X3
+{
+    color 0.2 0.0 0.0
+    size 84
+    secondarySize 90
+    chance 0.25
+}
+
+object SmallImpBall
+{
+    frame BAL1A { light SMALLIMPBALL }
+    frame BAL1B { light SMALLIMPBALL }
+    frame BAL1C { light SMALLIMPBALL_X1 }
+    frame BAL1D { light SMALLIMPBALL_X2 }
+    frame BAL1E { light SMALLIMPBALL_X3 }
+}
+
+pointlight LARGEIMPBALL
+{
+    color 1.0 0.5 0.0
+    size 112
+}
+
+flickerlight LARGEIMPBALL_X1
+{
+    color 0.7 0.2 0.0
+    size 140
+    secondarySize 154
+    chance 0.25
+}
+
+flickerlight LARGEIMPBALL_X2
+{
+    color 0.4 0.0 0.0
+    size 168
+    secondarySize 182
+    chance 0.25
+}
+
+flickerlight LARGEIMPBALL_X3
+{
+    color 0.2 0.0 0.0
+    size 196
+    secondarySize 210
+    chance 0.25
+}
+
+object LargeImpBall
+{
+    frame BAL1A { light LARGEIMPBALL }
+    frame BAL1B { light LARGEIMPBALL }
+    frame BAL1C { light LARGEIMPBALL_X1 }
+    frame BAL1D { light LARGEIMPBALL_X2 }
+    frame BAL1E { light LARGEIMPBALL_X3 }
+}
+
+//Dynamic lights
+
+Pointlight Vore1
+{
+Color 0.7 0.2 0.7
+Size 25
+Offset -15 53 0
+}
+
+Pointlight Vore2
+{
+Color 0.7 0.2 0.7
+Size 25
+Offset 8 55 0
+}
+
+Pointlight Vore3
+{
+Color 0.7 0.2 0.7
+Size 15
+Offset 24 20 0
+}
+
+Object Vore
+{
+Frame VOREG { Light Vore1 }
+Frame VOREH { Light Vore1 }
+Frame VOREI { Light Vore2 }
+Frame VOREJ { Light Vore3 }
+}
+
+
+Pulselight VoreFirepod1
+{
+Color 1.0 0.3 1.0
+Size 32
+SecondarySize 40
+Interval 1.2
+}
+
+Pointlight VoreFirepod2
+{
+Color 1.0 0.4 1.0
+Size 38
+}
+
+Pointlight VoreFirepod3
+{
+Color 1.0 0.6 0.4
+Size 42
+}
+
+Pointlight VoreFirepod4
+{
+Color 0.8 0.5 0.3
+Size 42
+}
+
+Pointlight VoreFirepod5
+{
+Color 0.6 0.4 0.2
+Size 32
+}
+
+Pointlight VoreFirepod6
+{
+Color 0.4 0.25 0.2
+Size 32
+}
+
+Pointlight VoreFirepod7
+{
+Color 0.2 0.2 0.0
+Size 32
+}
+
+Object VoreFirepod
+{
+Frame VOBAA { Light VoreFirepod1 }
+Frame VOBAB { Light VoreFirepod1 }
+Frame VOBAC { Light VoreFirepod1 }
+Frame VOBAD { Light VoreFirepod2 }
+Frame VOBAE { Light VoreFirepod3 }
+Frame VOBAF { Light VoreFirepod4 }
+Frame VOBAG { Light VoreFirepod5 }
+Frame VOBAH { Light VoreFirepod6 }
+}
+
+
+//Brightmaps
+
+brightmap sprite VOREG1
+{
+   map "brightmaps/vore/bmVOREG1.png"
+   disablefullbright
+}
+brightmap sprite VOREG2
+{
+   map "brightmaps/vore/bmVOREG2.png"
+   disablefullbright
+}
+brightmap sprite VOREG3
+{
+   map "brightmaps/vore/bmVOREG3.png"
+   disablefullbright
+}
+brightmap sprite VOREG4
+{
+   map "brightmaps/vore/bmVOREG4.png"
+   disablefullbright
+}
+brightmap sprite VOREG5
+{
+   map "brightmaps/vore/bmVOREG5.png"
+   disablefullbright
+}
+brightmap sprite VOREG6
+{
+   map "brightmaps/vore/bmVOREG6.png"
+   disablefullbright
+}
+brightmap sprite VOREG7
+{
+   map "brightmaps/vore/bmVOREG7.png"
+   disablefullbright
+}
+brightmap sprite VOREG8
+{
+   map "brightmaps/vore/bmVOREG8.png"
+   disablefullbright
+}
+
+brightmap sprite VOREH1
+{
+   map "brightmaps/vore/bmVOREH1.png"
+   disablefullbright
+}
+brightmap sprite VOREH2
+{
+   map "brightmaps/vore/bmVOREH2.png"
+   disablefullbright
+}
+brightmap sprite VOREH3
+{
+   map "brightmaps/vore/bmVOREH3.png"
+   disablefullbright
+}
+brightmap sprite VOREH4
+{
+   map "brightmaps/vore/bmVOREH4.png"
+   disablefullbright
+}
+brightmap sprite VOREH5
+{
+   map "brightmaps/vore/bmVOREH5.png"
+   disablefullbright
+}
+brightmap sprite VOREH6
+{
+   map "brightmaps/vore/bmVOREH6.png"
+   disablefullbright
+}
+brightmap sprite VOREH7
+{
+   map "brightmaps/vore/bmVOREH7.png"
+   disablefullbright
+}
+brightmap sprite VOREH8
+{
+   map "brightmaps/vore/bmVOREH8.png"
+   disablefullbright
+}
+
+brightmap sprite VOREI1
+{
+   map "brightmaps/vore/bmVOREI1.png"
+   disablefullbright
+}
+brightmap sprite VOREI2
+{
+   map "brightmaps/vore/bmVOREI2.png"
+   disablefullbright
+}
+brightmap sprite VOREI3
+{
+   map "brightmaps/vore/bmVOREI3.png"
+   disablefullbright
+}
+brightmap sprite VOREI4
+{
+   map "brightmaps/vore/bmVOREI4.png"
+   disablefullbright
+}
+brightmap sprite VOREI5
+{
+   map "brightmaps/vore/bmVOREI5.png"
+   disablefullbright
+}
+brightmap sprite VOREI6
+{
+   map "brightmaps/vore/bmVOREI6.png"
+   disablefullbright
+}
+brightmap sprite VOREI7
+{
+   map "brightmaps/vore/bmVOREI7.png"
+   disablefullbright
+}
+brightmap sprite VOREI8
+{
+   map "brightmaps/vore/bmVOREI8.png"
+   disablefullbright
+}
+
+brightmap sprite VOREJ1
+{
+   map "brightmaps/vore/bmVOREJ1.png"
+   disablefullbright
+}
+brightmap sprite VOREJ2
+{
+   map "brightmaps/vore/bmVOREJ2.png"
+   disablefullbright
+}
+brightmap sprite VOREJ3
+{
+   map "brightmaps/vore/bmVOREJ3.png"
+   disablefullbright
+}
+brightmap sprite VOREJ4
+{
+   map "brightmaps/vore/bmVOREJ4.png"
+   disablefullbright
+}
+brightmap sprite VOREJ5
+{
+   map "brightmaps/vore/bmVOREJ5.png"
+   disablefullbright
+}
+brightmap sprite VOREJ6
+{
+   map "brightmaps/vore/bmVOREJ6.png"
+   disablefullbright
+}
+brightmap sprite VOREJ7
+{
+   map "brightmaps/vore/bmVOREJ7.png"
+   disablefullbright
+}
+brightmap sprite VOREJ8
+{
+   map "brightmaps/vore/bmVOREJ8.png"
+   disablefullbright
+}
+
+Pointlight TorturedSoulBall
+{
+Color 0.0 1.0 0.0
+Size 25
+}
+
+Pointlight TorturedSoulBall2
+{
+Color 0.0 1.0 0.0
+Size 30
+}
+
+Pointlight TorturedSoulBall3
+{
+Color 0.0 0.7 0.0
+Size 25
+}
+
+Pointlight TorturedSoulBall4
+{
+Color 0.0 0.4 0.0
+Size 20
+}
+
+Object BogBall
+{
+Frame TRBLA { Light TorturedSoulBall }
+Frame TRBLB { Light TorturedSoulBall }
+Frame TRBLC { Light TorturedSoulBall2 }
+Frame TRBLD { Light TorturedSoulBall3 }
+Frame TRBLE { Light TorturedSoulBall4 }
+}
+
+Pointlight TorturedSoulDeath1
+{
+Color 0.4 1.0 0.0
+Size 35
+}
+
+Pointlight TorturedSoulDeath2
+{
+Color 0.5 1.0 0.0
+Size 45
+}
+
+Pointlight TorturedSoulDeath3
+{
+Color 0.3 0.6 0.0
+Size 40
+}
+
+Pointlight TorturedSoulDeath4
+{
+Color 0.2 0.4 0.0
+Size 40
+}
+
+Pointlight TorturedSoulDeath5
+{
+Color 0.1 0.2 0.0
+Size 35
+}
+
+Object BogElemental
+{
+Frame TORTJ { Light TorturedSoulDeath1 }
+Frame TORTK { Light TorturedSoulDeath2 }
+Frame TORTL { Light TorturedSoulDeath3 }
+Frame TORTM { Light TorturedSoulDeath4 }
+Frame TORTN { Light TorturedSoulDeath5 }
+}
+
+Pointlight DaedFire1
+{
+Color 0.6 0.3 0.0
+Size 56
+}
+
+Pointlight DaedFire2
+{
+Color 0.8 0.45 0.0
+Size 64
+}
+
+Pointlight DaedFire3
+{
+Color 0.65 0.35 0.0
+Size 56
+}
+
+Pointlight DaedFire4
+{
+Color 0.4 0.15 0.0
+Size 32
+}
+
+Object DaedFire
+{
+Frame DAEFA { Light DaedFire1 }
+Frame DAEFB { Light DaedFire1 }
+Frame DAEFC { Light DaedFire2 }
+Frame DAEFD { Light DaedFire3 }
+Frame DAEFE { Light DaedFire4 }
+}
+
+POINTLIGHT ElectricSledgePuffL1
+{
+  Color 0.0 0.35 1.0
+  Size 32
+}
+
+POINTLIGHT ElectricSledgePuffL2
+{
+  Color 0.0 0.35 1.0
+  Size 40
+}
+
+POINTLIGHT ElectricSledgePuffL3
+{
+  Color 0.0 0.35 1.0
+  Size 48
+}
+
+POINTLIGHT ElectricSledgePuffL4
+{
+  Color 0.0 0.35 1.0
+  Size 56
+}
+
+POINTLIGHT ElectricSledgePuffL5
+{
+  Color 0.0 0.26 0.75
+  Size 56
+}
+
+POINTLIGHT ElectricSledgePuffL6
+{
+  Color 0.0 0.17 0.5
+  Size 46
+}
+
+POINTLIGHT ElectricSledgePuffL7
+{
+  Color 0.0 0.08 0.25
+  Size 36
+}
+
+OBJECT ElectricSledgePuff
+{
+  Frame SLFXA { Light ElectricSledgePuffL1 }
+  Frame SLFXB { Light ElectricSledgePuffL2 }
+  Frame SLFXC { Light ElectricSledgePuffL3 }
+  Frame SLFXD { Light ElectricSledgePuffL4 }
+  Frame SLFXE { Light ElectricSledgePuffL5 }
+  Frame SLFXF { Light ElectricSledgePuffL6 }
+  Frame SLFXG { Light ElectricSledgePuffL7 }
+}

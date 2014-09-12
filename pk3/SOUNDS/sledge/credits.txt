@@ -1,0 +1,5 @@
+The sounds in this folder came from Magmacow's Extra-violent Melee Sounds on Gamebanana,
+under the license of "Do whatever the hell you want."
+
+Except for SLESWING, which is a combination of sounds from TES4: Oblivion and System Shock 2.
+...and SLEDWALL, which is a mixture of sounds from Serious Sam 3: BFE.

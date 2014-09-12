@@ -1,0 +1,60 @@
+//Decorate: Eriance
+//Sounds: Id Software, Raven Software, Midway
+//Sprites: Id Software
+//Sprite Edit: Eriance
+
+Actor LesserDemon : Demon replaces Demon
+{
+	Health 200
+	PainChance 140
+	Speed 12
+	Radius 30
+	Height 56
+	Mass 650
+	Monster
+	+FloorClip
+	+LongMeleeRange
+	+DontHurtSpecies
+	Obituary "%o was crunchy and tasted great with ketchup."
+	SeeSound "Monster/sg2sit"
+	AttackSound "Monster/sg2atk"
+	PainSound "demon/Pain"
+	DeathSound "demon/Death"
+	ActiveSound "demon/sg2act"
+	BloodColor "FC B6 B4"
+	States
+	{
+	Spawn:
+		SAR2 AB 10 A_Look
+		Loop
+	See:
+		SAR2 AABBCCDD 2 A_Chase
+		Loop
+	Melee:
+		SAR2 EF 8 A_FaceTarget
+		SAR2 G 8 A_SargAttack
+		Goto See
+	Pain:
+		SAR2 H 2
+		SAR2 H 2 A_Pain
+		Goto See
+	Death:
+		SAR2 I 8
+		SAR2 J 8 A_Scream
+		SAR2 K 4
+		SAR2 L 4 A_NoBlocking
+		SAR2 M 4
+		SAR2 N -1
+		Stop
+	XDeath:
+		SAR2 O 5
+		SAR2 P 5 A_XScream
+		SAR2 Q 5 A_NoBlocking
+		SAR2 RSTUV 5
+		SAR2 W -1
+		Stop
+	Raise:
+		SAR2 NMLKJI 5
+		Goto See
+	}
+}

@@ -1,0 +1,49 @@
+brightmap sprite CHAGA0
+{
+    map "BRIGHTMAPS/CHAINGUN/BMCHNGA0.png"
+}
+
+brightmap sprite CHAGB0
+{
+    map "BRIGHTMAPS/CHAINGUN/BMCHNGB0.png"
+}
+
+brightmap sprite CHAGC0
+{
+    map "BRIGHTMAPS/CHAINGUN/BMCHNGC0.png"
+}
+
+brightmap sprite CHAGD0
+{
+    map "BRIGHTMAPS/CHAINGUN/BMCHNGB0.png"
+}
+
+/*brightmap sprite CHAFB0
+{
+    map "BRIGHTMAPS/CHAINGUN/BMCHNGB0.png"
+}
+
+brightmap sprite CHAFC0
+{
+    map "BRIGHTMAPS/CHAINGUN/BMCHNGC0.png"
+}
+
+brightmap sprite CHAFE0
+{
+    map "BRIGHTMAPS/CHAINGUN/BMCHNGB0.png"
+}
+
+brightmap sprite CHAFF0
+{
+    map "BRIGHTMAPS/CHAINGUN/BMCHNGC0.png"
+}
+
+brightmap sprite CHAFH0
+{
+    map "BRIGHTMAPS/CHAINGUN/BMCHNGB0.png"
+}
+
+brightmap sprite CHAFI0
+{
+    map "BRIGHTMAPS/CHAINGUN/BMCHNGC0.png"
+}*/

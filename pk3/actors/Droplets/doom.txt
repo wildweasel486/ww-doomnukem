@@ -1,0 +1,395 @@
+ACTOR CacodemonBlue : Cacodemon replaces Cacodemon
+{
+	BloodType BlueSquirt
+	BloodColor "000080"
+	States
+	{
+	Death:
+		HEAD G 2 A_SpawnItemEx("BlueSquirt",0,0,32)
+		Loop
+	Crash:
+		TNT1 A 0 A_Scream
+		HEAD H 2 A_SpawnItemEx("BlueSquirt",0,0,32)
+		HEAD I 4 A_SpawnItemEx("BlueSquirt",0,0,32)
+		HEAD J 6 A_SpawnItemEx("BlueSquirt",0,0,32)
+		TNT1 A 0 A_SpawnItemEx("BlueSquirt",0,0,32)
+		HEAD K 8 A_NoBlocking
+		HEAD L 1 A_SetFloorClip
+		goto Slide
+	Slide:
+		"----" A 1 A_JumpIf(velx + vely + velz == 0, "Pool")
+		Loop
+	Pool:
+		"----" A -1 A_SpawnItemEx("BluePool",0,0,8)
+		Stop
+	}
+}
+
+ACTOR HellKnightGreen : HellKnight replaces HellKnight
+{
+	BloodType GreenSquirt
+	BloodColor "58 73 22"
+	States
+	{
+	Death:
+		BOS2 I  8 A_SpawnItemEx("GreenSquirt",0,0,32)
+		TNT1 A	0 A_SpawnItemEx("GreenSquirt",0,0,32)
+		BOS2 J  8 A_Scream
+		BOS2 K  8 A_SpawnItemEx("GreenSquirt",0,0,32)
+		TNT1 A	0 A_SpawnItemEx("GreenSquirt",0,0,32)
+		BOS2 L  8 A_NoBlocking
+		BOS2 MN 8
+		BOS2 O 0
+		goto Slide
+	Slide:
+		"----" A 1 A_JumpIf(velx + vely + velz == 0, "Pool")
+		Loop
+	Pool:
+		"----" A -1 A_SpawnItemEx("GreenPool",0,0,8)
+		Stop
+	}
+}
+
+ACTOR BaronOfHellGreen : BaronOfHell replaces BaronOfHell
+{
+	BloodType GreenSquirt
+	BloodColor "58 73 22"
+	States
+	{
+	Death:
+		BOSS I  8 A_SpawnItemEx("GreenSquirt",0,0,32)
+		TNT1 A	0 A_SpawnItemEx("GreenSquirt",0,0,32)
+		BOSS J  8 A_Scream
+		BOSS K  8 A_SpawnItemEx("GreenSquirt",0,0,32)
+		TNT1 A	0 A_SpawnItemEx("GreenSquirt",0,0,32)
+		BOSS L  8 A_NoBlocking
+		BOSS MN 8
+		BOSS O 1 A_BossDeath
+		goto Slide
+	Slide:
+		"----" A 1 A_JumpIf(velx + vely + velz == 0, "Pool")
+		Loop
+	Pool:
+		"----" A -1 A_SpawnItemEx("GreenPool",0,0,8)
+		Stop
+	}
+}
+
+ACTOR ZombiemanXDeath : Zombieman replaces Zombieman
+{
+	States
+	{
+	Death:
+		POSS H 5 A_SpawnItemEx("BloodSquirt",0,0,32)
+		POSS I 5 A_Scream
+		POSS J 5 A_NoBlocking
+		POSS K 5
+		POSS L 0
+		goto Slide
+	Slide:
+		"----" A 1 A_JumpIf(velx + vely + velz == 0, "Pool")
+		Loop
+	Pool:
+		"----" A -1 A_SpawnItemEx("BloodPool2",0,0,8)
+		Stop
+	XDeath:
+		POSS M 5 A_CustomMissile("GibSpray",32.0,0,angle)
+		POSS N 5 A_XScream
+		POSS O 5 A_NoBlocking
+		POSS PQRST 5
+		POSS U 0
+		goto Slide
+	}
+}
+
+ACTOR ShotgunGuyXDeath : ShotgunGuy replaces ShotgunGuy
+{
+	States
+	{
+	Death:
+		SPOS H 5 A_SpawnItemEx("BloodSquirt",0,0,32)
+		SPOS I 5 A_Scream
+		SPOS J 5 A_NoBlocking
+		SPOS K 5
+		SPOS L 0
+		goto Slide
+	Slide:
+		"----" A 1 A_JumpIf(velx + vely + velz == 0, "Pool")
+		Loop
+	Pool:
+		"----" A -1 A_SpawnItemEx("BloodPool2",0,0,8)
+		Stop
+	XDeath:
+		SPOS M 5 A_CustomMissile("GibSpray",32.0,0,angle)
+		SPOS N 5 A_XScream
+		SPOS O 5 A_NoBlocking
+		SPOS PQRST 5
+		SPOS U 0
+		goto Slide
+	}
+}
+
+ACTOR ChaingunGuyXDeath : ChaingunGuy replaces ChaingunGuy
+{
+	States
+	{
+	Death:
+		CPOS H 5 A_SpawnItemEx("BloodSquirt",0,0,32)
+		CPOS I 5 A_Scream
+		CPOS J 5 A_NoBlocking
+		CPOS KLM 5
+		CPOS N 0
+		goto Slide
+	Slide:
+		"----" A 1 A_JumpIf(velx + vely + velz == 0, "Pool")
+		Loop
+	Pool:
+		"----" A -1 A_SpawnItemEx("BloodPool2",0,0,8)
+		Stop
+	XDeath:
+		CPOS O 5 A_CustomMissile("GibSpray",32.0,0,angle)
+		CPOS P 5 A_XScream
+		CPOS Q 5 A_NoBlocking
+		CPOS RS 5
+		CPOS T 0
+		goto Slide
+	}
+}
+
+ACTOR DoomImpXDeath : DoomImp replaces DoomImp
+{
+	States
+	{
+	Death:
+		TROO I 8 A_SpawnItemEx("BloodSquirt",0,0,32)
+		TROO J 8 A_Scream
+		TROO K 6
+		TROO L 6 A_NoBlocking
+		TROO M 0
+		goto Slide
+	Slide:
+		"----" A 1 A_JumpIf(velx + vely + velz == 0, "Pool")
+		Loop
+	Pool:
+		"----" A -1 A_SpawnItemEx("BloodPool2",0,0,8)
+		Stop
+	XDeath:
+		TROO N 5 A_CustomMissile("GibSpray",32.0,0,angle)
+		TROO O 5 A_XScream
+		TROO P 5
+		TROO Q 5 A_NoBlocking
+		TROO RST 5
+		TROO U 0
+		goto Slide
+	}
+}
+
+ACTOR DemonBleed : Demon replaces Demon
+{
+	States
+	{
+	Death:
+		SARG I 8 A_SpawnItemEx("BloodSquirt",0,0,32)
+		SARG J 8 A_Scream
+		SARG K 4
+		SARG L 4 A_NoBlocking
+		SARG M 4
+		SARG N 0
+		goto Slide
+	Slide:
+		"----" A 1 A_JumpIf(velx + vely + velz == 0, "Pool")
+		Loop
+	Pool:
+		"----" A -1 A_SpawnItemEx("BloodPool2",0,0,8)
+		Stop
+	}
+}
+
+ACTOR SpectreBleed : Spectre replaces Spectre
+{
+	States
+	{
+	Death:
+		SARG I 8 A_SpawnItemEx("BloodSquirt",0,0,32)
+		SARG J 8 A_Scream
+		SARG K 4
+		SARG L 4 A_NoBlocking
+		SARG M 4
+		SARG N 0
+		goto Slide
+	Slide:
+		"----" A 1 A_JumpIf(velx + vely + velz == 0, "Pool")
+		Loop
+	Pool:
+		"----" A -1 A_SpawnItemEx("BloodPool2",0,0,8)
+		Stop
+	}
+}
+
+ACTOR ArachnotronBleed : Arachnotron replaces Arachnotron
+{
+	States
+	{
+	Death:
+		TNT1 A 0 A_SpawnItemEx("AxeSquirt",0,0,64)
+		BSPI J 20 A_Scream
+		BSPI K 7 A_NoBlocking
+		BSPI LMNO 7
+		BSPI P 1 A_BossDeath
+		goto Slide
+	Slide:
+		"----" A 1 A_JumpIf(velx + vely + velz == 0, "Pool")
+		Loop
+	Pool:
+		"----" A -1 A_SpawnItemEx("BloodPool2",0,0,8)
+		Stop
+	}
+}
+
+ACTOR SpiderMastermindBleed : SpiderMastermind replaces SpiderMastermind
+{
+	States
+	{
+	Death:
+		TNT1 A 0 A_SpawnItemEx("BossSpray",0,0,96)
+		SPID J 20 A_Scream
+		SPID K 10 A_NoBlocking
+		SPID LLMMNNOOPPQQRR 5 A_SpawnItemEx("BloodSquirt",random(-48,48),random(-48,48),32)
+		SPID S 30
+		SPID S -1 A_BossDeath
+		Stop
+	}
+}
+
+ACTOR CyberdemonBleed : Cyberdemon replaces Cyberdemon
+{
+	States
+	{
+	Death:
+		TNT1 A 0 A_SpawnItemEx("BossSpray",0,0,96)
+		CYBR H 10
+		CYBR I 10 A_Scream
+		CYBR JKL 10 A_SpawnItemEx("AxeSquirt",random(-48,48),random(-48,48),32)
+		CYBR M 10 A_NoBlocking
+		CYBR NO 10
+		CYBR P 30
+		CYBR P -1 A_BossDeath
+		Stop
+	}
+}
+
+ACTOR FatsoBleed : Fatso replaces Fatso
+{
+	States
+	{
+	Death:
+		FATT K 6 A_SpawnItemEx("AxeSquirt",0,0,32)
+		FATT L 6 A_Scream
+		FATT M 6 A_NoBlocking
+		FATT NOPQRS 6
+		FATT T 1 A_BossDeath
+	    goto Slide
+	Slide:
+		"----" A 1 A_JumpIf(velx + vely + velz == 0, "Pool")
+		Loop
+	Pool:
+		"----" A -1 A_SpawnItemEx("BloodPool2",0,0,8)
+		Stop
+	}
+}
+
+ACTOR RevenantBleed : Revenant replaces Revenant
+{
+	States
+	{
+	Death:
+		SKEL L 7 A_SpawnItemEx("AxeSquirt",0,0,32)
+		SKEL M 7
+		SKEL N 7 A_Scream
+		SKEL O 7 A_NoBlocking
+		SKEL P 7
+		SKEL Q 0
+		goto Slide
+	Slide:
+		"----" A 1 A_JumpIf(velx + vely + velz == 0, "Pool")
+		Loop
+	Pool:
+		"----" A -1 A_SpawnItemEx("BloodPool2",0,0,8)
+		Stop
+	}
+}
+
+ACTOR ArchvileBleed : Archvile replaces Archvile
+{
+	States
+	{
+	Death:
+		VILE Q 7 A_SpawnItemEx("AxeSquirt",0,0,32)
+		VILE R 7 A_Scream
+		VILE S 7 A_NoBlocking
+		VILE TUVWXY 7
+		VILE Z 0
+		goto Slide
+	Slide:
+		"----" A 1 A_JumpIf(velx + vely + velz == 0, "Pool")
+		Loop
+	Pool:
+		"----" A -1 A_SpawnItemEx("BloodPool2",0,0,8)
+		Stop
+	}
+}
+
+ACTOR PainElementalBleed : PainElemental replaces PainElemental
+{
+	States
+	{
+	Death:
+		PAIN H 8 BRIGHT
+		PAIN I 8 BRIGHT A_Scream
+		PAIN JK 8 BRIGHT
+		PAIN L 4 BRIGHT A_PainDie
+		PAIN L 4 BRIGHT A_SpawnItemEx("AxeSquirt",0,0,32)
+		PAIN M 8 BRIGHT
+		Stop
+	}
+}
+
+ACTOR ArachnotronPlasmaBleed : ArachnotronPlasma replaces ArachnotronPlasma
+{
+	+BLOODSPLATTER
+}
+
+ACTOR BaronBallBleed : BaronBall replaces BaronBall
+{
+	+BLOODSPLATTER
+}
+
+ACTOR CacodemonBallBleed : CacodemonBall replaces CacodemonBall
+{
+	+BLOODSPLATTER
+}
+
+ACTOR DoomImpBallBleed : DoomImpBall replaces DoomImpBall
+{
+	+BLOODSPLATTER
+}
+
+ACTOR FatShotBleed : FatShot replaces FatShot
+{
+	+BLOODSPLATTER
+}
+
+ACTOR PlasmaBallBleed : PlasmaBall replaces PlasmaBall
+{
+	+BLOODSPLATTER
+}
+
+ACTOR RevenantTracerBleed : RevenantTracer replaces RevenantTracer
+{
+	+BLOODSPLATTER
+}
+
+ACTOR RocketBleed : Rocket replaces Rocket
+{
+	+BLOODSPLATTER
+}

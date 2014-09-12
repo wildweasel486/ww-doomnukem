@@ -1,0 +1,442 @@
+$playeralias doomnukem male *death doomnukem/death
+$playeralias doomnukem male *xdeath doomnukem/death
+$playeralias doomnukem male *gibbed doomnukem/death
+$playeralias doomnukem male *pain100 doomnukem/lowpain
+$playeralias doomnukem male *pain75 doomnukem/lowpain
+$playeralias doomnukem male *pain50 doomnukem/medpain
+$playeralias doomnukem male *pain25 doomnukem/hipain
+$playeralias doomnukem male *grunt doomnukem/land
+$playeralias doomnukem male *land doomnukem/land
+$playersound doomnukem male *usefail DSNOWAY
+$playersound doomnukem male *poison DSCOUGH
+
+$random doomnukem/death { dndeath1 dndeath2 dndeath3 dndeath4 }
+dndeath1 dmsichi1
+dndeath2 dmsichi2
+dndeath3 dmsichi3
+dndeath4 dmsichi4
+$random doomnukem/lowpain { dnlopain1 dnlopain2 dnlopain3 }
+dnlopain1 dmgenlo1
+dnlopain2 dmgenlo2
+dnlopain3 dmgenlo3
+$random doomnukem/medpain { dnmedpain1 dnmedpain2 dnmedpain3 }
+dnmedpain1 dmgenme1
+dnmedpain2 dmgenme2
+dnmedpain3 dmgenme3
+$random doomnukem/hipain { dnhipain1 dnhipain2 dnhipain3 }
+dnhipain1 dmgenhi1
+dnhipain2 dmgenhi2
+dnhipain3 dmgenhi3
+$random doomnukem/land { dnland1 dnland2 dnland3 dnland4 dnland5 }
+dnland1 FTPOLY1
+dnland2 FTPOLY2
+dnland3 FTPOLY3
+dnland4 FTPOLY4
+dnland5 FTPOLY5
+$random doomnukem/fleshhit { dnhit1 dnhit2 dnhit3 dnhit4 }
+dnhit1 HWREFLE1
+dnhit2 HWREFLE2
+dnhit3 HWREFLE3
+dnhit4 HWREFLE4
+
+$random Weapons/Sledge/Hit { Sledge1 Sledge2 Sledge3 }
+Sledge1 Sledge1
+Sledge2 Sledge2
+Sledge3 Sledge3
+Weapons/Sledge/Swing SLESWING
+Weapons/Sledge/Wall SLEDWALL
+$limit Weapons/Sledge/Wall 0
+$random Weapons/ESledge/Hit { ESledge1 ESledge2 ESledge3 }
+ESledge1 Sltdge1
+ESledge2 Sltdge2
+ESledge3 Sltdge3
+Weapons/ESledge/Swing SLTSWING
+Weapons/ESledge/Wall SLTDWALL
+$limit Weapons/ESledge/Wall 0
+
+Weapons/Pistol/Fire Pstlfire
+Weapons/Pistol/Clipout Pstlout
+Weapons/Pistol/Clipin PstlIn
+Weapons/Pistol/Clipslap Pstlslap
+Weapons/Pistol/Release Pstlfwd
+Weapons/Pistol/Move Pstlmove
+
+Weapons/Revolver/Fire REVOFIRE
+Weapons/Revolver/Open REVOOPEN
+Weapons/Revolver/Load REVOLOAD
+Weapons/Revolver/Close REVOCLS
+
+Weapons/Sawedoff/Fire SHOTFIRE
+Weapons/Sawedoff/DoubleFire SHOTDOUB
+Weapons/Sawedoff/Open SAWDOPEN
+Weapons/Sawedoff/Out SAWDOUT
+Weapons/Sawedoff/In SAWDIN
+Weapons/Sawedoff/Close SAWDCLOS
+
+$random Weapons/Shotgun/Fire { Sawedoff1 Sawedoff2 Sawedoff3 Sawedoff4 }
+Sawedoff1 SAWFIRE1
+Sawedoff2 SAWFIRE2
+Sawedoff3 SAWFIRE3
+Sawedoff4 SAWFIRE4
+Weapons/Shotgun/Pump SHOTPUMP
+$random Weapons/Shotgun/Load { Shotload1 Shotload2 Shotload3 Shotload4 }
+Shotload1 SHTLOAD1
+Shotload2 SHTLOAD2
+Shotload3 SHTLOAD3
+Shotload4 SHTLOAD4
+
+Weapons/Rifle/Fire RIFLFIRE
+Weapons/Rifle/Out RIFLOUT
+Weapons/Rifle/In RIFLIN
+Weapons/Rifle/Click RIFLCLIK
+
+Weapons/Rocket/Fire ROCKFIRE
+$random Weapons/Rocket/Explode { RocketExplo1 RocketExplo2 RocketExplo3 }
+RocketExplo1 ROCKXPL1
+RocketExplo2 ROCKXPL2
+RocketExplo3 ROCKXPL3
+$limit Weapons/Rocket/Explode 0
+Weapons/Rocket/Pickup ROCKLOAD
+Weapons/Rocket/Eject ROCKEJEC
+Weapons/Rocket/Slap ROCKSLAP
+
+Weapons/Chaingun/FireLoop CHAINFIR
+Weapons/Chaingun/FireDecay CHAINDEC
+Weapons/Chaingun/Load CHAINLOD
+Weapons/Chaingun/Raise CHAINUP
+Weapons/Chaingun/Lower CHAINDWN
+Weapons/Chaingun/Motor CHAINMOT
+Weapons/Chaingun/Ammo CHAINAMO
+
+Weapons/BFG/Charge BFGCHARG
+Weapons/BFG/Fire BFGFIRE
+Weapons/BFG/Pickup BFGPICK
+Weapons/BFG/Ammo BFGAMMO
+Weapons/BFG/Explode BFGEXPLO
+Weapons/BFG/Select BFGSEL
+
+Weapons/Dryfire DRYFIRE
+Weapons/Select1 WEAPSEL1
+Weapons/Select2 WEAPSEL2
+Weapons/Select3 WEAPSEL3
+
+// Shell Casings
+$random bulletcasing/bounce { bcase1 bcase2 bcase3 bcase4 }
+bcase1 bcase1
+bcase2 bcase2
+bcase3 bcase3
+bcase4 bcase4
+$random shellcasing/bounce { scasesb1 scasesb2 }
+$random shellcasing/stop { scases1 scases2 scases3 }
+scases1 scases1
+scases2 scases2
+scases3 scases3
+scasesb1 scasesb1
+scasesb2 scasesb2
+
+// Item Pickups
+
+Items/HealthBonus GetHlthS
+Items/HealthSmall GetHelth
+Items/HealthLarge GetHlth2
+Items/ArmorBonus GetArmrS
+Items/ArmorSmall GetArmr2
+Items/ArmorLarge GetArmr1
+Items/Cloak GetCloak
+Items/Berserk GetBserk
+Items/Mega GetMega
+Items/SuperHealth GetSoul
+Items/PInv GetPinv
+Items/AllMap GetPmap
+
+// Zombies
+
+$random weakzombie/sight { weaksight1 weaksight2 weaksight3 weaksight4 weaksight5 weaksight6 }
+$random weakzombie/pain { weakpain1 weakpain2 weakpain3 weakpain4 weakpain5 weakpain6 }
+$random weakzombie/death { weakdeath1 weakdeath2 weakdeath3 weakdeath4 weakdeath5 weakdeath6 weakdeath7 weakdeath8 weakdeath9 }
+weaksight1 wkzsit1
+weaksight2 wkzsit2
+weaksight3 wkzsit3
+weaksight4 wkzsit4
+weaksight5 wkzsit5
+weaksight6 wkzsit6
+weakpain1 wkzpn1
+weakpain2 wkzpn2
+weakpain3 wkzpn3
+weakpain4 wkzpn4
+weakpain5 wkzpn5
+weakpain6 wkzpn6
+weakdeath1 wkzdth1
+weakdeath2 wkzdth2
+weakdeath3 wkzdth3
+weakdeath4 wkzdth4
+weakdeath5 wkzdth5
+weakdeath6 wkzdth6
+weakdeath7 wkzdth7
+weakdeath8 wkzdth8
+weakdeath9 wkzdth9
+
+$random averagezombie/sight { averagesight1 averagesight2 averagesight3 averagesight4 averagesight5 averagesight6 averagesight7 }
+$random averagezombie/pain { averagepain1 averagepain2 averagepain3 averagepain4 averagepain5 averagepain6 averagepain7 }
+$random averagezombie/death { averagedeath1 averagedeath2 averagedeath3 averagedeath4 averagedeath5 averagedeath6 averagedeath7 averagedeath8 averagedeath9 }
+averagesight1 avzsit1
+averagesight2 avzsit2
+averagesight3 avzsit3
+averagesight4 avzsit4
+averagesight5 avzsit5
+averagesight6 avzsit6
+averagesight7 avzsit7
+averagesight8 avzsit8
+averagesight9 avzsit9
+averagepain1 avzpn1
+averagepain2 avzpn2
+averagepain3 avzpn3
+averagepain4 avzpn4
+averagepain5 avzpn5
+averagepain6 avzpn6
+averagepain7 avzpn7
+averagedeath1 avzdth1
+averagedeath2 avzdth2
+averagedeath3 avzdth3
+averagedeath4 avzdth4
+averagedeath5 avzdth5
+averagedeath6 avzdth6
+averagedeath7 avzdth7
+averagedeath8 avzdth8
+averagedeath9 avzdth9
+
+$random strongzombie/sight { strongsight1 strongsight2 strongsight3 strongsight4 strongsight5 strongsight6 strongsight7 }
+$random strongzombie/pain { strongpain1 strongpain2 strongpain3 strongpain4 }
+$random strongzombie/death { strongdeath1 strongdeath2 strongdeath3 strongdeath4 strongdeath5 strongdeath6 strongdeath7 strongdeath8 strongdeath9 }
+strongsight1 stzsit1
+strongsight2 stzsit2
+strongsight3 stzsit3
+strongsight4 stzsit4
+strongsight5 stzsit5
+strongsight6 stzsit6
+strongsight7 stzsit7
+strongpain1 stzpn1
+strongpain2 stzpn2
+strongpain3 stzpn3
+strongpain4 stzpn4
+strongdeath1 stzdth1
+strongdeath2 stzdth2
+strongdeath3 stzdth3
+strongdeath4 stzdth4
+strongdeath5 stzdth5
+strongdeath6 stzdth6
+strongdeath7 stzdth7
+strongdeath8 stzdth8
+strongdeath9 stzdth9
+
+$random zombieradio { zombieradio1 zombieradio2 zombieradio3 zombieradio4 zombieradio5 zombieradio6 zombieradio7 zombieradio8 zombieradio9 zombieradioa zombieradiob zombieradioc zombieradiod zombieradioe }
+zombieradio1 zradio1
+zombieradio2 zradio2
+zombieradio3 zradio3
+zombieradio4 zradio4
+zombieradio5 zradio5
+zombieradio6 zradio6
+zombieradio7 zradio7
+zombieradio8 zradio8
+zombieradio9 zradio9
+zombieradioa zradioa
+zombieradiob zradiob
+zombieradioc zradioc
+zombieradiod zradiod
+zombieradioe zradioe
+
+// Imps
+
+$random gauntimp/sight { gimpsit1 gimpsit2 gimpsit3 }
+$random gauntimp/death { gimpdth1 gimpdth2 gimpdth3 gimpdth4 }
+gimpsit1 gimpsit1
+gimpsit2 gimpsit2
+gimpsit3 gimpsit3
+gimpdth1 gimpdth1
+gimpdth2 gimpdth2
+gimpdth3 gimpdth3
+gimpdth4 gimpdth4
+gauntimp/pain gimppain
+gauntimp/meleeswing gimpmiss
+gauntimp/meleehit gimphit
+
+// From ww-diaz-v3, for the imp fireballs.
+$random psiamp/fireball { psiball1 psiball2 }
+psiball1 psifire1
+psiball2 psifire2
+$random psiamp/firehit { psifire1 psifire2 psifire3 psifire4 psifire5 }
+psifire1 psifhit1
+psifire2 psifhit2
+psifire3 psifhit3
+psifire4 psifhit4
+psifire5 psifhit5
+
+gauntimp/voidloop voidloop
+gauntimp/voidexplod voidxpld
+
+// Demon
+
+monster/sg2sit dssg2sit
+monster/sg2atk dssg2atk
+
+// Mechdemon
+
+blooddemon/sight DSBLDSIT
+blooddemon/pain DSBLDPAI
+blooddemon/death DSBLDDTH
+blooddemon/active DSBLDACT
+blooddemon/melee DSBLDATK
+blooddemon/walk DSBLDWAL
+
+// Soul
+
+$random Soul/Sight { soulsight1 soulsight2 }
+soulsight1 soulsee1
+soulsight2 soulsee2
+$random Soul/Active { soulact1 soulact2 soulact3 }
+soulact1 soulact1
+soulact2 soulact2
+soulact3 soulact3
+Soul/Attack1 soulatk1
+Soul/Attack2 soulatk2
+Soul/Death souldth1
+
+// Vore
+
+Vore/Sight	VORESIGH
+Vore/Active	VOREACTI
+Vore/Attack	VOREATTK
+Vore/Throw	VORETHRW
+Vore/Hit	dsbarexp
+Vore/Pain	VOREPAIN
+Vore/Death	VOREDEAT
+
+// Caco
+
+CacoLich/Sight INSSIT
+CacoLich/Active DSTRTACT
+CacoLich/Pain NESSPN
+CacoLich/Death DSDMDETH
+Caco/Fireball DSCFBALL
+Caco/FireExplode DSCFEXPL
+Caco/Deflate CACODFLT
+
+// Fatso
+
+Daedabus/Sight		DAEDSIGH
+$Random Daedabus/Active	{ DAEDACT1 DAEDACT2 }
+DAEDACT1		DAEDACT1
+DAEDACT2		DAEDACT2
+Daedabus/Attack		DAEDATTK
+$Random Daedabus/pain	{ DAEDPAI1 DAEDPAI2 }
+DAEDPAI1		DAEDPAI1
+DAEDPAI2		DAEDPAI2
+Daedabus/Death 		DAEDDEAT
+
+// Ghoul
+
+RevGhoul/Sight dsskesit
+RevGhoul/Pain DSDMPAIN
+RevGhoul/active dsskeact
+RevGhoul/melee GHOULPUN
+RevGhoul/Death dsskedth
+RevGhoul/Swing GHOULFIR
+
+skeleton/attack			dsskeatk
+skeleton/tracex			dsbarexp
+
+// Bog Elemental
+
+torturedsoul/sight dstrtsit
+torturedsoul/pain dstrtpn
+torturedsoul/death dstrtdth
+torturedsoul/active dstrtact
+torturedsoul/attack dstrtatk
+torturedsoul/poison dstrtpsn
+
+// Zombie Plasma Tank
+
+ZPTank/see DSZTANK1
+ZPTank/attack DSZTPLAZ
+ZPTank/pain DSZTANKP
+ZPTank/death DSZTANKD
+ZPTank/Run DSZTANK2
+ZPTank/explode DSZTANKX
+
+// Tribal Knight
+
+$random tribalknight/sight { knigsit1 knigsit2 knigsit3 knigsit4 knigsit5 knigsit6 }
+knigsit1 knigsit1
+knigsit2 knigsit2
+knigsit3 knigsit3
+knigsit4 knigsit4
+knigsit5 knigsit5
+knigsit6 knigsit6
+tribalknight/active KNIGACT
+$random tribalknight/attack { knigatk1 knigatk2 knigatk3 knigatk4 knigatk5 knigatk6 knigatk7 knigatk8 }
+knigatk1 knigatk1
+knigatk2 knigatk2
+knigatk3 knigatk3
+knigatk4 knigatk4
+knigatk5 knigatk5
+knigatk6 knigatk6
+knigatk7 knigatk7
+knigatk8 knigatk8
+$random tribalknight/pain { knigpn1 knigpn2 knigpn3 knigpn4 knigpn5 knigpn6 }
+knigpn1 knigpn1
+knigpn2 knigpn2
+knigpn3 knigpn3
+knigpn4 knigpn4
+knigpn5 knigpn5
+knigpn6 knigpn6
+$random tribalknight/death { knigdth1 knigdth2 knigdth3 knigdth4 knigdth5 }
+knigdth1 knigdth1
+knigdth2 knigdth2
+knigdth3 knigdth3
+knigdth4 knigdth4
+knigdth5 knigdth5
+
+// Baron
+
+$random Baron/Sight { Baronsee1 Baronsee2 Baronsee3 BaronSee4 }
+Baronsee1 Baronse1
+Baronsee2 Baronse2
+Baronsee3 Baronse3
+Baronsee4 Baronse4
+Baron/Death Barondie
+Baron/Pain Baronhit
+
+// Doors (from Extreme Measures)
+
+doors/dr1_start dssl1bgn
+doors/dr1_mid dssl1mid
+doors/dr1_stop dssl1end
+doors/openquick door1op
+doors/closequick door1cl
+doors/slamquick door1slm
+plats/liftstart lift1go
+plats/liftmove lift1mid
+plats/liftstop lift1stp
+plats/slowstart lift2go
+plats/slowmove lift2mid
+plats/slowstop lift2stp
+
+// Droplets by SidDoyle
+
+$pitchshiftrange 3
+
+blood/sp1	splat1
+blood/sp2	splat2
+blood/sp3	splat3
+blood/sp4	splat4
+blood/sp5	splat5
+blood/sp6	splat6
+
+$rolloff blood/sp1 8.0 640.0
+$rolloff blood/sp2 8.0 640.0
+$rolloff blood/sp3 8.0 512.0
+$rolloff blood/sp4 8.0 512.0
+$rolloff blood/sp5 8.0 384.0
+$rolloff blood/sp6 8.0 512.0
+
+$random blood/drip { blood/sp1 blood/sp2 blood/sp3 blood/sp4 blood/sp5 blood/sp6 }

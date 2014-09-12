@@ -1,0 +1,114 @@
+Actor BlueSparkSpawner
+{
+	Height 8
+	Radius 4
+	+NoBlockMap
+	+NoGravity
+	+NoInteraction
+	+ClientSideOnly
+	+NoClip
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(256, 1, 2, 3, 4, 5, 6)
+		TNT1 A 1 A_SpawnItemEx("SparkFlare_B1", 0, 0, 0, 0, 0, 0, 0, 128)
+		Goto SpawnSparks
+		TNT1 A 1 A_SpawnItemEx("SparkFlare_B2", 0, 0, 0, 0, 0, 0, 0, 128)
+		Goto SpawnSparks
+		TNT1 A 1 A_SpawnItemEx("SparkFlare_B3", 0, 0, 0, 0, 0, 0, 0, 128)
+		Goto SpawnSparks
+		TNT1 A 1 A_SpawnItemEx("SparkFlare_B4", 0, 0, 0, 0, 0, 0, 0, 128)
+		Goto SpawnSparks
+		TNT1 A 1 A_SpawnItemEx("SparkFlare_B5", 0, 0, 0, 0, 0, 0, 0, 128)
+		Goto SpawnSparks
+		TNT1 A 1 A_SpawnItemEx("SparkFlare_B6", 0, 0, 0, 0, 0, 0, 0, 128)
+		Goto SpawnSparks
+	SpawnSparks:
+		TNT1 AA 0 A_CustomMissile("Spark_B1", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_B2", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_B3", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_B4", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_B5", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_B6", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_B7", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_B8", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_B9", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_B10", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_B11", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_B12", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_B13", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_B14", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_B15", 0, 0, Random(0, 360), 2, Random(67, 113))
+		TNT1 AA 0 A_CustomMissile("Spark_B16", 0, 0, Random(0, 360), 2, Random(67, 113))
+		Stop
+	}
+}
+
+//Flares
+
+Actor SparkFlare_B1
+{
+  Height 0
+  Radius 0
+  Mass 0
+  +Missile
+  +NoBlockMap
+  +NoClip
+  +NoGravity
+  +NoInteraction
+  RenderStyle Add
+  Scale 0.25
+  States
+  {
+  Spawn:
+    SPKB A 1 Bright A_FadeOut(0.1)
+    Loop
+  }
+}
+
+Actor SparkFlare_B2 : SparkFlare_B1 { States { Spawn: SPKB B 1 Bright A_FadeOut(0.1) Loop } }
+Actor SparkFlare_B3 : SparkFlare_B1 { States { Spawn: SPKB C 1 Bright A_FadeOut(0.1) Loop } }
+Actor SparkFlare_B4 : SparkFlare_B1 { States { Spawn: SPKB D 1 Bright A_FadeOut(0.1) Loop } }
+Actor SparkFlare_B5 : SparkFlare_B1 { States { Spawn: SPKB E 1 Bright A_FadeOut(0.1) Loop } }
+Actor SparkFlare_B6 : SparkFlare_B1 { States { Spawn: SPKB F 1 Bright A_FadeOut(0.1) Loop } }
+
+//Sparks
+
+Actor Spark_B1
+{
+  Height 1
+  Radius 2
+  Mass 0
+  Speed 0.25
+  +Missile
+  +NoBlockMap
+  +LowGravity
+  RenderStyle Add
+  Scale 0.025
+  States
+  {
+  Spawn:
+    SPKB E 1 Bright
+    Loop
+  Death:
+    SPKB E 1 Bright A_FadeOut(0.1)
+    Loop
+  }
+}
+
+Actor Spark_B2 : Spark_B1  { Speed 0.5  }
+Actor Spark_B3 : Spark_B1  { Speed 0.75 }
+Actor Spark_B4 : Spark_B1  { Speed 1.0  }
+Actor Spark_B5 : Spark_B1  { Speed 1.25 }
+Actor Spark_B6 : Spark_B1  { Speed 1.5  }
+Actor Spark_B7 : Spark_B1  { Speed 1.75 }
+Actor Spark_B8 : Spark_B1  { Speed 2.0  }
+Actor Spark_B9 : Spark_B1  { Speed 2.25 }
+Actor Spark_B10 : Spark_B1 { Speed 2.5  }
+Actor Spark_B11 : Spark_B1 { Speed 2.75 }
+Actor Spark_B12 : Spark_B1 { Speed 3.0  }
+Actor Spark_B13 : Spark_B1 { Speed 3.25 }
+Actor Spark_B14 : Spark_B1 { Speed 3.5  }
+Actor Spark_B15 : Spark_B1 { Speed 3.75 }
+Actor Spark_B16 : Spark_B1 { Speed 4.0  }

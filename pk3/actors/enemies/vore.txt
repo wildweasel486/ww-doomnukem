@@ -1,0 +1,132 @@
+
+// Vore
+//Decorate: Ghastly_dragon
+//GLDefs: Ghastly_dragon
+//Sounds: Id Software
+//Sprites: Nmn (sprite set), Vader (projectile)
+//Idea Base: Vore from Quake 1
+
+Actor Vore replaces Archvile
+{
+	Health 700
+	Speed 10
+	Radius 20
+	Height 56
+	Mass 1000
+	RadiusDamageFactor 0.5
+	Monster
+	+FloorClip
+	+MISSILEMORE
+	+NoTarget //Intended so they don't infight with other Vores. If a DontInfightSpecies gets in, use that
+	Obituary "%o couldn't escape a Vore."
+	SeeSound "Vore/Sight"
+	ActiveSound "Vore/Active"
+	PainSound "Vore/Pain"
+	DeathSound "Vore/Death"
+	States
+	{
+	Spawn:
+		VORE D 10 A_Look
+		Loop
+	Pain:
+	See:
+		VORE AA 3 A_Chase
+		VORE B 7 A_Chase
+		VORE CC 3 A_Chase
+		VORE D 7 A_Chase
+		VORE EE 3 A_Chase
+		VORE F 7 A_Chase
+		Loop
+	Melee:
+	Missile:
+		VORE G 0 Bright A_PlaySoundEx("Vore/Attack", "Body")
+		VORE GH 4 Bright A_FaceTarget
+		VORE II 4 Bright A_FaceTarget
+		VORE J 8 Bright A_CustomMissile("VoreFirepod", 32, 0, 0)
+		VORE JJ 4 Bright A_FaceTarget
+		Goto See
+	Death:
+		VORE L 6
+		VORE M 6 A_Scream
+		VORE N 6
+		VORE O 6 A_NoBlocking
+		VORE P 8
+		VORE Q -1
+		Stop
+	Raise:
+		VORE QPONML 6
+		Goto See
+	}
+}
+
+Actor VoreFirepod
+{
+	Radius 8
+	Height 12
+	Speed 15
+	FastSpeed 30
+	Health 25
+	Damage (30)
+	Mass 0x7fffffff
+	Projectile
+	+SeekerMissile
+	+DontSeekInvisible
+	+SHOOTABLE
+	-NOBLOCKMAP
+	+NOBLOOD
+	RenderStyle Add
+	Alpha 0.9
+	SeeSound "Vore/Throw"
+	DeathSound "Vore/Hit"
+	Decal RevenantScorch
+	States
+	{
+	Spawn:
+		VOBA A 0 Bright A_SpawnItemEx("VoreFirepodTrail", random(5, -5), 0, random(5, -1), 0, 0, 0, 180)
+		VOBA A 1 Bright A_SpawnItemEx("VoreFirepodTrail", random(5, -5), 0, random(5, -1), 0, 0, 0, 180)
+		VOBA A 0 Bright A_SpawnItemEx("VoreFirepodTrail", random(5, -5), 0, random(5, -1), 0, 0, 0, 180)
+		VOBA A 1 Bright A_SpawnItemEx("VoreFirepodTrail", random(5, -5), 0, random(5, -1), 0, 0, 0, 180)
+		VOBA B 0 Bright A_SpawnItemEx("VoreFirepodTrail", random(5, -5), 0, random(5, -1), 0, 0, 0, 180)
+		VOBA B 1 Bright A_SpawnItemEx("VoreFirepodTrail", random(5, -5), 0, random(5, -1), 0, 0, 0, 180)
+		VOBA B 0 Bright A_SpawnItemEx("VoreFirepodTrail", random(5, -5), 0, random(5, -1), 0, 0, 0, 180)
+		VOBA B 1 Bright A_SpawnItemEx("VoreFirepodTrail", random(5, -5), 0, random(5, -1), 0, 0, 0, 180)
+		VOBA C 0 Bright A_SpawnItemEx("VoreFirepodTrail", random(5, -5), 0, random(5, -1), 0, 0, 0, 180)
+		VOBA C 1 Bright A_SpawnItemEx("VoreFirepodTrail", random(5, -5), 0, random(5, -1), 0, 0, 0, 180)
+		VOBA C 0 Bright A_SpawnItemEx("VoreFirepodTrail", random(5, -5), 0, random(5, -1), 0, 0, 0, 180)
+		VOBA C 1 Bright A_SpawnItemEx("VoreFirepodTrail", random(5, -5), 0, random(5, -1), 0, 0, 0, 180)
+		VOBA C 0 Bright A_JumpIfTargetInLOS(1, 150, 1)
+		Loop
+		VOBA A 0 Bright A_SpawnItemEx("VoreFirepodTrail", random(5, -5), 0, random(5, -1), 0, 0, 0, 180)
+		VOBA A 1 Bright A_SpawnItemEx("VoreFirepodTrail", random(5, -5), 0, random(5, -1), 0, 0, 0, 180)
+		VOBA A 0 Bright A_SpawnItemEx("VoreFirepodTrail", random(5, -5), 0, random(5, -1), 0, 0, 0, 180)
+		VOBA A 1 Bright A_SpawnItemEx("VoreFirepodTrail", random(5, -5), 0, random(5, -1), 0, 0, 0, 180)
+		VOBA C 0 Bright A_JumpIfTargetInLOS(1, 150, 1)
+		Goto Spawn+4
+		VOBA BBB 0 Bright A_SeekerMissile(45, 0.1, SMF_PRECISE)
+		Goto Spawn+4
+	Death:
+		VOBA D 0 Bright A_Explode(10, 90)	//Part of the original game was that Vores
+		VOBA DEFGHI 4 Bright				//can be hurt by their own projectiles
+		Stop
+	}
+}
+
+
+Actor VoreFirepodTrail
+{
+  Radius 1
+  Height 1
+  Speed 0
+  Projectile
+  RenderStyle Add
+  Alpha 0.9
+  +NoClip
+  States
+  {
+  Spawn:
+  Death:
+    TNT1 A 3
+    VOBT ABCDE 3 Bright
+    Stop
+  }
+}

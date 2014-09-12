@@ -1,0 +1,188 @@
+ACTOR DrippyTwitch : BloodyTwitch replaces BloodyTwitch
+{
+	States
+	{
+	Spawn:
+		GOR1 A random(6,15) A_SpawnItemEx("DecoDrop2", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 96)
+		GOR1 B random(6,15)
+		GOR1 C random(6,15) A_SpawnItemEx("DecoDroplet", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 96)
+		GOR1 B random(6,15)
+		Loop
+	}
+}
+
+ACTOR DrippyMeat2 : Meat2 replaces Meat2
+{
+	States
+	{
+	Spawn:
+		GOR2 A random(17,35) A_SpawnItemEx("DecoDroplet", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+		Loop
+	}
+}
+
+ACTOR DrippyMeat3 : Meat3 replaces Meat3
+{
+	States
+	{
+	Spawn:
+		GOR3 A random(17,35) A_SpawnItemEx("DecoDroplet", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+		Loop
+	}
+}
+
+ACTOR DrippyMeat4 : Meat4 replaces Meat4
+{
+	States
+	{
+	Spawn:
+		GOR4 A random(17,35) A_SpawnItemEx("DecoDroplet", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+		Loop
+	}
+}
+
+ACTOR DrippyMeat5 : Meat5 replaces Meat5
+{
+	States
+	{
+	Spawn:
+		GOR5 A random(17,35) A_SpawnItemEx("DecoDroplet", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+		Loop
+	}
+}
+
+ACTOR NDrippyMeat2 : DrippyMeat2 replaces NonsolidMeat2
+{
+	Game Doom
+	-SOLID
+	Radius 20
+}
+
+ACTOR NDrippyMeat3 : DrippyMeat3 replaces NonsolidMeat3
+{
+	Game Doom
+	-SOLID
+	Radius 20
+}
+
+ACTOR NDrippyMeat4 : DrippyMeat4 replaces NonsolidMeat4
+{
+	Game Doom
+	-SOLID
+	Radius 20
+}
+
+ACTOR NDrippyMeat5 : DrippyMeat5 replaces NonsolidMeat5
+{
+	Game Doom
+	-SOLID
+	Radius 20
+}
+
+ACTOR NDrippyTwitch : DrippyTwitch replaces NonsolidTwitch
+{
+	Game Doom
+	-SOLID
+	Radius 20
+}
+
+ACTOR DrippyOnAStick : HeadOnAStick replaces HeadOnAStick
+{
+	States
+	{
+	Spawn:
+		POL4 A random(17,35) A_SpawnItemEx("DecoDroplet", random(-1,1), random(-1,1), 40, 0, 0, 0, 0, 0, 192)
+		Loop
+	}
+}
+
+ACTOR DrippiesOnAStick : HeadsOnAStick replaces HeadsOnAStick
+{
+	States
+	{
+	Spawn:
+		POL2 A random(8,17) A_SpawnItemEx("DecoDroplet", random(-1,1), random(-1,1), random(8,48), 0, 0, 0, 0, 0, 192)
+		Loop
+	}
+}
+
+ACTOR DeadDrip : DeadStick replaces DeadStick
+{
+	States
+	{
+	Spawn:
+		POL1 A random(17,35) A_SpawnItemEx("DecoDroplet", random(-1,1), random(-1,1), 32, 0, 0, 0, 0, 0, 192)
+		Loop
+	}
+}
+
+ACTOR LiveDrip : LiveStick replaces LiveStick
+{
+	States
+	{
+	Spawn:
+		POL6 A random(5,9) A_SpawnItemEx("DecoDrop2", random(-1,1), random(-1,1), 32, 0, 0, 0, 0, 0, 192)
+		POL6 B random(5,9) A_SpawnItemEx("DecoDroplet", random(-1,1), random(-1,1), 32, 0, 0, 0, 0, 0, 192)
+		Loop
+	}
+}
+
+ACTOR DripNoGuts : HangNoGuts replaces HangNoGuts
+{
+	States
+	{
+	Spawn:
+		HDB1 A random(17,35) A_SpawnItemEx("DecoDroplet", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+		Loop
+	}
+}
+
+ACTOR DripBNoBrain : HangBNoBrain replaces HangBNoBrain
+{
+	States
+	{
+	Spawn:
+		HDB2 A random(17,35) A_SpawnItemEx("DecoDroplet", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+		Loop
+	}
+}
+
+ACTOR DripTLookingDown : HangTLookingDown replaces HangTLookingDown
+{
+	States
+	{
+	Spawn:
+		HDB3 A random(17,35) A_SpawnItemEx("DecoDroplet", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+		Loop
+	}
+}
+
+ACTOR DripTLookingUp : HangTLookingUp replaces HangTLookingUp
+{
+	States
+	{
+	Spawn:
+		HDB5 A random(17,35) A_SpawnItemEx("DecoDroplet", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+		Loop
+	}
+}
+
+ACTOR DripTSkull : HangTSkull replaces HangTSkull
+{
+	States
+	{
+	Spawn:
+		HDB4 A random(17,35) A_SpawnItemEx("DecoDroplet", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+		Loop
+	}
+}
+
+ACTOR DripTNoBrain : HangTNoBrain replaces HangTNoBrain
+{
+	States
+	{
+	Spawn:
+		HDB6 A random(17,35) A_SpawnItemEx("DecoDroplet", random(-1,1), random(-1,1), 4, 0, 0, 0, 0, 0, 192)
+		Loop
+	}
+}

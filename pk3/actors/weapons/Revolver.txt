@@ -1,0 +1,196 @@
+//// --------------------------------------------------------------------------
+//
+// Revolver
+//
+// --------------------------------------------------------------------------
+
+ACTOR Revolver : DNWeapon Replaces Chainsaw
+{
+	Weapon.AmmoType1 "RevolverAmmo"
+	Weapon.AmmoUse 1
+	Weapon.AmmoType2 "RevolverAmmoPickup"
+	Weapon.AmmoUse2 1
+	Weapon.AmmoGive2 2
+	Weapon.Kickback 200
+	Weapon.SlotNumber 2
+	Weapon.SelectionOrder 7000
+	Obituary "%o was shot down by %k's revolver."
+	Inventory.PickupSound "Weapons/Revolver/Close"
+	Inventory.Pickupmessage "You got the Taiga 88 Revolver! (slot 2)"
+	AttackSound "weapons/revolver/fire"
+	Tag "Taiga 88 Revolver"
+	+WEAPON.NOALERT
+	+WEAPON.NOAUTOFIRE
+	+WEAPON.AMMO_CHECKBOTH
+	Scale 0.9
+	States
+	{
+	Select:
+	Ready:
+		REVR A 1 Offset(-90,79) A_PlaySound("weapons/pistol/move", 5)
+		REVR A 1 Offset(-75,69)
+		REVR A 1 Offset(-60,60)
+		REVR A 1 Offset(-45,52)
+		REVI A 1 Offset(-30,45)
+		REVI A 1 Offset(-15,39)
+		REVI A 1 Offset(-1,35)
+	Ready2:
+		REVI A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+		Loop
+	Deselect:
+		REVI A 1 Offset(-5,35)
+		REVI A 1 Offset(-15,39)
+		REVI A 1 Offset(-30,45)
+		REVR A 1 Offset(-40,52)
+		REVR A 1 Offset(-45,60)
+		REVR A 1 Offset(-49,75)
+		REVR A 1 Offset(-51,90)
+		TNT1 A 5
+		TNT1 A 0 A_Lower
+		Wait
+	Fire:
+		REVI A 0 A_JumpIfInventory("RevolverAmmo",1,1)
+		Goto Dryfire
+		REVI A 0 A_GunFlash
+		PISF A 0 A_FireCustomMissile("GunSmokeSpawner",0,0,0,8)
+		REVF A 1 BRIGHT A_FireBullets (0.1, 0.1, -1, 40, "BulletPuff")
+		REVF B 1 Offset(0,38) A_SetPitch (pitch - 0.5)
+		REVF C 1 Offset(0,44) A_SetPitch (pitch - 0.9)
+		REVF D 1 Offset(0,56) A_SetPitch (pitch - 1.4)
+		REVF C 1 Offset(0,52) A_AlertMonsters
+		REVI A 1 Offset(0,50) A_SetPitch (pitch - 1.0)
+		REVI A 1 Offset(0,47) A_SetPitch (pitch - 0.5)
+		REVI A 1 Offset(0,44) A_SetPitch (pitch + 0.3)
+		REVI A 1 Offset(0,40) A_SetPitch (pitch + 0.6)
+		REVI A 1 Offset(0,36) A_SetPitch (pitch + 0.9)
+		REVI A 1 Offset(0,34)
+		REVI A 1 Offset(0,33)
+		REVI A 1 Offset(0,32)
+		TNT1 A 0 A_CheckReload
+		Goto Ready2
+	Altfire:
+		REVF E 1
+		REVF F 1 Offset(0,33)
+		REVF G 1 Offset(0,34)
+		REVF H 1 Offset(0,35)
+		REVI A 0 A_JumpIfInventory("RevolverAmmo",1,1)
+		Goto AltDryfire
+		REVF I 1 Offset(0,36)
+		REVF J 0 A_TakeInventory("RevolverAmmo",1,TIF_NOTAKEINFINITE)
+		REVF J 1 Offset(0,37) A_FireBullets (3, 3, -1, 40, "BulletPuff",0)
+		PISF A 0 A_FireCustomMissile("GunSmokeSpawner",0,0,0,8)
+		REVF K 1 Offset(0,38) A_SetPitch (pitch - 0.7)
+		REVF L 1 Offset(0,44) A_SetPitch (pitch - 0.7)
+		REVF L 1 Offset(0,46) A_SetPitch (pitch + 0.4)
+		REVF M 1 Offset(0,48) A_AlertMonsters
+		REVF M 1 Offset(0,46) A_Refire
+		REVI A 1 Offset(0,44)
+		REVI A 1 Offset(0,41)
+		REVI A 1 Offset(0,37)
+		REVI A 1 Offset(0,35)
+		REVI A 1 Offset(0,34)
+		REVI A 1 Offset(0,33)
+		TNT1 A 0 A_CheckReload
+		Goto Ready2
+	AltDryfire:
+		REVF I 1 Offset(0,36)
+		REVF L 1 Offset(0,38) A_PlaySound("Weapons/Dryfire", 5)
+		REVF M 1 Offset(0,39)
+		REVI A 1 Offset(0,40)
+		REVI A 1 Offset(0,41)
+		REVI A 1 Offset(0,37)
+		REVI A 1 Offset(0,35)
+		REVI A 1 Offset(0,34)
+		REVI A 1 Offset(0,33)
+		Goto Reload
+	Dryfire:
+		REVI A 1 A_PlaySound("Weapons/Dryfire", 5)
+	Reload:
+		REVI A 0 A_JumpIfInventory("RevolverAmmo",6,2)
+		REVI A 0 A_JumpIfInventory("RevolverAmmoPickup",1,"ProperReload")
+		REVI A 1 A_WeaponReady(WRF_NOFIRE)
+		Goto Ready2
+	ProperReload:
+		REVI A 1 Offset(-1,33)
+		REVI A 1 Offset(-4,34)
+		REVI A 1 Offset(-7,36)
+		REVR A 1 Offset(-10,37)
+		REVR B 1 Offset(-11,38) A_Jump(128,2)
+		REVR C 1 Offset(-12,37)
+		REVR C 1 Offset(-13,38)
+		REVR C 1 Offset(-12,38)
+		REVR D 1 Offset(-9,39)
+		REVR E 1 Offset(-5,42)
+		REVR F 1 Offset(-1,44) A_PlaySound("Weapons/Revolver/Open", 6)
+		REVR GGGGGG 0 A_SpawnItemEx("MagnumCasing", 0,0,20, random(-2,2),random(-2,2),0, random(1,359), SXF_NOCHECKPOSITION)
+		REVR G 1 Offset(1,45) A_Jump(128,2)
+		REVR G 1 Offset(2,46)
+		REVR G 1 Offset(3,47)
+		REVR G 1 Offset(3,46)
+		REVR G 1 Offset(2,45)
+		REVR H 1 Offset(-1,44)
+		REVR I 1 Offset(-3,42)
+		REVR J 1 Offset(-6,39)
+		REVR K 1 Offset(-9,37) A_PlaySound("Weapons/Revolver/Load", 5)
+		TNT1 A 0 A_Giveinventory("RevolverAmmo",6)
+		TNT1 A 0 A_Takeinventory("RevolverAmmoPickup",1,TIF_NOTAKEINFINITE)
+		REVR K 1 Offset(-9,36) A_Jump(128,2)
+		REVR K 1 Offset(-8,35)
+		REVR K 1 Offset(-8,34)
+		REVR K 1 Offset(-7,33)
+		REVR K 1 Offset(-7,32)
+		REVR K 1 Offset(-8,34)
+		REVR K 1 Offset(-9,36)
+		REVR L 1 Offset(-8,35)
+		REVR M 1 Offset(-7,34)
+		REVR F 1 Offset(-8,35) A_PlaySound("Weapons/Revolver/Close", 6)
+		REVR E 1 Offset(-8,35) A_Jump(128,2)
+		REVR D 1 Offset(-8,35)
+		REVR D 1 Offset(-9,36)
+		REVR D 1 Offset(-10,37)
+		REVR D 1 Offset(-10,38)
+		REVR C 1 Offset(-11,38)
+		REVR C 1 Offset(-11,37)
+		REVR C 1 Offset(-11,36)
+		REVR B 1 Offset(-14,35)
+		REVR B 1 Offset(-14,34)
+		REVR A 1 Offset(-18,36) A_Jump(128,2)
+		REVR A 1 Offset(-16,37)
+		REVR A 1 Offset(-13,36)
+		REVR A 1 Offset(-10,35)
+		REVR A 1 Offset(-6,34)
+		REVR A 1 Offset(-2,33)
+		REVI A 1 Offset(-7,35)
+		REVI A 1 Offset(-4,34)
+		REVI A 1 Offset(-1,33)
+		Goto Ready2
+ 	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+		RVIC A -1
+		Stop
+	}
+}
+
+ACTOR RevolverAmmo : Ammo
+{
+	Inventory.MaxAmount 6
+	Inventory.Icon "RVICA0"
+}
+
+ACTOR RevolverAmmoPickup : Ammo 4202
+{
+	Inventory.MaxAmount 8
+	Ammo.BackpackAmount 1
+	Ammo.BackpackMaxAmount 16
+	Inventory.Icon "RVICB0"
+	Inventory.PickupMessage "Picked up some magnum ammo."
+	Inventory.PickupSound "Weapons/Revolver/Load"
+	Tag ".50 Dum-Dum"
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+		RVIC B -1
+		Stop
+	}
+}

@@ -1,0 +1,151 @@
+//Da Fricken Helmet
+brightmap sprite BON2A0
+{
+    map "BRIGHTMAPS/ITEMS/BMBON2D0.png"
+}
+
+brightmap sprite BON2B0
+{
+    map "BRIGHTMAPS/ITEMS/BMBON2D0.png"
+}
+
+brightmap sprite BON2C0
+{
+    map "BRIGHTMAPS/ITEMS/BMBON2D0.png"
+}
+
+brightmap sprite BON2D0
+{
+    map "BRIGHTMAPS/ITEMS/BMBON2D0.png"
+}
+
+//Drugs
+brightmap sprite STIMA0
+{
+    map "BRIGHTMAPS/ITEMS/BMSTIMA0.png"
+}
+
+//New Soulsphere
+brightmap sprite SOULA0
+{
+    map "BRIGHTMAPS/ITEMS/BMSOULA0.png"
+}
+
+brightmap sprite SOULB0
+{
+    map "BRIGHTMAPS/ITEMS/BMSOULA0.png"
+}
+
+brightmap sprite SOULC0
+{
+    map "BRIGHTMAPS/ITEMS/BMSOULA0.png"
+}
+
+brightmap sprite SOULD0
+{
+    map "BRIGHTMAPS/ITEMS/BMSOULA0.png"
+}
+
+//New Megasphere
+brightmap sprite MEGAA0
+{
+    map "BRIGHTMAPS/ITEMS/BMMEGAA0.png"
+}
+
+brightmap sprite MEGAB0
+{
+    map "BRIGHTMAPS/ITEMS/BMMEGAA0.png"
+}
+
+brightmap sprite MEGAC0
+{
+    map "BRIGHTMAPS/ITEMS/BMMEGAA0.png"
+}
+
+brightmap sprite MEGAD0
+{
+    map "BRIGHTMAPS/ITEMS/BMMEGAA0.png"
+}
+
+//New Invuln
+brightmap sprite PINVA0
+{
+    map "BRIGHTMAPS/ITEMS/BMPINVA0.png"
+}
+
+brightmap sprite PINVB0
+{
+    map "BRIGHTMAPS/ITEMS/BMPINVA0.png"
+}
+
+brightmap sprite PINVC0
+{
+    map "BRIGHTMAPS/ITEMS/BMPINVA0.png"
+}
+
+brightmap sprite PINVD0
+{
+    map "BRIGHTMAPS/ITEMS/BMPINVA0.png"
+}
+
+//New Allmap
+brightmap sprite PMAPA0
+{
+    map "BRIGHTMAPS/ITEMS/BMPMAPA0.png"
+}
+
+brightmap sprite PMAPB0
+{
+    map "BRIGHTMAPS/ITEMS/BMPMAPA0.png"
+}
+
+brightmap sprite PMAPC0
+{
+    map "BRIGHTMAPS/ITEMS/BMPMAPA0.png"
+}
+
+brightmap sprite PMAPD0
+{
+    map "BRIGHTMAPS/ITEMS/BMPMAPA0.png"
+}
+
+//New Cloak
+brightmap sprite PINSA0
+{
+    map "BRIGHTMAPS/ITEMS/BMPINSA0.png"
+}
+
+brightmap sprite PINSB0
+{
+    map "BRIGHTMAPS/ITEMS/BMPINSA0.png"
+}
+
+brightmap sprite PINSC0
+{
+    map "BRIGHTMAPS/ITEMS/BMPINSA0.png"
+}
+
+brightmap sprite PINSD0
+{
+    map "BRIGHTMAPS/ITEMS/BMPINSA0.png"
+}
+
+/*Reversed-YTMND Mode (Reversed Your'e the man now, Dog Mode ->
+Reversed Dog Mode -> God Mode. Now that I have dissected the joke,
+feel free to kill me.)*/
+
+brightmap sprite PSTRA0
+{
+    map "BRIGHTMAPS/ITEMS/BMPSTRA0.png"
+}
+
+//Sam Fisher Goggles
+brightmap sprite PVISA0
+{
+    map "BRIGHTMAPS/ITEMS/BMPVISA0.png"
+}
+
+brightmap sprite PVISB0
+{
+    map "BRIGHTMAPS/ITEMS/BMPVISA0.png"
+}

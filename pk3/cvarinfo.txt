@@ -1,0 +1,4 @@
+server int blood_secs = 30;
+server float blood_rand = 1.0;
+server float blood_alpha = 0.75;
+server int blood_amt = 1;

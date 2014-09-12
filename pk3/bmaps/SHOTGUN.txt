@@ -1,0 +1,69 @@
+brightmap sprite SHSSA0
+{
+    map "BRIGHTMAPS/SHOTGUN/BMSHSSA0.png"
+}
+
+brightmap sprite SHSSB0
+{
+    map "BRIGHTMAPS/SHOTGUN/BMSHSSA0.png"
+}
+
+brightmap sprite SHSSC0
+{
+    map "BRIGHTMAPS/SHOTGUN/BMSHSSA0.png"
+}
+
+brightmap sprite SHSSD0
+{
+    map "BRIGHTMAPS/SHOTGUN/BMSHSSA0.png"
+}
+
+brightmap sprite SHT8A0
+{
+    map "BRIGHTMAPS/SHOTGUN/BMSHT8A0.png"
+}
+
+brightmap sprite SHT8B0
+{
+    map "BRIGHTMAPS/SHOTGUN/BMSHT8A0.png"
+}
+
+brightmap sprite SHT8C0
+{
+    map "BRIGHTMAPS/SHOTGUN/BMSHT8A0.png"
+}
+
+brightmap sprite SHT8D0
+{
+    map "BRIGHTMAPS/SHOTGUN/BMSHT8D0.png"
+}
+
+brightmap sprite SHT8E0
+{
+    map "BRIGHTMAPS/SHOTGUN/BMSHT8D0.png"
+}
+
+brightmap sprite SHT8G0
+{
+    map "BRIGHTMAPS/SHOTGUN/BMSHT8G0.png"
+}
+
+brightmap sprite SHTFC0
+{
+    map "BRIGHTMAPS/SHOTGUN/BMSHTFC0.png"
+}
+
+brightmap sprite SHTFD0
+{
+    map "BRIGHTMAPS/SHOTGUN/BMSHTFD0.png"
+}
+
+brightmap sprite SHTFE0
+{
+    map "BRIGHTMAPS/SHOTGUN/BMSHTFE0.png"
+}
+
+brightmap sprite SHTGA0
+{
+    map "BRIGHTMAPS/SHOTGUN/BMSHTGA0.png"
+}

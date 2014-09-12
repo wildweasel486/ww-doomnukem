@@ -1,0 +1,104 @@
+brightmap sprite RI2GA0
+{
+    map "BRIGHTMAPS/RIFLE/BMRSIGH0.png"
+}
+
+brightmap sprite RI2FB0
+{
+    map "BRIGHTMAPS/RIFLE/BMRSIGH0.png"
+}
+
+brightmap sprite RI2FC0
+{
+    map "BRIGHTMAPS/RIFLE/BMRSIGH0.png"
+}
+
+brightmap sprite RIFFB0
+{
+    map "BRIGHTMAPS/RIFLE/BMRIFFB0.png"
+}
+
+brightmap sprite RIFFC0
+{
+    map "BRIGHTMAPS/RIFLE/BMRIFFC0.png"
+}
+
+brightmap sprite RIFRA0
+{
+    map "BRIGHTMAPS/RIFLE/BMRIFRQ0.png"
+}
+
+brightmap sprite RIFRB0
+{
+    map "BRIGHTMAPS/RIFLE/BMRIFRQ0.png"
+}
+
+brightmap sprite RIFRC0
+{
+    map "BRIGHTMAPS/RIFLE/BMRIFRQ0.png"
+}
+
+brightmap sprite RIFRD0
+{
+    map "BRIGHTMAPS/RIFLE/BMRIFRQ0.png"
+}
+
+brightmap sprite RIFRE0
+{
+    map "BRIGHTMAPS/RIFLE/BMRIFRQ0.png"
+}
+
+brightmap sprite RIFRF0
+{
+    map "BRIGHTMAPS/RIFLE/BMRIFRQ0.png"
+}
+
+brightmap sprite RIFRo0
+{
+    map "BRIGHTMAPS/RIFLE/BMRIFRQ0.png"
+}
+
+brightmap sprite RIFRp0
+{
+    map "BRIGHTMAPS/RIFLE/BMRIFRQ0.png"
+}
+
+brightmap sprite RIFRq0
+{
+    map "BRIGHTMAPS/RIFLE/BMRIFRQ0.png"
+}
+
+brightmap sprite RIFRr0
+{
+    map "BRIGHTMAPS/RIFLE/BMRIFRQ0.png"
+}
+
+brightmap sprite RIFRs0
+{
+    map "BRIGHTMAPS/RIFLE/BMRIFRS0.png"
+}
+
+brightmap sprite RIFZA0
+{
+    map "BRIGHTMAPS/RIFLE/BMRIFZA0.png"
+}
+
+brightmap sprite RIFZB0
+{
+    map "BRIGHTMAPS/RIFLE/BMRIFZB0.png"
+}
+
+brightmap sprite RIFZC0
+{
+    map "BRIGHTMAPS/RIFLE/BMRSIGH0.png"
+}
+
+brightmap sprite RIFZD0
+{
+    map "BRIGHTMAPS/RIFLE/BMRSIGH0.png"
+}
+
+brightmap sprite RIFGA0
+{
+    map "BRIGHTMAPS/RIFLE/BMRIFGA0.png"
+}

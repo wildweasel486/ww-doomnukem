@@ -1,0 +1,906 @@
+/***** Bullet Chips *****/
+
+decal BulletChip1Lower
+{
+    pic SCORCH1
+	shade "00 00 00"
+    x-scale 0.025
+    y-scale 0.025
+	randomflipx
+	randomflipy
+}
+
+decal BulletChip
+{
+	pic PUFFA0
+	add 1.0
+	fullbright
+	animator GoAway
+	x-scale 0.125
+	y-scale 0.125
+	lowerdecal BulletChip1Lower
+}
+
+/***** Sledgehammer *****/
+
+decal SledgeDent1
+{
+	pic HDENT1
+	x-scale 0.1
+	y-scale 0.1
+	translucent 0.7
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+}
+
+decal SledgeDent2
+{
+	pic HDENT2
+	x-scale 0.1
+	y-scale 0.1
+	translucent 0.7
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+}
+
+decal SledgeDent3
+{
+	pic HDENT3
+	x-scale 0.1
+	y-scale 0.1
+	translucent 0.7
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+}
+
+decal SledgeDent4
+{
+	pic HDENT4
+	x-scale 0.1
+	y-scale 0.1
+	translucent 0.7
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+}
+
+decal SledgeDent5
+{
+	pic HDENT5
+	x-scale 0.1
+	y-scale 0.1
+	translucent 0.7
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+}
+
+decal SledgeDent6
+{
+	pic HDENT6
+	x-scale 0.1
+	y-scale 0.1
+	translucent 0.7
+	shade "00 00 00"
+	randomflipx
+	randomflipy
+}
+
+decalgroup SledgeDent
+{
+	SledgeDent1 1
+	SledgeDent2 1
+	SledgeDent3 1
+	SledgeDent4 1
+	SledgeDent5 1
+	SledgeDent6 1
+}
+
+/*****Droplets by SidDoyle*****/
+
+colorchanger Oxidizer
+{
+	Color "33 08 00"
+	FadeStart 1
+	FadeTime 179
+}
+
+stretcher DripStretcher
+{
+	StretchTime	15
+	GoalY		1.0
+}
+
+slider DripSlider
+{
+	SlideTime	0.1
+	DistY		3
+}
+
+combiner DripAnimate
+{
+	DripStretcher
+	DripSlider
+	Oxidizer
+}
+
+combiner DripAnimateNoOx
+{
+	DripStretcher
+	DripSlider
+}
+
+decal BloodSplat1
+{
+	pic BSPLAT1
+	shade "BloodDefault"
+	x-scale 0.333
+	y-scale 0.333
+	randomflipx
+	randomflipy
+}
+
+decal BloodSplat2
+{
+	pic BSPLAT2
+	shade "BloodDefault"
+	x-scale 0.333
+	y-scale 0.333
+	randomflipx
+	randomflipy
+}
+
+decal BloodSplat3
+{
+	pic BSPLAT3
+	shade "BloodDefault"
+	x-scale 0.333
+	y-scale 0.333
+	randomflipx
+	randomflipy
+}
+
+decal BloodSplat4
+{
+	pic BSPLAT4
+	shade "BloodDefault"
+	x-scale 0.333
+	y-scale 0.333
+	randomflipx
+	randomflipy
+}
+
+decal BloodSplat5
+{
+	pic BSPLAT5
+	shade "BloodDefault"
+	x-scale 0.333
+	y-scale 0.333
+	randomflipx
+	randomflipy
+}
+
+decal BloodSplat6
+{
+	pic BSPLAT6
+	shade "BloodDefault"
+	x-scale 0.333
+	y-scale 0.333
+	randomflipx
+	randomflipy
+}
+
+decal BloodSplat7
+{
+	pic BSPLAT7
+	shade "BloodDefault"
+	x-scale 0.333
+	y-scale 0.333
+	randomflipx
+	randomflipy
+}
+
+decalgroup BloodSplat
+{
+	BloodSplat1 1
+	BloodSplat2 1
+	BloodSplat3 1
+	BloodSplat4 1
+	BloodSplat5 1
+	BloodSplat6 1
+	BloodSplat7 1
+}
+
+decal BloodSpot1s
+{
+	pic BSPOT1
+	shade "BloodDefault"
+	x-scale 0.05
+	y-scale 0.1
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBlood
+	animator Oxidizer
+}
+
+decal BloodSpot2s
+{
+	pic BSPOT2
+	shade "BloodDefault"
+	x-scale 0.05
+	y-scale 0.1
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBlood
+	animator Oxidizer
+}
+
+decal BloodSpot3s
+{
+	pic BSPOT3
+	shade "BloodDefault"
+	x-scale 0.05
+	y-scale 0.1
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBlood
+	animator Oxidizer
+}
+
+decal BloodSpot4s
+{
+	pic BSPOT4
+	shade "BloodDefault"
+	x-scale 0.3
+	y-scale 0.3
+	randomflipx
+	randomflipy
+	animator Oxidizer
+}
+
+decal BloodSpot5s
+{
+	pic BSPOT5
+	shade "BloodDefault"
+	x-scale 0.15
+	y-scale 0.15
+	randomflipx
+	randomflipy
+	animator Oxidizer
+}
+
+decal BloodSpot1m
+{
+	pic BSPOT1
+	shade "BloodDefault"
+	x-scale 0.1
+	y-scale 0.2
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBlood
+	animator Oxidizer
+}
+
+decal BloodSpot2m
+{
+	pic BSPOT2
+	shade "BloodDefault"
+	x-scale 0.1
+	y-scale 0.2
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBlood
+	animator Oxidizer
+}
+
+decal BloodSpot3m
+{
+	pic BSPOT3
+	shade "BloodDefault"
+	x-scale 0.1
+	y-scale 0.2
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBlood
+	animator Oxidizer
+}
+
+decal BloodSpot4m
+{
+	pic BSPOT4
+	shade "BloodDefault"
+	x-scale 0.45
+	y-scale 0.45
+	randomflipx
+	randomflipy
+	animator Oxidizer
+}
+
+decal BloodSpot5m
+{
+	pic BSPOT5
+	shade "BloodDefault"
+	x-scale 0.3
+	y-scale 0.3
+	randomflipx
+	randomflipy
+	animator Oxidizer
+}
+
+decal RunBlood1
+{
+	pic BRUNY1
+	shade "BloodDefault"
+	x-scale 0.3
+	y-scale 0.3
+	randomflipx
+	animator DripAnimate
+}
+
+decal RunBlood2
+{
+	pic BRUNY2
+	shade "BloodDefault"
+	x-scale 0.3
+	y-scale 0.3
+	randomflipx
+	animator DripAnimate
+}
+
+decal RunBlood3
+{
+	pic BRUNY3
+	shade "BloodDefault"
+	x-scale 0.3
+	y-scale 0.3
+	randomflipx
+	animator DripAnimate
+}
+
+decal RunGBlood1
+{
+	pic BRUNY1
+	shade "587322"
+	x-scale 0.3
+	y-scale 0.3
+	randomflipx
+	animator DripAnimateNoOx
+}
+
+decal RunGBlood2
+{
+	pic BRUNY2
+	shade "587322"
+	x-scale 0.3
+	y-scale 0.3
+	randomflipx
+	animator DripAnimateNoOx
+}
+
+decal RunGBlood3
+{
+	pic BRUNY3
+	shade "587322"
+	x-scale 0.3
+	y-scale 0.3
+	randomflipx
+	animator DripAnimateNoOx
+}
+
+decal RunBBlood1
+{
+	pic BRUNY1
+	shade "000080"
+	x-scale 0.3
+	y-scale 0.3
+	randomflipx
+	animator DripAnimateNoOx
+}
+
+decal RunBBlood2
+{
+	pic BRUNY2
+	shade "000080"
+	x-scale 0.3
+	y-scale 0.3
+	randomflipx
+	animator DripAnimateNoOx
+}
+
+decal RunBBlood3
+{
+	pic BRUNY3
+	shade "000080"
+	x-scale 0.3
+	y-scale 0.3
+	randomflipx
+	animator DripAnimateNoOx
+}
+
+decalgroup RunnyBlood
+{
+	RunBlood1	3
+	RunBlood2	2
+	RunBlood3	1
+}
+
+decalgroup RunnyBloodGreen
+{
+	RunGBlood1	3
+	RunGBlood2	2
+	RunGBlood3	1
+}
+
+decalgroup RunnyBloodBlue
+{
+	RunBBlood1	3
+	RunBBlood2	2
+	RunBBlood3	1
+}
+
+decal BloodSpot1l
+{
+	pic BSPOT1
+	shade "BloodDefault"
+	x-scale 0.15
+	y-scale 0.3
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBlood
+	animator Oxidizer
+}
+
+decal BloodSpot2l
+{
+	pic BSPOT2
+	shade "BloodDefault"
+	x-scale 0.15
+	y-scale 0.3
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBlood
+	animator Oxidizer
+}
+
+decal BloodSpot3l
+{
+	pic BSPOT3
+	shade "BloodDefault"
+	x-scale 0.15
+	y-scale 0.3
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBlood
+	animator Oxidizer
+}
+
+decal BloodSpot4l
+{
+	pic BSPOT4
+	shade "BloodDefault"
+	x-scale 0.6
+	y-scale 0.6
+	randomflipx
+	randomflipy
+	animator Oxidizer
+}
+
+decal BloodSpot5l
+{
+	pic BSPOT5
+	shade "BloodDefault"
+	x-scale 0.45
+	y-scale 0.45
+	randomflipx
+	randomflipy
+	animator Oxidizer
+}
+
+decalgroup BloodSpotS
+{
+	BloodSpot1s	1
+	BloodSpot2s	1
+	BloodSpot3s	1
+	BloodSpot4s	1
+	BloodSpot5s	1
+}
+
+decalgroup BloodSpotM
+{
+	BloodSpot1m	1
+	BloodSpot2m	1
+	BloodSpot3m	1
+	BloodSpot4m	1
+	BloodSpot5m	1
+}
+
+decalgroup BloodSpotL
+{
+	BloodSpot1l	1
+	BloodSpot2l	1
+	BloodSpot3l	1
+	BloodSpot4l	1
+	BloodSpot5l	1
+}
+
+// = = = = = = = = = =
+// Cacodemon Blood
+// = = = = = = = = = =
+
+decal BlueSpot1s
+{
+	pic BSPOT1
+	shade "000080"
+	x-scale 0.05
+	y-scale 0.1
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodBlue
+}
+
+decal BlueSpot2s
+{
+	pic BSPOT2
+	shade "000080"
+	x-scale 0.05
+	y-scale 0.1
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodBlue
+}
+
+decal BlueSpot3s
+{
+	pic BSPOT3
+	shade "000080"
+	x-scale 0.05
+	y-scale 0.1
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodBlue
+}
+
+decal BlueSpot4s
+{
+	pic BSPOT4
+	shade "000080"
+	x-scale 0.17
+	y-scale 0.35
+	randomflipx
+	randomflipy
+}
+
+decal BlueSpot5s
+{
+	pic BSPOT5
+	shade "000080"
+	x-scale 0.17
+	y-scale 0.35
+	randomflipx
+	randomflipy
+}
+
+decal BlueSpot1m
+{
+	pic BSPOT1
+	shade "000080"
+	x-scale 0.1
+	y-scale 0.2
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodBlue
+}
+
+decal BlueSpot2m
+{
+	pic BSPOT2
+	shade "000080"
+	x-scale 0.1
+	y-scale 0.2
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodBlue
+}
+
+decal BlueSpot3m
+{
+	pic BSPOT3
+	shade "000080"
+	x-scale 0.1
+	y-scale 0.2
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodBlue
+}
+
+decal BlueSpot4m
+{
+	pic BSPOT4
+	shade "000080"
+	x-scale 0.33
+	y-scale 0.66
+	randomflipx
+	randomflipy
+}
+
+decal BlueSpot5m
+{
+	pic BSPOT5
+	shade "000080"
+	x-scale 0.33
+	y-scale 0.66
+	randomflipx
+	randomflipy
+}
+
+decal BlueSpot1l
+{
+	pic BSPOT1
+	shade "000080"
+	x-scale 0.15
+	y-scale 0.3
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodBlue
+}
+
+decal BlueSpot2l
+{
+	pic BSPOT2
+	shade "000080"
+	x-scale 0.15
+	y-scale 0.3
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodBlue
+}
+
+decal BlueSpot3l
+{
+	pic BSPOT3
+	shade "000080"
+	x-scale 0.15
+	y-scale 0.3
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodBlue
+}
+
+decal BlueSpot4l
+{
+	pic BSPOT4
+	shade "000080"
+	x-scale 0.5
+	y-scale 1.0
+	randomflipx
+	randomflipy
+}
+
+decal BlueSpot5l
+{
+	pic BSPOT5
+	shade "000080"
+	x-scale 0.5
+	y-scale 1.0
+	randomflipx
+	randomflipy
+}
+
+decalgroup BlueSpotS
+{
+	BlueSpot1s	1
+	BlueSpot2s	1
+	BlueSpot3s	1
+	BlueSpot4s	1
+	BlueSpot5s	1
+}
+
+decalgroup BlueSpotM
+{
+	BlueSpot1m	1
+	BlueSpot2m	1
+	BlueSpot3m	1
+	BlueSpot4m	1
+	BlueSpot5m	1
+}
+
+decalgroup BlueSpotL
+{
+	BlueSpot1l	1
+	BlueSpot2l	1
+	BlueSpot3l	1
+	BlueSpot4l	1
+	BlueSpot5l	1
+}
+
+// = = = = = = = = = =
+// Hell Noble Blood
+// = = = = = = = = = =
+decal GreenSpot1s
+{
+	pic BSPOT1
+	shade "587322"
+	x-scale 0.05
+	y-scale 0.1
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodGreen
+}
+
+decal GreenSpot2s
+{
+	pic BSPOT2
+	shade "587322"
+	x-scale 0.05
+	y-scale 0.1
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodGreen
+}
+
+decal GreenSpot3s
+{
+	pic BSPOT3
+	shade "587322"
+	x-scale 0.05
+	y-scale 0.1
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodGreen
+}
+
+decal GreenSpot4s
+{
+	pic BSPOT4
+	shade "587322"
+	x-scale 0.17
+	y-scale 0.35
+	randomflipx
+	randomflipy
+}
+
+decal GreenSpot5s
+{
+	pic BSPOT5
+	shade "587322"
+	x-scale 0.17
+	y-scale 0.35
+	randomflipx
+	randomflipy
+}
+
+decal GreenSpot1m
+{
+	pic BSPOT1
+	shade "587322"
+	x-scale 0.1
+	y-scale 0.2
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodGreen
+}
+
+decal GreenSpot2m
+{
+	pic BSPOT2
+	shade "587322"
+	x-scale 0.1
+	y-scale 0.2
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodGreen
+}
+
+decal GreenSpot3m
+{
+	pic BSPOT3
+	shade "587322"
+	x-scale 0.1
+	y-scale 0.2
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodGreen
+}
+
+decal GreenSpot4m
+{
+	pic BSPOT4
+	shade "587322"
+	x-scale 0.33
+	y-scale 0.66
+	randomflipx
+	randomflipy
+}
+
+decal GreenSpot5m
+{
+	pic BSPOT5
+	shade "587322"
+	x-scale 0.33
+	y-scale 0.66
+	randomflipx
+	randomflipy
+}
+
+decal GreenSpot1l
+{
+	pic BSPOT1
+	shade "587322"
+	x-scale 0.15
+	y-scale 0.3
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodGreen
+}
+
+decal GreenSpot2l
+{
+	pic BSPOT2
+	shade "587322"
+	x-scale 0.15
+	y-scale 0.3
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodGreen
+}
+
+decal GreenSpot3l
+{
+	pic BSPOT3
+	shade "587322"
+	x-scale 0.15
+	y-scale 0.3
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodGreen
+}
+
+decal GreenSpot4l
+{
+	pic BSPOT4
+	shade "587322"
+	x-scale 0.5
+	y-scale 1.0
+	randomflipx
+	randomflipy
+}
+
+decal GreenSpot5l
+{
+	pic BSPOT5
+	shade "587322"
+	x-scale 0.5
+	y-scale 1.0
+	randomflipx
+	randomflipy
+}
+
+decalgroup GreenSpotS
+{
+	GreenSpot1s	1
+	GreenSpot2s	1
+	GreenSpot3s	1
+	GreenSpot4s	1
+	GreenSpot5s	1
+}
+
+decalgroup GreenSpotM
+{
+	GreenSpot1m	1
+	GreenSpot2m	1
+	GreenSpot3m	1
+	GreenSpot4m	1
+	GreenSpot5m	1
+}
+
+decalgroup GreenSpotL
+{
+	GreenSpot1l	1
+	GreenSpot2l	1
+	GreenSpot3l	1
+	GreenSpot4l	1
+	GreenSpot5l	1
+}

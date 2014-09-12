@@ -1,0 +1,421 @@
+// --------------------------------------------------------------------------
+//
+// Pistol
+//
+// --------------------------------------------------------------------------
+
+ACTOR DNPistol : DNWeapon
+{
+	Weapon.AmmoType "DNPistolAmmo"
+	Weapon.AmmoUse 1
+	Weapon.AmmoType2 "DNPistolAmmoPickup"
+	Weapon.AmmoUse2 1
+	Weapon.SlotNumber 2
+	Weapon.SelectionOrder 9000
+	Obituary "%o was shot down by %k's pistol."
+	AttackSound "weapons/pistol/fire"
+	Inventory.PickupSound "weapons/pistol/release"
+	Inventory.Pickupmessage "You should not be seeing this message!"
+	Tag "Marston KP-8"
+	+WEAPON.NOAUTOFIRE
+	+WEAPON.AMMO_CHECKBOTH
+	+WEAPON.NOALERT
+	Scale .8
+	States
+	{
+	Select:
+		TNT1 A 0 A_JumpIfInventory("DNDualPistol",1,1)
+		Goto Ready
+		TNT1 A 0 A_SelectWeapon("DNDualPistol")
+	Ready:
+		PISR F 1 Offset(-90,79) A_PlaySound("weapons/pistol/move",5)
+		PISR F 1 Offset(-75,69)
+		PISR F 1 Offset(-60,60)
+		PISG A 1 Offset(-45,52)
+		PISG A 1 Offset(-30,45)
+		PISG A 1 Offset(-15,39)
+		PISG A 1 Offset(-1,35)
+	Ready2:
+		PISG A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+		Loop
+	Deselect:
+		PISG A 1 Offset(-5,35)
+		PISG A 1 Offset(-15,39)
+		PISG A 1 Offset(-30,45)
+		PISG A 1 Offset(-40,52)
+		PISR F 1 Offset(-45,60)
+		PISR F 1 Offset(-49,75)
+		PISR F 1 Offset(-51,90)
+		TNT1 A 5
+		TNT1 A 0 A_Lower
+		Wait
+	Fire:
+		TNT1 A 0 A_JumpIfInventory("DNPistolAmmo",1,1)
+		Goto NoAmmo
+		PISF A 1 BRIGHT A_FireBullets (2, 2, -1, 10, "BulletPuff", 1)
+		PISF A 0 A_AlertMonsters
+		PISF A 0 A_SpawnItemEx("PistolCasing", 12,-20,32, 8,random(-2,2),random(0,4), random(-55,-80), SXF_NOCHECKPOSITION)
+		PISF A 0 A_FireCustomMissile("GunSmokeSpawner",0,0,0,8)
+		PISF B 1 Offset(0,34) A_SetPitch(pitch - 0.5)
+		PISF B 1 Offset(0,37) A_SetPitch(pitch - 0.4)
+		PISF C 0 A_SetPitch(pitch - 0.2)
+		PISF C 1 Offset(0,38) A_WeaponReady(WRF_NOBOB)
+		PISF C 0 A_SetPitch(pitch + 0.2)
+		PISF C 1 Offset(0,37) A_WeaponReady(WRF_NOBOB)
+		PISF C 0 A_SetPitch(pitch + 0.3)
+		PISG A 1 Offset(0,35) A_WeaponReady(WRF_NOBOB)
+		PISF C 0 A_SetPitch(pitch + 0.4)
+		PISG A 1 Offset(0,34) A_WeaponReady(WRF_NOBOB)
+		PISF C 0 A_SetPitch(pitch + 0.5)
+		PISG A 1 Offset(0,33) A_WeaponReady(WRF_NOBOB)
+		TNT1 A 0 A_CheckReload
+		Goto Ready2
+	NoAmmo:
+		PISG A 1 A_PlaySound("Weapons/Dryfire")
+	Reload:
+		PISG A 0 A_JumpIfInventory("DNPistolAmmo", 10, 2)
+		PISG A 0 A_JumpIfInventory("DNPistolAmmoPickup", 1, 2)
+		PISG A 1 A_WeaponReady(WRF_NOFIRE)
+		Goto Ready2
+		PISG A 1 Offset(-2,33)
+		PISG A 1 Offset(-4,34)
+		PISG A 1 Offset(-6,35)
+		PISG A 1 Offset(-9,36) A_PlaySound("weapons/pistol/clipout", 6)
+		PISR A 1 Offset(-1,38) A_Jump(128,2)
+		PISR A 1 Offset(-2,39)
+		PISR A 1 Offset(-3,39)
+		PISR A 1 Offset(-4,37)
+		PISR A 1 Offset(-5,35) A_PlaySound("weapons/pistol/move", 5)
+		PISR A 1 Offset(-6,35) A_Jump(128,2)
+		PISR A 1 Offset(-7,37)
+		PISR A 1 Offset(-8,39)
+		PISR A 1 Offset(-9,42)
+		PISR A 1 Offset(-9,44)
+		PISR A 1 Offset(-8,46)
+		PISR A 1 Offset(-8,49)
+		PISR A 1 Offset(-7,52) A_PlaySound("weapons/pistol/clipin", 6)
+		PISR A 1 Offset(-6,55)
+		TNT1 A 0 A_Giveinventory("DNPistolAmmo",10)
+		TNT1 A 0 A_Takeinventory("DNPistolAmmoPickup",1,TIF_NOTAKEINFINITE)
+		PISR A 1 Offset(-5,54) A_Jump(128,2)
+		PISR B 1 Offset(-4,54)
+		PISR B 1 Offset(-3,53)
+		PISR C 1 Offset(-2,53)
+		PISR C 1 Offset(-2,52)
+		PISR D 1 Offset(-1,51) A_PlaySound("weapons/pistol/clipslap", 5)
+		PISR D 1 Offset(-1,50) A_Jump(128,2)
+		PISR E 1 Offset(-1,49)
+		PISR E 1 Offset(1,50)
+		PISR E 1 Offset(2,51)
+		PISR E 1 Offset(3,52)
+		PISR E 1 Offset(4,53) A_PlaySound("weapons/pistol/release", 6)
+		PISR E 1 Offset(6,54) A_Jump(128,2)
+		PISR F 1 Offset(8,53)
+		PISR F 1 Offset(9,49)
+		PISR F 1 Offset(10,45)
+		PISG A 1 Offset(9,45)
+		PISG A 1 Offset(6,42)
+		PISG A 1 Offset(3,40)
+		PISG A 1 Offset(2,37)
+		PISG A 1 Offset(1,35)
+		PISG A 1 Offset(1,33)
+		Goto Ready2
+ 	Spawn:
+		PISP A -1
+		Stop
+	}
+}
+
+ACTOR DNPistolAmmo : Ammo
+{
+	Inventory.MaxAmount 10
+	Inventory.Icon "PISPA0"
+}
+
+ACTOR DNPistol2Ammo : Ammo
+{
+	Inventory.MaxAmount 10
+	Inventory.Icon "PISPA0"
+}
+
+ACTOR DNPistolAmmoPickup : Ammo 4201
+{
+	Inventory.MaxAmount 12
+	Ammo.BackpackAmount 1
+	Ammo.BackpackMaxAmount 24
+	Inventory.Icon "PISCLIP"
+	Inventory.PickupSound "weapons/pistol/clipslap"
+	Inventory.Pickupmessage "Picked up a pistol clip."
+	Tag "10mm"
+	Scale .7
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+		PISP B -1
+		Stop
+	}
+}
+
+//Controlled with a running ACS script until I can think of something smarter...
+ACTOR DNDualPistolTrueAmmo : Ammo
+{
+	Inventory.MaxAmount 20
+	Inventory.Icon "PISPA0"
+}
+ACTOR SynthFireActive : Inventory
+{
+	Inventory.InterHubAmount 0
+}
+ACTOR SynthFireLeft : SynthFireActive{}
+ACTOR SynthFireRight : SynthFireActive{}
+
+ACTOR DNDualPistol : DNPistol
+{
+	Weapon.AmmoType DNDualPistolTrueAmmo
+	Weapon.SelectionOrder 7500
+	Tag "Marston KP-8 (Akimbo)"
+	States
+	{
+	NoFlash:
+		TNT1 A 0
+		Stop
+	Select:
+		TNT1 A 0 A_TakeInventory("DNPistol")
+	Ready:
+		DPST A 1 Offset(-1,79) A_PlaySound("weapons/pistol/move",5)
+		DPST A 1 Offset(-1,69)
+		DPST A 1 Offset(-1,60)
+		DPST A 1 Offset(-1,52)
+		DPST A 1 Offset(-1,45)
+		DPST A 1 Offset(-1,39)
+		DPST A 1 Offset(-1,35)
+		TNT1 A 0 A_GunFlash("DualReady", GFF_NOEXTCHANGE)
+		TNT1 A 0 A_GiveInventory("SynthFireActive")
+		TNT1 A 0 ACS_NamedExecuteAlways("DualieSynthLeft")
+		TNT1 A 0 ACS_NamedExecuteAlways("DualieSynthRight")
+	Ready2:
+		TNT1 A 0 A_JumpIfInventory("SynthFireLeft",1,"Fire")
+		LPIS A 1 A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
+		Loop
+	DualReady:
+		TNT1 A 0 A_JumpIfInventory("SynthFireRight",1,"Fire2Check")
+		RPIS A 1 A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
+		Loop
+	Deselect:
+		TNT1 A 0 A_TakeInventory("SynthFireActive")
+		TNT1 A 0 A_TakeInventory("SynthFireLeft")
+		TNT1 A 0 A_TakeInventory("SynthFireRight")
+		TNT1 A 0 A_GunFlash("NoFlash",GFF_NOEXTCHANGE)
+		DPST A 1 Offset(-1,35)
+		DPST A 1 Offset(-1,39)
+		DPST A 1 Offset(-1,45)
+		DPST A 1 Offset(-1,52)
+		DPST A 1 Offset(-1,60)
+		DPST A 1 Offset(-1,75)
+		DPST A 1 Offset(-1,90)
+		TNT1 A 5
+		TNT1 A 0 A_Lower
+		Wait
+	Fire:
+		TNT1 A 0 A_JumpIfInventory("DNPistolAmmo", 1, "Fire1")
+		//TNT1 A 0 A_JumpIfInventory("DNPistol2Ammo", 1, "Fire2Check")
+		LPIS C 1 A_PlaySound("weapons/dryfire", 5)
+		LPIS D 1
+		TNT1 A 0 A_JumpIfInventory("DNPistol2Ammo", 1, "Ready2")	//Don't reload if the other gun is loaded
+		TNT1 A 0 A_JumpIfInventory("DNPistolAmmoPickup", 1, "Reload")
+		TNT1 A 0 A_JumpIfInventory("DNPistol2Ammo", 1,2)
+		TNT1 A 0 A_CheckReload
+		Goto Ready2
+	Fire1:
+		LPIS B 1 BRIGHT A_FireBullets (2, 2, -1, 10, "BulletPuff", 0)
+		PISF A 0 A_AlertMonsters
+		TNT1 A 0 A_SpawnItemEx("PistolCasing", -12,-20,32, 8,random(-2,2),random(0,4), random(-55,-80), SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_FireCustomMissile("GunSmokeSpawner",0,0,0,-8)
+		TNT1 A 0 A_TakeInventory("DNPistolAmmo", 1)
+		LPIS C 1 Offset(0,34) A_SetPitch(pitch - 0.8)
+		LPIS D 1 Offset(0,33) A_SetPitch(pitch + 0.8)
+		TNT1 A 0 A_JumpIfInventory("DNPistol2Ammo", 1, "Ready2")
+		TNT1 A 0 A_CheckReload
+		Goto Ready2
+	Fire2Check:
+		TNT1 A 0 A_JumpIfInventory("DNPistol2Ammo", 1, "Fire2")
+		//TNT1 A 0 A_JumpIfInventory("DNPistolAmmo", 1, "Fire1")
+		RPIS C 1 A_PlaySound("weapons/dryfire", 5)
+		RPIS D 1
+		TNT1 A 0 A_JumpIfInventory("DNPistolAmmo", 1, "DualReady")	//Don't reload if the other gun is loaded
+		//TNT1 A 0 A_JumpIfInventory("DNPistolAmmoPickup", 1, "Reload")
+		TNT1 A 0 A_JumpIfInventory("DNPistol2Ammo", 1,2)
+		TNT1 A 0 A_CheckReload
+		Goto DualReady
+	Fire2:
+		RPIS B 1 BRIGHT A_FireBullets (4, 4, -1, 10, "BulletPuff", 0)
+		PISF A 0 A_AlertMonsters
+		TNT1 A 0 A_SpawnItemEx("PistolCasing", 12,-20,32, 8,random(-2,2),random(0,4), random(-55,-80), SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_FireCustomMissile("GunSmokeSpawner",0,0,0,8)
+		TNT1 A 0 A_TakeInventory("DNPistol2Ammo", 1)
+		RPIS C 1 Offset(0,34) A_SetPitch(pitch - 0.8)
+		RPIS D 1 Offset(0,33) A_SetPitch(pitch + 0.8)
+		TNT1 A 0 A_JumpIfInventory("DNPistol2Ammo", 1,"DualReady")
+		TNT1 A 0 A_CheckReload
+		Goto DualReady
+	Reload:
+		TNT1 A 0 A_GunFlash("NoFlash",GFF_NOEXTCHANGE)
+		TNT1 A 0 A_TakeInventory("SynthFireActive")
+		TNT1 A 0 A_TakeInventory("SynthFireLeft")
+		TNT1 A 0 A_TakeInventory("SynthFireRight")
+		DPST A 0 A_JumpIfInventory("DNPistolAmmo", 10, "ReloadCheck2")
+		DPST A 0 A_JumpIfInventory("DNPistolAmmoPickup", 1, "Reload1")
+	ReloadCheck2:
+		DPST A 0 A_JumpIfInventory("DNPistol2Ammo", 10, "NoReload")
+		DPST A 0 A_JumpIfInventory("DNPistolAmmoPickup", 1, "Reload2FromIdle")
+	NoReload:
+		DPST A 1 A_WeaponReady(WRF_NOFIRE)
+		DPST A 0 A_GunFlash("DualReady", GFF_NOEXTCHANGE)
+		TNT1 A 0 A_GiveInventory("SynthFireActive")
+		TNT1 A 0 ACS_NamedExecuteAlways("DualieSynthLeft")
+		TNT1 A 0 ACS_NamedExecuteAlways("DualieSynthRight")
+		TNT1 A 0 A_GunFlash("DualReady", GFF_NOEXTCHANGE)
+		Goto Ready2
+	Reload1:
+		DPST A 1 Offset(0,34) A_PlaySound("weapons/pistol/move", 5)
+		DPST A 1 Offset(0,38)
+		DPST A 1 Offset(0,43)
+		DPST A 1 Offset(0,50)
+		DPST A 1 Offset(0,60)
+		DPST A 1 Offset(0,72)
+		TNT1 A 3
+		PISR A 1 Offset(-5,65) A_PlaySound("weapons/pistol/clipout", 6)
+		PISR A 1 Offset(-4,58) A_Jump(128,2)
+		PISR A 1 Offset(-3,49)
+		PISR A 1 Offset(-3,39)
+		PISR A 1 Offset(-4,37)
+		PISR A 1 Offset(-5,35) A_PlaySound("weapons/pistol/move", 5)
+		PISR A 1 Offset(-6,35) A_Jump(128,2)
+		PISR A 1 Offset(-7,37)
+		PISR A 1 Offset(-8,39)
+		PISR A 1 Offset(-9,42)
+		PISR A 1 Offset(-9,44)
+		PISR A 1 Offset(-8,46)
+		PISR A 1 Offset(-8,49)
+		PISR A 1 Offset(-7,52) A_PlaySound("weapons/pistol/clipin", 6)
+		PISR A 1 Offset(-6,55)
+		TNT1 A 0 A_Giveinventory("DNPistolAmmo",10)
+		TNT1 A 0 A_Takeinventory("DNPistolAmmoPickup",1,TIF_NOTAKEINFINITE)
+		PISR A 1 Offset(-5,54) A_Jump(128,2)
+		PISR B 1 Offset(-4,54)
+		PISR B 1 Offset(-3,53)
+		PISR C 1 Offset(-2,53)
+		PISR C 1 Offset(-2,52)
+		PISR D 1 Offset(-1,51) A_PlaySound("weapons/pistol/clipslap", 5)
+		PISR D 1 Offset(-1,50) A_Jump(128,2)
+		PISR E 1 Offset(-1,49)
+		PISR E 1 Offset(1,50)
+		PISR E 1 Offset(2,51)
+		PISR E 1 Offset(3,52)
+		PISR E 1 Offset(4,53) A_PlaySound("weapons/pistol/release", 6)
+		PISR E 1 Offset(6,54) A_Jump(128,2)
+		PISR F 1 Offset(5,53)
+		PISR F 1 Offset(4,59)
+		PISR F 1 Offset(3,65)
+		PISR F 1 Offset(2,75)
+		PISR F 1 Offset(1,85)
+		DGRR A 0 A_JumpIfInventory("DNPistol2Ammo", 10, "ReadyReturn")
+		DGRR A 0 A_JumpIfInventory("DNPistolAmmoPickup", 1, "Reload2")
+	ReadyReturn:
+		TNT1 A 5
+		DPST A 1 Offset(0,100)
+		DPST A 1 Offset(0,80)
+		DPST A 1 Offset(0,65)
+		DPST A 1 Offset(0,53)
+		DPST A 1 Offset(0,45)
+		DPST A 1 Offset(0,40)
+		DPST A 1 Offset(0,36)
+		DPST A 0 A_GunFlash("DualReady", GFF_NOEXTCHANGE)
+		TNT1 A 0 A_GiveInventory("SynthFireActive")
+		TNT1 A 0 ACS_NamedExecuteAlways("DualieSynthLeft")
+		TNT1 A 0 ACS_NamedExecuteAlways("DualieSynthRight")
+		Goto Ready2
+	Reload2FromIdle:
+		DPST A 1 Offset(0,36)
+		DPST A 1 Offset(0,40)
+		DPST A 1 Offset(0,45)
+		DPST A 1 Offset(0,53)
+		DPST A 1 Offset(0,65)
+		DPST A 1 Offset(0,80)
+		DPST A 1 Offset(0,100)
+	Reload2:
+		TNT1 A 0 A_TakeInventory("SynthFireActive")
+		TNT1 A 0 A_TakeInventory("SynthFireLeft")
+		TNT1 A 0 A_TakeInventory("SynthFireRight")
+		TNT1 A 5
+		PI2R A 1 Offset(5,65) A_PlaySound("weapons/pistol/clipout", 6)
+		PI2R A 1 Offset(4,58) A_Jump(128,2)
+		PI2R A 1 Offset(3,49)
+		PI2R A 1 Offset(3,39)
+		PI2R A 1 Offset(4,37)
+		PI2R A 1 Offset(5,35) A_PlaySound("weapons/pistol/move", 5)
+		PI2R A 1 Offset(6,35) A_Jump(128,2)
+		PI2R A 1 Offset(7,37)
+		PI2R A 1 Offset(8,39)
+		PI2R A 1 Offset(9,42)
+		PI2R A 1 Offset(9,44)
+		PI2R A 1 Offset(8,46)
+		PI2R A 1 Offset(8,49)
+		PI2R A 1 Offset(7,52) A_PlaySound("weapons/pistol/clipin", 6)
+		PI2R A 1 Offset(6,55)
+		TNT1 A 0 A_Giveinventory("DNPistol2Ammo",10)
+		TNT1 A 0 A_Takeinventory("DNPistolAmmoPickup",1,TIF_NOTAKEINFINITE)
+		PI2R A 1 Offset(5,54) A_Jump(128,2)
+		PI2R B 1 Offset(4,54)
+		PI2R B 1 Offset(3,53)
+		PI2R C 1 Offset(2,53)
+		PI2R C 1 Offset(2,52)
+		PI2R D 1 Offset(1,51) A_PlaySound("weapons/pistol/clipslap", 5)
+		PI2R D 1 Offset(1,50) A_Jump(128,2)
+		PI2R E 1 Offset(1,49)
+		PI2R E 1 Offset(1,50)
+		PI2R E 1 Offset(2,51)
+		PI2R E 1 Offset(3,52)
+		PI2R E 1 Offset(4,53) A_PlaySound("weapons/pistol/release", 6)
+		PI2R E 1 Offset(6,54) A_Jump(128,2)
+		PI2R F 1 Offset(8,53)
+		PI2R F 1 Offset(9,49)
+		PI2R F 1 Offset(10,45)
+		PI2R E 1 Offset(11,54) A_Jump(128,2)
+		PI2R F 1 Offset(12,53)
+		PI2R F 1 Offset(13,59)
+		PI2R F 1 Offset(14,65)
+		PI2R F 1 Offset(15,75)
+		PI2R F 1 Offset(16,85)
+		PI2R F 1 Offset(16,95)
+		PI2R F 1 Offset(16,105)
+		TNT1 A 5
+		Goto Ready
+ 	Spawn:
+		PISP A -1
+		Stop
+	}
+}
+
+ACTOR DNDualPistolPickup : CustomInventory replaces Pistol
+{
+	Inventory.PickupSound "weapons/pistol/clipout"
+	Inventory.PickupMessage "Picked up a second Marston KP-8. (Slot 2)"
+	Scale 0.8
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+		PISP A -1
+		Stop
+	Pickup:
+		TNT1 A 0 A_JumpIfInventory("DNDualPistol", 1, "GiveAmmo")
+		TNT1 A 0 A_GiveInventory("DNDualPistol")
+		TNT1 A 0 A_SelectWeapon("DNDualPistol")	//Add an ACS check?
+		TNT1 A 0 A_GiveInventory("DNPistol2Ammo",10)
+	GiveAmmo:
+		TNT1 A 0 A_GiveInventory("DNPistolAmmoPickup")
+		Stop
+	}
+}

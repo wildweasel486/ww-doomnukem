@@ -1,0 +1,12 @@
+Getpmap, Getpinv, and Getsoul are all from Crimsonland.
+
+GetArmr1 is from Soldier of Fortune.
+GetArmr2 and GetArmrS are from Soldier of Fortune 2.
+
+Gethelth is from Soldier of Fortune.
+Gethlth2 is from SiN.
+GetHlthS is an edit of 19321__halleck__lighter2 from Freesound.org
+
+Getmega and Getbserk are from Painkiller.
+
+GetCloak is from Max Payne 2.

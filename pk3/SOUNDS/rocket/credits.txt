@@ -1,0 +1,12 @@
+ROCKFIRE and RICKPICK are courtesy of NightmareMutant of gamebanana.com
+licensed under Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License
+For more info, see http://tf2.gamebanana.com/sounds/19549
+and http://creativecommons.org/licenses/by-nc-nd/3.0/
+
+ROCKXPL* are by Ankh of gamebanana.com under the same license. The original
+file is located at http://hl2dm.gamebanana.com/sounds/4138 - I figure it's
+okay to use them, since he himself says they're from SMOD.
+
+This sound was NOT modified.
+
+ROCKSEL is from the Killing Floor IJC Weapon Pack.

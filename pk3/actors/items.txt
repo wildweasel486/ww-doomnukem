@@ -1,0 +1,182 @@
+ACTOR WWDNStimpack : Stimpack replaces Stimpack
+{
+	Inventory.PickupMessage "Picked up a small stim."
+	Inventory.PickupSound "Items/HealthSmall"
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+		STIM A -1
+		Stop
+	}
+}
+
+ACTOR WWDNMedikit : Medikit replaces Medikit
+{
+	Inventory.PickupMessage "Picked up a medic's pack."
+	Inventory.PickupSound "Items/HealthLarge"
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+		MEDI A -1
+		Stop
+	}
+}
+
+ACTOR WWDNCigarettes : HealthBonus replaces HealthBonus
+{
+	Inventory.PickupMessage "Picked up a pack of Luckies."
+	Inventory.PickupSound "Items/HealthBonus"
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+		BON1 A -1
+		Stop
+	}
+}
+
+ACTOR WWDNSmallArmor : GreenArmor replaces GreenArmor
+{
+	Inventory.PickupMessage "Picked up Recon Armor."
+	Inventory.PickupSound "Items/ArmorSmall"
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+	Repeat:
+		ARM1 A 8 Bright
+		ARM1 B 8
+		Loop
+	}
+}
+
+ACTOR WWDNLargeArmor : BlueArmor replaces BlueArmor
+{
+	Inventory.PickupMessage "Picked up Assault Armor."
+	Inventory.PickupSound "Items/ArmorLarge"
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+	Repeat:
+		ARM2 A 8 Bright
+		ARM2 B 8
+		Loop
+	}
+}
+
+ACTOR WWDNArmorBonus : ArmorBonus replaces ArmorBonus
+{
+	Inventory.PickupMessage "Absorbed an extra helmet."
+	Inventory.PickupSound "Items/ArmorBonus"
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+		BON2 A -1
+		Stop
+	}
+}
+
+ACTOR WWDNMap : Allmap replaces Allmap
+{
+	Inventory.PickupMessage "Picked up a floor schematic."
+	Inventory.PickupSound "Items/Allmap"
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+	Repeat:
+		PMAP ABCD 8 Bright
+		Loop
+	}
+}
+
+ACTOR WWDNSuperhealth : Soulsphere replaces Soulsphere
+{
+	Inventory.PickupMessage "Found Experimental Serum #50-UL!"
+	Inventory.PickupSound "Items/Superhealth"
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+	Repeat:
+		SOUL AAAABCDDDDCB 2 Bright
+		Loop
+	}
+}
+
+ACTOR WWDNBerserk : Berserk replaces Berserk
+{
+	Inventory.PickupMessage "Found the Mjolnir Device!"
+	Inventory.PickupSound "Items/Berserk"
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+		PSTR A -1
+		Stop
+	Pickup:
+		TNT1 A 0 A_GiveInventory("PowerStrength")
+		TNT1 A 0 HealThing(100, 0)
+		TNT1 A 0 A_SelectWeapon("Sledge")
+		Stop
+	}
+}
+
+ACTOR WWDNInvuln : InvulnerabilitySphere replaces InvulnerabilitySphere
+{
+	Inventory.PickupMessage "Found the Superior Headshroud!"
+	Inventory.PickupSound "Items/PInv"
+	Powerup.Color BlueMap
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+	Repeat:
+		PINV AAAABCDDDDCB 2 Bright
+		Loop
+	}
+}
+
+ACTOR WWDNSuperPack : Megasphere replaces Megasphere
+{
+	Inventory.PickupMessage "Found the Instant Commando Kit!"
+	Inventory.PickupSound "Items/Mega"
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+	Repeat:
+		MEGA AAAABCDDDDCB 2 Bright
+		Loop
+	}
+}
+
+ACTOR WWDNCloak : BlurSphere replaces BlurSphere
+{
+	Inventory.PickupMessage "Found the Cloaking Device!"
+	Inventory.PickupSound "Items/Cloak"
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+	Repeat:
+		PINS AAAABCDDDDCB 2 Bright
+		Loop
+	}
+}
+
+ACTOR DNBackpack : Backpack replaces Backpack
+{
+	Inventory.PickupMessage "Found the Support Backpack!"
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+		BPAK A -1
+		Stop
+	}
+}

@@ -1,0 +1,31 @@
+brightmap sprite RCKGA0 { map "BRIGHTMAPS/ROCKET/BMROCKET.png" }
+brightmap sprite RCKGB0 { map "BRIGHTMAPS/ROCKET/BMROCKET.png" }
+brightmap sprite RCKGC0 { map "BRIGHTMAPS/ROCKET/BMROCKET.png" }
+brightmap sprite RCKGD0 { map "BRIGHTMAPS/ROCKET/BMROCKET.png" }
+brightmap sprite RCKGE0 { map "BRIGHTMAPS/ROCKET/BMROCKET.png" }
+brightmap sprite RCKGF0 { map "BRIGHTMAPS/ROCKET/BMROCKET.png" }
+brightmap sprite RCKGG0 { map "BRIGHTMAPS/ROCKET/BMROCKET.png" }
+brightmap sprite RCKGH0 { map "BRIGHTMAPS/ROCKET/BMROCKET.png" }
+brightmap sprite RCKGI0 { map "BRIGHTMAPS/ROCKET/BMROCKET.png" }
+brightmap sprite RCKGJ0 { map "BRIGHTMAPS/ROCKET/BMROCKET.png" }
+brightmap sprite RCKGK0 { map "BRIGHTMAPS/ROCKET/BMROCKET.png" }
+brightmap sprite RCKGL0 { map "BRIGHTMAPS/ROCKET/BMROCKET.png" }
+brightmap sprite RCKGM0 { map "BRIGHTMAPS/ROCKET/BMROCKET.png" }
+brightmap sprite RCKGN0 { map "BRIGHTMAPS/ROCKET/BMROCKET.png" }
+brightmap sprite RCKGO0 { map "BRIGHTMAPS/ROCKET/BMROCKET.png" }
+brightmap sprite RCKGP0 { map "BRIGHTMAPS/ROCKET/BMROCKET.png" }
+brightmap sprite RCKGQ0 { map "BRIGHTMAPS/ROCKET/BMROCKET.png" }
+
+brightmap sprite RCKFA0
+{
+    map "BRIGHTMAPS/ROCKET/BMROCKET.png"
+}
+
+brightmap sprite RCKFB0
+{
+    map "BRIGHTMAPS/ROCKET/BMROCKET.png"
+}
+brightmap sprite RCKFC0
+{
+    map "BRIGHTMAPS/ROCKET/BMROCKET.png"
+}

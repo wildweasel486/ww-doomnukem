@@ -1,0 +1,339 @@
+ACTOR ShotgunReloading : Inventory
+{
+	Inventory.InterHubAmount 0
+}
+ACTOR ShotgunSighting : Inventory{}
+
+ACTOR ShotgunClip : Ammo
+{
+	+IGNORESKILL
+	Inventory.MaxAmount 6	//formerly 5
+	Inventory.Icon "SHTCA0"
+}
+
+// Thanks to patriot1776 for this new addition.
+ACTOR ShotgunChamberLoading: Inventory{}	//Marker for if we are loading the first shell into an empty gun, and to 'pump' that shell into chamber to give
+											//us a sixth round of ammunition per 'clip'.
+
+ACTOR TrenchShotgun : DNWeapon replaces SuperShotgun
+{
+	Weapon.AmmoType "ShotgunClip"
+	Weapon.AmmoUse 1
+	Weapon.AmmoType2 "NewShell"
+	Weapon.AmmoUse2 1
+	Weapon.AmmoGive2 8
+	Weapon.Kickback 400
+	Weapon.SlotNumber 3
+	Inventory.PickupMessage "You got the Shotgun! (slot 3)"
+	Inventory.PickupSound "Weapons/Shotgun/Pump"
+	Weapon.SelectionOrder 3000
+	+WEAPON.NOAUTOFIRE
+	+WEAPON.NOALERT
+	+WEAPON.AMMO_CHECKBOTH
+	AttackSound "Weapons/Shotgun/Fire"
+	Tag "M2097 Bicentennial"
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+		SHTC A -1
+		Stop
+	Deselect:
+		TNT1 A 0 A_TakeInventory("ShotgunReloading",1)
+		SHTG A 0 A_JumpIfInventory("ShotgunSighting", 1, "DeselectUnzoom")
+		SHTG A 1 Offset(-3,35)
+		SHTG A 1 Offset(-7,39)
+		SHTG A 1 Offset(-12,45)
+		SHTG A 1 Offset(-20,52)
+		SHTG A 1 Offset(-40,60)
+		SHTG A 1 Offset(-70,69)
+		SHTG A 1 Offset(-120,79)
+		TNT1 A 5
+		TNT1 A 0 A_Lower
+		Wait
+	Select:
+	Ready:
+		TNT1 A 5
+		SHTG M 1 Offset(-100,36) A_PlaySound("Weapons/Select1")
+		SHTG K 1 Offset(-90,36)
+		SHTG I 1 Offset(-82,36)
+		SHTG G 1 Offset(-60,36)
+		SHTG F 1 Offset(-55,36)
+		SHTG E 1 Offset(-30,36)
+		SHTG D 1 Offset(-15,36)
+		SHTG C 1 Offset(-10,36)
+		SHTG B 1 Offset(-5,36)
+		SHTG A 1 Offset(-2,36)
+	Ready2:
+		SHTG A 0 A_JumpIfInventory("ShotgunSighting", 1, "ReadyZoom")
+		SHTG A 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM)
+		TNT1 A 0 A_TakeInventory("PressingZoom")
+		Loop
+	ReadyZoom:
+		SHT8 A 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWZOOM)
+		TNT1 A 0 A_TakeInventory("PressingZoom")
+		Goto Ready2
+	DeselectUnzoom:
+		SHT8 A 1 A_ZoomFactor(1.0)
+		SHT8 A 1 Offset(0,35) A_TakeInventory("ShotgunSighting",1)
+		SHT8 D 1 Offset(0,32) A_SetCrosshair(0)
+		SHT8 E 1 Offset(0,35)
+		SHT8 E 1 Offset(0,32)
+		Goto Deselect
+	Fire:
+		SHTF A 0 A_JumpIfInventory("ShotgunReloading",1,"ReloadFinish")
+		SHTF A 0 A_JumpIfInventory("ShotgunSighting", 1, "FireZoom")
+		SHTF A 0 A_JumpIfInventory("ShotgunClip",1,1)
+		Goto Dryfire
+		SHTF A 0 A_TakeInventory("ShotgunClip",1,TIF_NOTAKEINFINITE)
+		//SHTF A 0 A_FireBullets(2, 2, 8, 11, "BulletPuff",0)
+		SHTF A 0 A_FireBullets(2, 2, 8, 9, "BulletPuff",0)
+		PISF A 0 A_FireCustomMissile("GunSmokeSpawner",0,0,0,8)
+		SHTF A 1 BRIGHT A_GunFlash
+		SHTF A 1 BRIGHT A_SetPitch(pitch - 4.0)
+		SHTF B 1 Offset(0,33) A_SetPitch(pitch - 2.0)
+		SHTF C 1 Offset(0,34) A_SetPitch(pitch - 1.5)
+		SHTF DD 1 Offset(0,36) A_SetPitch(pitch + 0.4)
+		SHTF EE 1 Offset(0,37) A_SetPitch(pitch + 0.2)
+		SHTG A 0 A_Jump(128,2)
+		SHTG A 1 Offset(0,36) A_SetPitch(pitch + 0.3)
+		SHTG A 0 A_Jump(128,2)
+		SHTG A 1 Offset(0,35) A_SetPitch(pitch + 0.1)
+		SHTG A 1 Offset(0,34) //A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
+	FireContinue:
+		SHTG A 1 Offset(0,33) A_AlertMonsters
+		SHTG A 1 Offset(-1,33) //A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
+		SHTG B 1 Offset(-1,34) //A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
+		SHTG C 1 Offset(-2,34) //A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
+		SHTG D 1 Offset(-2,35) //A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
+		SHTG E 1 Offset(-3,35)// A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
+		SHTG F 1 Offset(-3,36) A_PlaySound("Weapons/Shotgun/Pump", 5)
+		SHTG G 1 Offset(-4,40)
+		SHTG H 1 Offset(-4,43)
+		SHTG I 1 Offset(-5,45)
+		SHTG J 1 Offset(-5,44)
+		SHTG K 1 Offset(-4,41)
+		SHTG L 1 Offset(-4,40) A_SpawnItemEx("ShotgunCasing", 12,-20,32, 8,random(-2,2),random(0,4), random(-55,-80), SXF_NOCHECKPOSITION)
+		SHTG M 1 Offset(-3,38) A_Jump(128,2)
+		SHTG M 1 Offset(-2,36)
+		SHTG L 1 Offset(-2,36) A_Jump(128,2)
+		SHTG K 1 Offset(-2,36)
+		SHTG J 1 Offset(-2,36)
+		SHTG I 1 Offset(-2,36)
+		SHTG H 1 Offset(-2,36)
+		SHTG G 1 Offset(-2,36)
+		SHTG F 1 Offset(-2,36)
+		SHTG E 1 Offset(-2,36)
+		SHTG D 1 Offset(-2,36)
+		SHTG C 1 Offset(-2,36)
+		SHTG B 1 Offset(-2,36)
+		SHTG A 1 Offset(-2,36)
+		SHTG A 0 A_JumpIfInventory("ShotgunSighting", 1, "AltfireZoom")
+		SHTG A 0 A_Refire
+		Goto Ready2
+	FireZoom:
+		SHT8 A 0 A_JumpIfInventory("ShotgunClip",1,1)
+		Goto DryfireZoom
+		SHT8 A 0 A_TakeInventory("ShotgunClip",1,TIF_NOTAKEINFINITE)
+		//SHT8 A 0 A_FireBullets(2, 2, 8, 8, "BulletPuff",0)
+		SHT8 A 0 A_FireBullets(2, 2, 8, 9, "BulletPuff",0)
+		PISF A 0 A_FireCustomMissile("GunSmokeSpawner",0,0,0,8)
+		SHT8 F 1 BRIGHT A_GunFlash
+		SHT8 G 1 BRIGHT A_SetPitch(pitch - 4.0)
+		SHT8 A 1 Offset(0,33) A_SetPitch(pitch - 2.0)
+		SHT8 A 1 Offset(0,34) A_SetPitch(pitch - 1.5)
+		SHT8 AA 1 Offset(0,36) A_SetPitch(pitch + 0.4)
+		SHT8 AA 1 Offset(0,37) A_SetPitch(pitch + 0.2)
+		SHT8 A 1 Offset(0,36) A_SetPitch(pitch + 0.3)
+		SHT8 A 1 Offset(0,35) A_SetPitch(pitch + 0.1)
+		SHT8 A 1 Offset(0,34) A_WeaponReady(WRF_NOFIRE)
+		SHT8 A 1 A_ZoomFactor(1.0)
+		SHT8 A 1 Offset(0,35)
+		SHT8 D 1 Offset(0,32)
+		SHT8 E 1 Offset(0,35)
+		SHT8 E 1 Offset(0,32)
+		Goto FireContinue
+	Zoom:
+		TNT1 A 0 A_JumpIfInventory("PressingZoom",1,"AltHold")
+		TNT1 A 0 A_GiveInventory("PressingZoom",1)
+	Altfire:
+		SHTG A 0 A_JumpIfInventory("ShotgunSighting", 1, "AltfireUnzoom")
+	AltfireZoom:
+		SHT8 E 1 Offset(0,35) A_ZoomFactor(1.5)
+		SHT8 E 1 Offset(0,32) A_GiveInventory("ShotgunSighting")
+		SHT8 D 1 A_SetCrosshair(8)
+		SHT8 A 1 Offset(0,35)
+		SHT8 A 1 Offset(0,33)
+		Goto Ready2
+	AltfireUnzoom:
+		SHT8 A 1 A_ZoomFactor(1.0)
+		SHT8 A 1 Offset(0,35) A_TakeInventory("ShotgunSighting")
+		SHT8 D 1 Offset(0,32) A_SetCrosshair(0)
+		SHT8 E 1 Offset(0,35)
+		SHT8 E 1 Offset(0,32)
+		SHTG A 1
+		Goto Ready2
+	Althold:
+		SHTG A 0 A_JumpIfInventory("ShotgunSighting", 1, "AltholdZoomed")
+		SHTG A 1 A_WeaponReady(WRF_NOFIRE)
+		SHTG A 0 A_Refire
+		Goto Ready2
+	AltholdZoomed:
+		SHT8 A 1 A_WeaponReady(WRF_NOFIRE)
+		SHT8 A 0 A_Refire
+		Goto Ready2
+	DryfireZoom:
+		SHT8 A 6 A_PlaySound("Weapons/Dryfire")
+	ReloadZoom:
+		SHT8 A 1 A_ZoomFactor(1.0)
+		SHT8 A 1 Offset(0,35) A_TakeInventory("ShotgunSighting", 1)
+		SHT8 D 1 Offset(0,32) A_SetCrosshair(0)
+		SHT8 E 1 Offset(0,35)
+		SHT8 E 1 Offset(0,32)
+		Goto Reload
+	Dryfire:
+		SHTG A 0 A_JumpIfInventory("ShotgunSighting", 1, "DryfireZoom")
+		SHTG A 1 A_PlaySound("Weapons/Dryfire")
+	Reload:
+		SHTG A 0 A_ClearRefire
+		SHTG A 0 A_JumpIfInventory("ShotgunSighting", 1, "ReloadZoom")
+		SHTG A 0 A_JumpIfInventory("ShotgunClip",0,2)
+		SHTG A 0 A_JumpIfInventory("NewShell",1,"ProperReload")
+		//SHTG A 0 A_GiveInventory("ShotgunReloading",1)
+		SHTG A 1 A_WeaponReady(WRF_NOFIRE)
+		Goto Ready2
+	ProperReload:
+		TNT1 A 0 A_GiveInventory("ShotgunReloading",1)
+		SHTG A 1 Offset(-1,33)
+		SHTG B 1 Offset(-1,34)
+		SHTG C 1 Offset(-2,34)
+		SHTG D 1 Offset(-2,35)
+		SHTG E 1 Offset(-3,35)
+		SHTG F 1 Offset(-3,36)
+		SHTG G 1 Offset(-4,40)
+		SHTG H 1 Offset(-4,43)
+		SSHR A 1 Offset(-3,42)
+		SSHR A 1 Offset(-2,41)
+		SSHR A 1 Offset(-1,40)
+		SSHR A 1 Offset(1,39)
+		SSHR A 1 Offset(1,38)
+		SSHR A 1 Offset(1,37)
+		SSHR A 1 Offset(1,36)
+	/*ReloadWork:
+		SSHR A 0 A_TakeInventory("NewShell",1,TIF_NOTAKEINFINITE)
+		SSHR A 0 A_GiveInventory("ShotgunClip",1)
+		SSHR B 1 Offset(-8,38) A_PlayWeaponSound("Weapons/Shotgun/Load")
+		SSHR C 1 Offset(-7,42)
+		SSHR D 1 Offset(-6,44)
+		SSHR E 1 Offset(-4,45)
+		SSHR F 1 Offset(-2,46) A_Jump(128,2)
+		SSHR G 1 Offset(-1,44)
+		SSHR H 1 Offset(-2,42) A_Jump(128,2)
+		SSHR I 1 Offset(-3,41) A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+		SSHR A 1 Offset(-4,38) A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+		SSHR A 1 Offset(-4,36) A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+		SSHR A 1 Offset(-4,34) A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+		SSHR A 1 Offset(-4,33) A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+		SSHR A 1 Offset(-4,32) A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+		SSHR A 1 Offset(-4,33) A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+		SSHR A 1 Offset(-5,34) A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+		SSHR A 1 Offset(-7,36) A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+		SSHR A 0 A_JumpIfInventory("ShotgunClip",5,"ReloadFinish")
+		SSHR A 0 A_JumpIfInventory("NewShell",1,"ReloadWork")
+		Goto ReloadFinish*/
+	ReloadWork1:
+		SSHR A 0 A_JumpIfInventory("ShotgunClip",1,"ReloadWork2") //If still at least one shell still in the gun we won't be working the pump, only
+		SSHR A 0 A_GiveInventory("ShotgunChamberLoading",1)	// loading more shells. Otherwise, we set our marker that tells us we are
+	ReloadWork2:											// loading only the first one, then will 'pump'.
+		SSHR A 0 A_TakeInventory("NewShell",1,TIF_NOTAKEINFINITE)
+		SSHR A 0 A_GiveInventory("ShotgunClip",1)
+		SSHR B 1 Offset(-8,38) A_PlaySound("Weapons/Shotgun/Load", 6)
+		SSHR C 1 Offset(-7,42)
+		SSHR D 1 Offset(-6,44)
+		SSHR E 1 Offset(-4,45)
+		SSHR F 1 Offset(-2,46) A_Jump(128,2)
+		SSHR G 1 Offset(-1,44)
+		SSHR H 1 Offset(-2,42) A_Jump(128,2)
+		SSHR I 1 Offset(-3,41) A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+		SSHR A 1 Offset(-4,38) A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+		SSHR A 1 Offset(-4,36) A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+		SSHR A 1 Offset(-4,34) A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+		SSHR A 1 Offset(-4,33) A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+		SSHR A 1 Offset(-4,32) A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+		SSHR A 1 Offset(-4,33) A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+		SSHR A 1 Offset(-5,34) A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+		SSHR A 1 Offset(-7,36) A_WeaponReady(WRF_NOBOB|WRF_NOSECONDARY)
+		SSHR A 0 A_JumpIfInventory("ShotgunClip",6,"ReloadFinish")
+		SSHR A 0 A_JumpIfInventory("ShotgunChamberLoading",1,"ReloadPump")	//First shell into a completely empty gun? If so, we 'pump' the gun to chamber
+		SSHR A 0 A_JumpIfInventory("NewShell",1,"ReloadWork2")				//that shell. If not, we simply load more shells without 'pumping'.
+		Goto ReloadFinish
+	ReloadPump:
+		SHTG F 1 Offset(-3,36) A_PlaySound("Weapons/Shotgun/Pump", 5)
+		SHTG G 1 Offset(-4,40)
+		SHTG H 1 Offset(-4,43)
+		SHTG I 1 Offset(-5,45)
+		SHTG J 1 Offset(-5,44)
+		SHTG K 1 Offset(-4,41)
+		SHTG L 1 Offset(-4,40)
+		SHTG M 1 Offset(-3,38)
+		SHTG M 1 Offset(-2,36)
+		SHTG L 1 Offset(-2,36)
+		SHTG K 1 Offset(-2,36)
+		SHTG J 1 Offset(-2,36)
+		SHTG I 1 Offset(-2,36)
+		SHTG H 1 A_TakeInventory ("ShotgunChamberLoading",1)				//We've now chambered the first shell of the reload, so clear 'first shell' marker and just
+		SSHR A 0 A_JumpIfInventory("ShotgunChamberLoading",1,"ReloadPump")	//First shell into a completely empty gun? If so, we 'pump' the gun to chamber
+		SSHR A 0 A_JumpIfInventory("NewShell",1,"ReloadWork2")				//that shell. If not, we simply load more shells without 'pumping'.
+		Goto ReloadFinish
+	ReloadFinish:
+		/*SHTG F 1 Offset(-3,36) A_PlaySound("Weapons/Shotgun/Pump", 5)
+		SHTG G 1 Offset(-4,40)
+		SHTG H 1 Offset(-4,43)
+		SHTG I 1 Offset(-5,45)
+		SHTG J 1 Offset(-5,44)
+		SHTG K 1 Offset(-4,41)
+		SHTG L 1 Offset(-4,40)
+		SHTG M 1 Offset(-3,38)
+		SHTG MLKJI 1 Offset(-2,36)*/
+		SHTG HGFEDCB 1 Offset(-2,36)
+		SHTG A 1 A_TakeInventory("ShotgunReloading",1)
+		Goto Ready2
+	Flash:
+		TNT1 A 2 A_Light2
+		TNT1 A 2 A_Light1
+		Goto LightDone
+	}
+}
+
+ACTOR NewShell : Ammo replaces Shell
+{
+	Inventory.Amount 2
+	Inventory.MaxAmount 42
+	Ammo.BackpackAmount 4
+	Ammo.BackpackMaxAmount 84
+	Inventory.Icon "SHELY0"
+	Inventory.PickupMessage "Picked up some shells."
+	Inventory.PickupSound "Weapons/Shotgun/Load"
+	Tag "00 Buck"
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+		SHEL Y -1
+		Stop
+	}
+}
+
+ACTOR NewShellBox : NewShell replaces ShellBox
+{
+	Inventory.Amount 12
+	Inventory.PickupMessage "Picked up a box of shells."
+	Inventory.PickupSound "Weapons/Shotgun/Load"
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+		SHEL B -1
+		Stop
+	}
+}

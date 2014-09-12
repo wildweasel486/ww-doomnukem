@@ -1,0 +1,20 @@
+ACTOR ClipDrop : RandomSpawner replaces Clip
+{
+	DropItem "DNPistolAmmoPickup"
+	DropItem "DNPistolAmmoPickup"
+	DropItem "RevolverAmmoPickup"
+}
+
+ACTOR CellDrop : RandomSpawner replaces CellPack
+{
+	DropItem "ChaingunAmmo"
+	DropItem "ChaingunAmmo"
+	DropItem "BFGCell"
+}
+
+ACTOR ImpDropper : RandomSpawner replaces DoomImp
+{
+	DropItem "DNImpVariant1"
+	DropItem "DNImpVariant2"
+	DropItem "DNImpVariant3"
+}

@@ -1,0 +1,105 @@
+ACTOR BogElemental replaces PainElemental
+{
+   Health 700 
+   Speed 8 
+   Radius 31 
+   Height 56 
+   PainChance 64 
+   Mass 400 
+   REACTIONTIME 8 
+   MONSTER 
+   +NOGRAVITY 
+   +FLOAT 
+   Explosiondamage 40
+   Explosionradius 80
+   SeeSound "torturedsoul/sight" 
+   PainSound "torturedsoul/pain" 
+   DeathSound "torturedsoul/death" 
+   ActiveSound "torturedsoul/active" 
+   Obituary "%o was befouled by a Bog Elemental." 
+   States 
+   { 
+   Spawn: 
+      TORT AB 10 A_Look 
+      Loop 
+   See: 
+      TORT AABBCC 3 A_Chase 
+      Loop 
+   Missile: 
+     TORT D 10 A_FaceTarget 
+     TORT D 0 A_Jump(128,4) 
+     TORT E 4 A_FaceTarget 
+     TORT E 0 A_PlaySound("torturedsoul/attack") 
+     TORT F 4 A_CustomMissile("BogBall", 40, 0, 0) 
+     Goto See 
+     TORT D 0 A_PlaySound("torturedsoul/poison") 
+     TORT D 4 A_CustomMissile("BogPoison", 16, 0, 0) 
+     Goto See 
+   Pain: 
+      TORT G 3 
+      TORT G 3 A_Pain 
+      Goto See 
+   Death: 
+      TORT H 8 
+      TORT I 8 A_Scream 
+      TORT JK 8 
+      TORT L 0 A_CustomMissile("BogPoison", 32, 0, 0) 
+      TORT L 0 A_CustomMissile("BogPoison", 32, 0, 45) 
+      TORT L 0 A_CustomMissile("BogPoison", 32, 0, 90) 
+      TORT L 0 A_CustomMissile("BogPoison", 32, 0, 135) 
+      TORT L 0 A_CustomMissile("BogPoison", 32, 0, 180) 
+      TORT L 0 A_CustomMissile("BogPoison", 32, 0, 225) 
+      TORT L 0 A_CustomMissile("BogPoison", 32, 0, 270) 
+      TORT L 0 A_CustomMissile("BogPoison", 32, 0, 315) 
+      TORT L 8  
+      TORT M 8 A_NoBlocking 
+      TORT N 8 
+      Stop 
+   } 
+}
+
+actor BogBall 
+{ 
+    Radius 8 
+    Height 6 
+    Speed 20 
+    Damage 5 
+    PROJECTILE 
+    RENDERSTYLE ADD 
+    ALPHA 0.67 
+    DeathSound "vore/throw" 
+	Obituary "%o was befouled by a Bog Elemental." 
+    States 
+    { 
+    Spawn: 
+        TRBL AB 4 BRIGHT
+        Loop 
+    Death: 
+        TRBL CDE 4 BRIGHT
+        Stop 
+    } 
+}
+
+actor BogPoison 
+{ 
+    Radius 24 
+    Height 6 
+    Speed 5 
+    Damage (1)
+    PROJECTILE
+    RENDERSTYLE Translucent 
+	DamageType Poison
+	PoisonDamage 10, 3, 70
+    ALPHA 0.67 
+	Obituary "%o was befouled by a Bog Elemental." 
+    States 
+    { 
+    Spawn: 
+        TRPS ABCDEFGDEFGDEFGDEFGDEFGDCBA 4 
+        Stop 
+    Death: 
+        TRPS DCBA 4 
+        Stop 
+    } 
+}
+

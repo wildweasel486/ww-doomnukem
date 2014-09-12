@@ -1,0 +1,94 @@
+ACTOR Tomato replaces Cacodemon
+{ 
+
+    Health 500
+    Radius 31
+    Height 56
+    Speed 13
+    PainChance 145
+	Mass 500
+    MONSTER 
+    +NOGRAVITY
+    +FLOAT
+    Obituary "%o got tomatoed by a Caco."
+	SeeSound "CacoLich/Sight"
+	ActiveSound "CacoLich/Active"
+	PainSound "CacoLich/Pain"
+	DeathSound "CacoLich/Death"
+	BloodType BlueSquirt
+	BloodColor "000080"
+    States
+    {
+    Spawn:
+        CALI A 10 A_Look
+        Loop
+    See:
+        CALI A 4 A_Chase
+        Loop
+    Missile:
+        CALI B 5 Bright  A_FaceTarget
+        CALI C 5 Bright  A_Custommissile ("BallLightning",35,0,0)
+        CALI D 5 Bright  A_FaceTarget
+        Goto See
+	Melee:
+		CALI EFG 5 Bright A_FaceTarget
+		CALI F 2 Bright A_CustomMeleeAttack((15))
+		CALI G 2 Bright
+		CALI A 5
+		Goto See
+    Pain:
+        CALI H 5
+        CALI I 3 A_Pain
+        Goto See
+    Death:
+        CALI J 0
+        CALI J 0 A_SetFloorClip
+        CALI J 6 A_Scream
+        CALI KLMN 6
+        Wait
+    Crash:
+        CALI OP 6
+        CALI Q 6 A_NoBlocking
+        CALI R 6 A_PlaySound("caco/deflate", 5)
+	CrashLoop:
+		CALI S 0 A_JumpIfInventory("CacoDeflateCounter", 100, "CrashFinish")
+		CALI S 0 A_GiveInventory("CacoDeflateCounter", 1)
+		CALI S 0 A_SpawnItemEx("CacoSmoke",random(-20,20),random(-20,20),10)
+		CALI S 1 A_SetScale((scalex + 0.005), (scaley - 0.005))
+		Goto CrashLoop
+	CrashFinish:
+		CALI S -1
+         Stop
+    }
+}
+
+ACTOR CacoDeflateCounter : Inventory
+{
+	Inventory.MaxAmount 999
+}
+
+ACTOR BallLightning
+{
+	Radius 6
+	Height 8
+	Speed 10
+	FastSpeed 20
+	Damage 5
+	Projectile
+	+RANDOMIZE
+	RenderStyle Add
+	Alpha 1.0
+	SeeSound "Caco/Fireball"
+	DeathSound "Caco/FireExplode"
+	States
+	{
+	Spawn:
+		CAFB AB 6 Bright
+		Loop
+	Death:
+		CAFB CC 1 A_SpawnItemEx("BlueSparkSpawner")
+		CAFB C 1 Bright A_Scream
+		CAFB DEFG 3 Bright
+		Stop
+	}
+}

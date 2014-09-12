@@ -1,0 +1,162 @@
+height 0;
+
+statusbar normal, forcescaled
+{
+	// basic layout
+	DrawImage "PLAYSCRN", -54, 0;
+	Alpha 0.5
+	//DrawImage "HEADSUP", -54, 0; //Hiding for now.
+
+	// health and armor bars
+	Alpha 0.75
+	DrawBar "HealthFu", "HealthEm", Health, horizontal, interpolate(8), 22, 159;
+	Alpha 0.75
+	DrawNumber 3, DIGIFONT_SMALL, DoomNukemStatusBarGreen, Health, Alignment(right), fillzeros, 68, 168;
+	DrawBar "ArmorFul", "ArmorEmp", Armor, horizontal, interpolate(8), 21, 174;
+	Alpha 0.75
+	DrawNumber 3, DIGIFONT_SMALL, DoomNukemStatusBarGreen, Armor, Alignment(right), fillzeros, 71, 179;
+
+	// ammo bar
+	IsSelected DNChaingun
+	{
+		Alpha 0.75
+		DrawNumber 4, DIGIFONT_SMALL, DoomNukemStatusBarGreen, Ammo1, Alignment(left), fillzeros, 278, 178;
+	}
+	Else IsSelected DNDualPistol
+	{
+		Alpha 0.75
+		DrawNumber 2, DIGIFONT_LARGE, DoomNukemStatusBarGreen, DNPistolAmmo, Alignment(right), fillzeros, 272, 172;
+		Alpha 0.75
+		DrawNumber 2, DIGIFONT_LARGE, DoomNukemStatusBarGreen, DNPistol2Ammo, Alignment(left), fillzeros, 275, 172;
+		Alpha 0.75
+		DrawNumber 2, DIGIFONT_SMALL, DoomNukemStatusBarGreen, DNPistolAmmoPickup, Alignment(left), fillzeros, 299, 178;
+	}
+	Else
+	{
+		Alpha 0.75
+		DrawNumber 2, DIGIFONT_LARGE, DoomNukemStatusBarGreen, Ammo1, Alignment(right), fillzeros, 272, 172;
+		Alpha 0.75
+		DrawNumber 2, DIGIFONT_SMALL, DoomNukemStatusBarGreen, Ammo2, Alignment(left), fillzeros, 278, 178;
+	}
+
+	// keys
+	DrawKeyBar 6, horizontal, 10, 86, 5, 0;
+	
+	//Weapon numbers
+	drawswitchableimage weaponslot 1, "BLANKNUM", "DIGINUM1", 160, 3;
+	drawswitchableimage weaponslot 2, "BLANKNUM", "DIGINUM2", 168, 3;
+	InInventory Revolver { drawimage "DIGINUM2", 176, 3; }
+	Else { drawimage "BLANKNUM", 176, 3; }
+	InInventory TrenchShotgun { drawimage "DIGINUM3", 184, 3; }
+	Else { drawimage "BLANKNUM", 184, 3; }
+	InInventory DoubleShotgun { drawimage "DIGINUM3", 192, 3; }
+	Else { drawimage "BLANKNUM", 192, 3; }
+    drawswitchableimage weaponslot 4, "BLANKNUM", "DIGINUM4", 200, 3;
+    drawswitchableimage weaponslot 5, "BLANKNUM", "DIGINUM5", 208, 3;
+    drawswitchableimage weaponslot 6, "BLANKNUM", "DIGINUM6", 216, 3;
+    drawswitchableimage weaponslot 7, "BLANKNUM", "DIGINUM7", 224, 3;
+
+	// shoehorned inventory indicator
+	DrawSelectedInventory center, centerbottom, SBARSML, 108, 185, 114, 185, Red;
+}
+
+// The Fullscreen HUD is a variant on wwhud-doom64-v2 with ammo icons added.
+
+statusbar fullscreen, forcescaled
+{
+	DrawNumber 3, SBARBIG, Red, Health, DrawShadow(2,2), Alignment(center), 24, 180;
+	DrawString CONFONT, Grey, "HEALTH", 25, 170, 0, Alignment(center);
+
+	DrawNumber 3, SBARBIG, Red, Armor, DrawShadow(2,2), Alignment(center), 296, 180;
+	DrawString CONFONT, Grey, "ARMOR", 295, 170, 0, Alignment(center);
+
+	IsSelected DNDualPistol
+	{
+		DrawImage ammoicon1, 140, 190, centerbottom;
+		DrawNumber 4, SBARBIG, Red, DNPistolAmmo, DrawShadow(2,2), Alignment(center), WhenNotZero, 140, 180;
+		DrawImage ammoicon1, 170, 190, centerbottom;
+		DrawNumber 4, SBARBIG, Red, DNPistol2Ammo, DrawShadow(2,2), Alignment(center), WhenNotZero, 170, 180;
+	}
+	Else
+	{
+		DrawImage ammoicon1, 160, 190, centerbottom;
+		DrawNumber 4, SBARBIG, Red, Ammo1, DrawShadow(2,2), Alignment(center), WhenNotZero, 160, 180;
+	}
+	//DrawString SBARTINY, Grey, WeaponTag, 150, 194, 1, Alignment(Right);
+	//DrawString SBARTINY, Grey, Ammo2Tag, 190, 194, 1, Alignment(Left);
+	UsesSecondaryAmmo
+	{
+		DrawImage ammoicon2, 190, 195, centerbottom;
+		DrawNumber 4, SBARMED, Red, Ammo2, DrawShadow(2,2), alignment(left), 190, 185;
+	}
+
+	DrawKeyBar 6, horizontal, reverserows, 9, 60, 184, 0, 3, 9;
+	DrawSelectedInventory center, centerbottom, SBARSML, 18, 165, 24, 165, Red;
+}
+
+// The Automap statusbar was designed specifically for this mod.
+
+statusbar automap, forcescaled
+{
+	DrawImage "HEADSUP", -54, 0;
+	
+	// level stats
+	Alpha 0.75
+	drawnumber 4, AMMOFONT, DoomNukemIndexGreen, kills, drawshadow(2, 2), 73, 24;
+	Alpha 0.75
+	drawnumber 4, AMMOFONT, DoomNukemIndexGreen, monsters, Alignment(left), drawshadow(2, 2), 81, 24;
+	Alpha 0.75
+	drawnumber 3, AMMOFONT, DoomNukemIndexGreen, items, drawshadow(2, 2), 73, 31;
+	Alpha 0.75
+	drawnumber 3, AMMOFONT, DoomNukemIndexGreen, totalitems, Alignment(left), drawshadow(2, 2), 81, 31;
+	Alpha 0.75
+	drawnumber 2, AMMOFONT, DoomNukemIndexGreen, secrets, drawshadow(2, 2), 79, 38;
+	Alpha 0.75
+	drawnumber 2, AMMOFONT, DoomNukemIndexGreen, totalsecrets, Alignment(left), drawshadow(2, 2), 86, 38;
+	
+	// keys
+	DrawKeyBar 1, horizontal, 9, 252, 32, 0;
+	DrawKeyBar 1, horizontal, 9, 259, 31, 1;
+	DrawKeyBar 1, horizontal, 9, 266, 30, 2;
+	DrawKeyBar 1, horizontal, 9, 273, 29, 3;
+	DrawKeyBar 1, horizontal, 9, 280, 28, 4;
+	DrawKeyBar 1, horizontal, 9, 287, 27, 5;
+	
+	// hud face :)
+	drawmugshot 5, 176, 7;
+	
+	InInventory DNDualPistol
+	{
+		DrawImage "PISPA0", 8, 172, centerbottom;
+	}
+	DrawImage "PISPA0", 15, 176, centerbottom;
+	DrawImage "PISCLIP", 15, 187, centerbottom;
+	DrawNumber 2, SBARSML, White, Ammo("DNPistolAmmoPickup"), alignment(center), fillzeros, 15, 185;
+
+	DrawSwitchableImage "Revolver", "", "RVICA0", 45, 176, centerbottom;
+	DrawImage "RVICB0", 45, 187, centerbottom;
+	DrawNumber 2, SBARSML, White, Ammo("RevolverAmmoPickup"), alignment(center), fillzeros, 45, 185;
+
+	DrawSwitchableImage "TrenchShotgun", "", "SHTCA0", 93, 174, centerbottom;
+	DrawSwitchableImage "DoubleShotgun", "", "SGN2A0", 102, 178, centerbottom;
+	DrawImage "SHELB0", 93, 187, centerbottom;
+	DrawNumber 2, SBARSML, White, Ammo("NewShell"), alignment(center), fillzeros, 93, 185;
+
+	DrawSwitchableImage "DNRifle", "", "RIFLA0", 147, 174, centerbottom;
+	DrawImage "RIFLB0", 147, 186, centerbottom;
+	DrawNumber 2, SBARSML, White, Ammo("DNRifleAmmoPickup"), alignment(center), fillzeros, 147, 185;
+
+	DrawSwitchableImage "DNRocketLauncher", "", "LAUNA0", 193, 176, centerbottom;
+	DrawImage "RKBXA0", 193, 187, centerbottom;
+	DrawNumber 2, SBARSML, White, Ammo("DNRocketAmmoPickup"), alignment(center), fillzeros, 193, 185;
+
+	DrawSwitchableImage "DNChaingun", "", "MGUNA0", 245, 176, centerbottom;
+	DrawImage "MCLPB0", 245, 187, centerbottom;
+	DrawNumber 4, SBARSML, White, Ammo("ChaingunAmmo"), alignment(center), fillzeros, 245, 185;
+
+	DrawSwitchableImage "DNBFG", "", "BFGPA0", 297, 172, centerbottom;
+	DrawImage "BFGCELL", 297, 187, centerbottom;
+	DrawNumber 2, SBARSML, White, Ammo("BFGCell"), alignment(center), fillzeros, 297, 185;
+
+	//DrawKeyBar 6, horizontal, 9, 9, 155;
+}

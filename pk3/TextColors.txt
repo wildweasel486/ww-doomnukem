@@ -1,0 +1,17 @@
+DoomNukemStatusBarGreen
+{
+	#2f3316  #caf500
+Console:
+	#2f3316  #caf500    0 256
+Flat:
+	#caf500
+}
+
+DoomNukemIndexGreen
+{
+	#caf500  #caf500
+Console:
+	#caf500  #caf500    0 256
+Flat:
+	#caf500
+}

@@ -1,0 +1,96 @@
+
+// The Bruiser Brothers
+
+ACTOR HZBaronOfHell : BaronOfHell replaces BaronOfHell
+{
+	spawnid 3
+  obituary "%o was brutalized by the Baron of Hell."
+  hitobituary "%o was severed by the Baron of Hell."
+  health 1000
+  radius 24
+  height 64
+  mass 1000
+  speed 8
+  painchance 50
+  seesound "baron/sight"
+  painsound "baron/pain"
+  deathsound "baron/death"
+  activesound "baron/sight"
+  BloodColor "00 99 11"
+  MONSTER
+  +FLOORCLIP
+  +BOSSDEATH
+  states
+  {
+  Spawn:
+    NBRN AB 10 A_Look
+    loop
+  See:
+    NBRN AABBCCDD 3 A_Chase
+    loop
+  Melee:
+		TRO5 E 0 A_PlaySound("gauntimp/meleeswing")
+  Missile:
+    NBRN EF 8 A_FaceTarget
+    NBRN G 8 A_CustomComboAttack("BaronBall2", 32, 10 * random(1, 8), "Weapons/Sledge/Hit")
+    goto See
+  Pain:
+    NBRN H 2
+    NBRN H 2 A_Pain
+    goto See
+  Death:
+    BOSS I 8
+    BOSS J 8 A_Scream
+    BOSS K 8
+    BOSS L 8 A_NoBlocking
+    BOSS MN 8
+    BOSS O -1 A_BossDeath
+    stop
+  Raise:
+    BOSS ONMLKJI 8
+    goto See
+  }
+}
+
+actor BaronBall2 : BaronBall
+{
+  decal BaronScorch
+  MissileType BaronBallEffect
+  RenderStyle Add
+  Alpha 1.0
+  MissileHeight 0
+  Damage 8
+  Speed 12
+  Scale 0.75
+  DeathSound "gauntimp/voidexplod"
+  states
+  {
+  Spawn:
+    BAL7 A 0 A_PlaySoundEx("gauntimp/voidloop", "Body", 1)
+    ARCB AAABBBCCC 1 bright A_SpawnItemEx("BaronBallEffect", 0, 0, 0)
+    loop
+  Death:
+      ARCB JKLMN 3 bright
+      Stop
+  }
+}
+
+ACTOR BaronBallEffect
+{
+	RenderStyle Add
+	Scale 0.5
+	+NOGRAVITY
+	+NOINTERACTION
+	States
+	{
+	Spawn:
+		ARCB DEFGHI 1
+		Stop
+	}
+}
+
+ACTOR KnightBall : BaronBall2
+{
+	Damage 8
+	Speed 15
+}

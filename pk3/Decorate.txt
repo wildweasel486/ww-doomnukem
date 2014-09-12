@@ -1,0 +1,91 @@
+ACTOR DNWeapon : Weapon
+{
+	Weapon.BobStyle InverseSmooth
+	Weapon.BobSpeed 2.2
+	Weapon.BobRangeY 0.5
+	Weapon.BobRangeX 0.7
+	Decal BulletChip
+	States
+	{
+	Flash:
+		TNT1 A 2 A_Light2
+		TNT1 A 2 A_Light1
+		TNT1 A 2 A_Light0
+		Goto LightDone
+	}
+}
+
+ACTOR PressingZoom : Inventory{}
+
+#include "actors/effects.txt"
+
+#include "actors/weapons/sledge.txt"
+#include "actors/weapons/pistol.txt"
+#include "actors/weapons/revolver.txt"
+#include "actors/weapons/sawedoff.txt"
+#include "actors/weapons/shotgun.txt"
+#include "actors/weapons/rifle.txt"
+#include "actors/weapons/rocket.txt"
+#include "actors/weapons/chaingun.txt"
+#include "actors/weapons/bfg.txt"
+
+#include "actors/enemies/zombies.txt"
+#include "actors/enemies/imps.txt"
+#include "actors/enemies/demon.txt"
+#include "actors/enemies/mechdemon.txt"
+#include "actors/enemies/soul.txt"
+#include "actors/enemies/vore.txt"
+#include "actors/enemies/caco.txt"
+#include "actors/enemies/pain.txt"
+#include "actors/enemies/manc.txt"
+#include "actors/enemies/knight.txt"
+#include "actors/enemies/baron.txt"
+#include "actors/enemies/ghoul.txt"
+
+#include "actors/bueller.txt"
+#include "actors/casings.txt"
+#include "actors/droppers.txt"
+#include "actors/misc.txt"
+#include "actors/items.txt"
+
+#include "actors/Droplets/Pools.txt" // Droplets by SidDoyle.
+#include "actors/Droplets/Droplets.txt"
+#include "actors/Droplets/Squirts.txt"
+#include "actors/Droplets/Ceiling.txt"
+#include "actors/Droplets/Liquid.txt"
+#include "actors/Droplets/gore.txt"
+#include "actors/Droplets/gibs.txt"
+
+ACTOR DoomNukem : DoomPlayer
+{
+	Player.DisplayName "Cpl. Taggart"
+	Player.WeaponSlot 1,Sledge
+	Player.WeaponSlot 2,DNPistol,DNDualPistol,Revolver
+	Player.WeaponSlot 3,DoubleShotgun,TrenchShotgun
+	Player.WeaponSlot 4,DNRifle
+	Player.WeaponSlot 5,DNRocketLauncher
+	Player.WeaponSlot 6,DNChaingun
+	Player.WeaponSlot 7,DNBFG
+	Player.StartItem "DNPistol"
+	Player.StartItem "DNPistolAmmo", 10
+	Player.StartItem "DNPistolAmmoPickup", 3
+	Player.StartItem "RevolverAmmo", 6
+	Player.StartItem "DoubleShotgunLoad", 2
+	Player.StartItem "ShotgunClip", 5
+	Player.StartItem "DNRifleAmmo", 20
+	Player.StartItem "DNRocketAmmo", 4
+	Player.StartItem "Sledge"
+	Player.SoundClass "doomnukem"
+	Player.GruntSpeed 1.0
+	States
+	{
+	Pain:
+		PLAY G 4 A_SetBlend("FF 00 00", 0.3, 35)
+		PLAY G 4 A_Pain
+		Goto Spawn
+	Pain.Poison:
+		PLAY G 4 A_SetBlend("66 33 00", 0.3, 35)
+		PLAY G 4 A_PlaySound("*poison")
+		Goto Spawn
+	}
+}

@@ -1,0 +1,66 @@
+ACTOR TribalKnight replaces HellKnight
+{
+	health 500
+	gibhealth -200
+	radius 24
+	height 64
+	mass 1000
+	speed 8
+	painchance 50
+	seesound "tribalknight/sight"
+	painsound "tribalknight/pain"
+	deathsound "tribalknight/death"
+	activesound "tribalknight/active"
+	Obituary "%o was savaged by a Tribal Knight."
+	BloodColor "00 99 11"
+	MONSTER
+	+FLOORCLIP
+	states
+	{
+	Spawn:
+		BOS3 AB 10 A_Look
+		loop
+	See:
+		BOS3 AABBCCDD 3 A_Chase
+		loop
+	Melee:
+		BOS3 E 0 A_PlaySound("tribalknight/attack", CHAN_BODY)
+		BOS3 EF 8 A_FaceTarget
+		BOS3 G 8 A_CustomMeleeAttack(10, "Weapons/Sledge/Hit", "gauntimp/meleeswing")
+		goto See
+	Missile:
+		BOS3 E 0 A_Jump(48, "Missile2")
+		BOS3 E 0 A_PlaySound("tribalknight/attack", CHAN_BODY)
+		BOS3 EF 8 A_FaceTarget
+		BOS3 G 8 A_CustomMissile("KnightBall", 32)
+		goto See
+	Missile2:
+		BOS3 E 0 A_PlaySound("tribalknight/attack", CHAN_BODY)
+		BOS3 HI 8 A_FaceTarget
+		BOS3 J 8 A_CustomMissile("BaronBall2", 32)
+		goto See
+	Pain:
+		BOS3 K 2
+		BOS3 K 2 A_Pain
+		goto See
+	Death:
+		BOS3 L 8
+		BOS3 M 8 A_Scream
+		BOS3 N 8
+		BOS3 O 8 A_NoBlocking
+		BOS3 PQ 8
+		BOS3 R -1
+		stop
+	XDeath:
+		XARC A 7
+		XARC B 7 A_XScream
+		XARC C 7
+		XARC D 7 A_NoBlocking
+		XARC EFGH 7
+		XARC I -1
+		stop
+	Raise:
+		BOS3 ONMLKJI 8
+		goto See
+	}
+}

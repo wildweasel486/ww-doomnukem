@@ -1,0 +1,13 @@
+BFGCHARG comes from 87043_runnerpack_weapappear.wav, from Freesound.org,
+which was by Runnerpack (based on ejfortin's Energy_Whip_2) and licensed
+under Creative Commons Attribution.
+
+BFGFIRE is by thehadnot and is under Creative Commons 0 license, which means
+it is public domain for all. He did not request attribution, but I'm doing it
+anyway.
+
+BFGPICK is from the Killing Floor IJC Weapon Pack.
+
+BFGXPLO1 and 2 are from Oni by Bungie.
+
+BFGAMMO is courtesy of BouncyTEM.

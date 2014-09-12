@@ -1,0 +1,41 @@
+:DoorOpenNormal
+	playuntildone	doors/dr1_start
+	playrepeat	doors/dr1_mid
+	stopsound	doors/dr1_stop
+end
+
+:DoorCloseNormal
+	playuntildone	doors/dr1_start
+	playrepeat	doors/dr1_mid
+	stopsound	doors/dr1_stop
+end	
+
+:DoorOpenBlazing
+	play		doors/openquick
+	stopsound	doors/slamquick
+end
+
+:DoorCloseBlazing
+	play		doors/closequick
+	stopsound	doors/slamquick
+end	
+
+:Floor
+	playuntildone plats/liftstart
+	playrepeat	plats/liftmove
+	stopsound	plats/liftstop
+end
+
+:Platform
+	playuntildone plats/slowstart
+	playrepeat	plats/slowmove
+	stopsound	plats/slowstop
+end
+
+:CeilingNormal
+	playrepeat	plats/slowmove
+end
+
+:CeilingSemiSilent
+	stopsound	plats/slowstop
+end

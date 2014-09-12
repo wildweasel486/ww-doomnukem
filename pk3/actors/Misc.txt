@@ -1,0 +1,167 @@
+ACTOR NewBarrel replaces ExplosiveBarrel
+{
+	Health 20
+	Radius 10
+	Height 42
+	+SOLID
+	+SHOOTABLE
+	+NOBLOOD
+	+ACTIVATEMCROSS
+	+DONTGIB
+	+NOICEDEATH
+	+OLDRADIUSDMG
+	Obituary "$OB_BARREL" // "%o went boom."
+	States
+	{
+	Spawn:
+		BAR1 AB 6
+		Loop
+	Death:
+		BEXP A 5 Bright A_PlaySound("Weapons/Rocket/Explode", CHAN_AUTO, 1.0, 0, 0.5)
+		BARR Y 5 A_SpawnItemEx("DN_Blastage",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+		BARR Y 0 A_SpawnItemEx("BarrelDebris1", 0,0,16, random(-8,8),random(-8,8),random(4,20), random(0,359))
+		BARR Y 0 A_SpawnItemEx("BarrelDebris2", 0,0,16, random(-8,8),random(-8,8),random(4,20), random(0,359))
+		BARR Y 0 A_SpawnItemEx("BarrelDebris3", 0,0,16, random(-8,8),random(-8,8),random(4,20), random(0,359))
+		BARR Y 0 A_SpawnItemEx("BarrelDebris4", 0,0,16, random(-8,8),random(-8,8),random(4,20), random(0,359))
+		BARR Y 0 A_SpawnItemEx("BarrelDebris5", 0,0,16, random(-8,8),random(-8,8),random(4,20), random(0,359))
+		BARR Y 0 A_SpawnItemEx("BarrelDebris6", 0,0,16, random(-8,8),random(-8,8),random(4,20), random(0,359))
+		BARR Y 0 A_SpawnItemEx("BarrelDebris7", 0,0,16, random(-8,8),random(-8,8),random(4,20), random(0,359))
+		BARR Y 0 A_SpawnItemEx("BarrelDebris8", 0,0,16, random(-8,8),random(-8,8),random(4,20), random(0,359))
+		BARR Y 0 A_SpawnItemEx("BarrelDebris9", 0,0,16, random(-8,8),random(-8,8),random(4,20), random(0,359))
+		BARR Y 0 A_SpawnItemEx("BarrelDebris0", 0,0,16, random(-8,8),random(-8,8),random(4,20), random(0,359))
+		BARR Y 5
+		BARR Y 5 A_Explode
+		BARR Y 5 A_NoBlocking
+		BARR Y -1
+		Wait
+	}
+}
+
+ACTOR BarrelDebris1 // REMINDER: FIX THE BARRELFRAG BLOCKMAP ISSUE
+{
+	PROJECTILE
+	-NOGRAVITY
+	BounceFactor 0.3
+	WallBounceFactor 0.7
+	States
+	{
+	Spawn:
+		BARF A 1
+		"####" "#" 1 A_SpawnItemEx("CasingSmoke")
+		"####" "#" 1 A_Countdown
+		Loop
+	Death:
+		"####" "#" 1050
+	DeathLoop:
+		"####" "#" 1 A_FadeOut(0.1, 1)
+		Loop
+	}
+}
+
+ACTOR BarrelDebris2 : BarrelDebris1
+{
+	States
+	{
+	Spawn:
+		BARF B 1
+		"####" "#" 1 A_SpawnItemEx("CasingSmoke")
+		"####" "#" 1 A_Countdown
+		Loop
+	}
+}
+
+ACTOR BarrelDebris3 : BarrelDebris1
+{
+	States
+	{
+	Spawn:
+		BARF C 1
+		"####" "#" 1 A_SpawnItemEx("CasingSmoke")
+		"####" "#" 1 A_Countdown
+		Loop
+	}
+}
+
+ACTOR BarrelDebris4 : BarrelDebris1
+{
+	States
+	{
+	Spawn:
+		BARF D 1
+		"####" "#" 1 A_SpawnItemEx("CasingSmoke")
+		"####" "#" 1 A_Countdown
+		Loop
+	}
+}
+
+ACTOR BarrelDebris5 : BarrelDebris1
+{
+	States
+	{
+	Spawn:
+		BARF E 1
+		"####" "#" 1 A_SpawnItemEx("CasingSmoke")
+		"####" "#" 1 A_Countdown
+		Loop
+	}
+}
+
+ACTOR BarrelDebris6 : BarrelDebris1
+{
+	States
+	{
+	Spawn:
+		BARF F 1
+		"####" "#" 1 A_SpawnItemEx("CasingSmoke")
+		"####" "#" 1 A_Countdown
+		Loop
+	}
+}
+
+ACTOR BarrelDebris7 : BarrelDebris1
+{
+	States
+	{
+	Spawn:
+		BARF G 1
+		"####" "#" 1 A_SpawnItemEx("CasingSmoke")
+		"####" "#" 1 A_Countdown
+		Loop
+	}
+}
+
+ACTOR BarrelDebris8 : BarrelDebris1
+{
+	States
+	{
+	Spawn:
+		BARF H 1
+		"####" "#" 1 A_SpawnItemEx("CasingSmoke")
+		"####" "#" 1 A_Countdown
+		Loop
+	}
+}
+
+ACTOR BarrelDebris9 : BarrelDebris1
+{
+	States
+	{
+	Spawn:
+		BARF I 1
+		"####" "#" 1 A_SpawnItemEx("CasingSmoke")
+		"####" "#" 1 A_Countdown
+		Loop
+	}
+}
+
+ACTOR BarrelDebris0 : BarrelDebris1
+{
+	States
+	{
+	Spawn:
+		BARF J 1
+		"####" "#" 1 A_SpawnItemEx("CasingSmoke")
+		"####" "#" 1 A_Countdown
+		Loop
+	}
+}

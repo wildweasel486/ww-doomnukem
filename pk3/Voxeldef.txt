@@ -1,0 +1,157 @@
+pispa= "pispa"
+{
+	Scale = 0.5
+}
+
+pispb= "pispb"
+{
+	Scale = 0.35
+	
+}
+
+rvica="rvica"
+{
+	Scale = 0.5
+	
+}
+
+rvicb="rvicb"
+{
+	Scale = 0.5
+}
+sgn2a= "sgn2a"
+{
+	Scale = 0.5
+	
+}
+
+shtca= "shtca"
+{
+	Scale = 0.5
+}
+
+
+ launa= "launa"
+{
+	Scale = 0.5
+}
+
+ shely= "shely"
+{
+	Scale = 0.5
+}
+
+ shelb= "shelb"
+{
+	Scale = 0.5
+}
+
+ rifla= "rifla"
+{
+	Scale = 0.5
+	
+}
+
+ riflb= "riflb"
+{
+	Scale = 0.4
+	
+}
+
+ mguna= "mguna"
+{
+	Scale = 0.5
+}
+
+ mclpa= "mclpa"
+{
+	Scale = 0.5
+}
+
+ mclpb= "mclpb"
+{
+	Scale = 0.5
+}
+
+ bfgpa= "bfgpa"
+{
+	Scale = 0.5
+}
+
+arm1a = "arm1a"
+{
+	Scale = 0.5
+}
+
+arm1b = "arm1b"
+{
+	Scale = 0.5
+}
+
+arm2a = "arm2a"
+{
+	Scale = 0.5
+}
+
+arm2b = "arm2b"
+{
+	Scale = 0.5
+}
+
+bon1 = "bon1"
+{
+	Scale = 0.5
+}
+
+bpaka = "bpaka"
+{
+	Scale = 0.5
+}
+
+media = "media"
+{
+	Scale = 0.5
+}
+
+stima = "stima"
+{
+	Scale = 0.5
+}
+suita= "suita"
+{
+	Scale = 0.5
+}
+
+bon2a= "bon2a"
+{
+	Scale = 0.5
+}
+
+bon2b= "bon2b"
+{
+	Scale = 0.5
+}
+
+bon2c= "bon2c"
+{
+	Scale = 0.5
+}
+
+bon2d= "bon2d"
+{
+	Scale = 0.5
+}
+
+pstra= "pstra"
+{
+	Scale = 0.5
+}
+
+pvisa= "pvisa"
+{
+	Scale = 0.5
+}
+pvisb= "pvisb"
+{
+	Scale = 0.5
+}

@@ -1,0 +1,44 @@
+brightmap sprite PISGA0
+{
+    map "BRIGHTMAPS/PISTOL/BMPISGA0.png"
+}
+
+brightmap sprite PISFB0
+{
+    map "BRIGHTMAPS/PISTOL/BMPISFB0.png"
+}
+
+brightmap sprite PISFC0
+{
+    map "BRIGHTMAPS/PISTOL/BMPISFC0.png"
+}
+
+brightmap sprite PISRA0
+{
+    map "BRIGHTMAPS/PISTOL/BMPISRA0.png"
+}
+
+brightmap sprite PISRb0
+{
+    map "BRIGHTMAPS/PISTOL/BMPISRb0.png"
+}
+
+brightmap sprite PISRc0
+{
+    map "BRIGHTMAPS/PISTOL/BMPISRc0.png"
+}
+
+brightmap sprite PISRd0
+{
+    map "BRIGHTMAPS/PISTOL/BMPISRd0.png"
+}
+
+brightmap sprite PISRe0
+{
+    map "BRIGHTMAPS/PISTOL/BMPISRe0.png"
+}
+
+brightmap sprite PISRf0
+{
+    map "BRIGHTMAPS/PISTOL/BMPISRf0.png"
+}

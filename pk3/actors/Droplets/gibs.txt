@@ -1,0 +1,152 @@
+ACTOR GibletA
+{
+	+MISSILE
+	+FLOORCLIP
+	+BOUNCEONWALLS
+	+BOUNCEONCEILINGS
+	+FORCEXYBILLBOARD
+	Radius 4
+	Height 8
+	Speed 6
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_ScaleVelocity(frandom(0.5, 2.0))
+		GIBL A -1
+	Death:
+		"----" A -1 A_SpawnItemEx("BloodSquirt")
+		Stop
+	}
+}
+
+ACTOR GibletB : GibletA
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_ScaleVelocity(frandom(0.5, 2.0))
+		GIBL B -1
+		Stop
+	}
+}
+
+ACTOR GibletC : GibletA
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_ScaleVelocity(frandom(0.5, 2.0))
+		GIBL C -1
+		Stop
+	}
+}
+
+ACTOR GibletD : GibletA
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_ScaleVelocity(frandom(0.5, 2.0))
+		GIBL D -1
+		Stop
+	}
+}
+
+ACTOR GibletE : GibletA
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_ScaleVelocity(frandom(0.5, 2.0))
+		GIBL E -1
+		Stop
+	}
+}
+
+ACTOR GibletF : GibletA
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_ScaleVelocity(frandom(0.5, 2.0))
+		GIBL F -1
+		Stop
+	}
+}
+
+ACTOR GibletG : GibletA
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_ScaleVelocity(frandom(0.5, 2.0))
+		GIBL G -1
+		Stop
+	}
+}
+
+ACTOR GibletH : GibletA
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_ScaleVelocity(frandom(0.5, 2.0))
+		GIBL H -1
+		Stop
+	}
+}
+
+ACTOR GibletI : GibletA
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_ScaleVelocity(frandom(0.5, 2.0))
+		GIBL I -1
+		Stop
+	}
+}
+
+ACTOR GibletJ : GibletA
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_ScaleVelocity(frandom(0.5, 2.0))
+		GIBL J -1
+		Stop
+	}
+}
+
+ACTOR GibletK : GibletA
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_ScaleVelocity(frandom(0.5, 2.0))
+		GIBL K -1
+		Stop
+	}
+}
+
+ACTOR GibletL : GibletA
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_ScaleVelocity(frandom(0.5, 2.0))
+		GIBL L -1
+		Stop
+	}
+}
+
+ACTOR GibletM : GibletA
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_ScaleVelocity(frandom(0.5, 2.0))
+		GIBL M -1
+		Stop
+	}
+}

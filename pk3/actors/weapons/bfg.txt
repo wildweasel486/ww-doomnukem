@@ -1,0 +1,317 @@
+ACTOR BFGCell : Ammo 4204
+{
+	Inventory.MaxAmount 10
+	Ammo.BackpackMaxAmount 20
+	Inventory.PickupSound "Weapons/BFG/Ammo"
+	Inventory.PickupMessage "Picked up a BFG Cell."
+	Inventory.Icon "BFGCELL"
+	Tag "Bergmann Effect Cell"
+	Scale 0.5
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+		BCEL ABC 4 BRIGHT
+		Loop
+	}
+}
+
+ACTOR DNBFG : DNWeapon replaces BFG9000
+{
+	Weapon.AmmoType "BFGCell"
+	Weapon.AmmoUse 1
+	Weapon.AmmoGive 5
+	Weapon.SlotNumber 7
+	Weapon.SelectionOrder 6500
+	Inventory.PickupSound "Weapons/BFG/Pickup"
+	Inventory.PickupMessage "You got the Bergmann Field Generator! (slot 7)"
+	Tag "Bergmann Field Generator"
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+		BFGP A -1
+		Stop
+	Deselect:
+		NBFG A 1 Offset(-3,35)
+		NBFG A 1 Offset(-6,40)
+		NBFG A 1 Offset(-9,45)
+		NBFG A 1 Offset(-12,50)
+		NBFG A 1 Offset(-15,55)
+		NBFG A 1 Offset(-18,60)
+		NBFG A 1 Offset(-21,65)
+		NBFG A 1 Offset(-24,70)
+		NBFG A 1 Offset(-27,75)
+		NBFG A 1 Offset(-30,80)
+		NBFG A 1 Offset(-33,85)
+		NBFG A 1 Offset(-36,90)
+		NBFG A 1 Offset(-39,95)
+		NBFG A 1 Offset(-42,100)
+		NBFG A 1 Offset(-45,105)
+		NBFG A 1 Offset(-48,110)
+		TNT1 A 0 A_Lower
+		Wait
+	Select:
+	Ready:
+		NBFG A 1 Offset(-48,110) A_PlaySound("Weapons/BFG/Select",6)
+		NBFG A 1 Offset(-45,105)
+		NBFG A 1 Offset(-42,100)
+		NBFG A 1 Offset(-39,95)
+		NBFG A 1 Offset(-36,90)
+		NBFG A 1 Offset(-33,85)
+		NBFG A 1 Offset(-30,80)
+		NBFG A 1 Offset(-27,75)
+		NBFG A 1 Offset(-24,70)
+		NBFG A 1 Offset(-21,65)
+		NBFG A 1 Offset(-18,60)
+		NBFG A 1 Offset(-15,55)
+		NBFG A 1 Offset(-12,50)
+		NBFG A 1 Offset(-9,45)
+		NBFG A 1 Offset(-6,40)
+		NBFG A 1 Offset(-3,35)
+	Ready2:
+		NBFG A 1 A_WeaponReady
+		Loop
+	Fire:
+		NBFG A 0 A_PlaySound("Weapons/BFG/Charge", 5)
+		NBFG A 1 BRIGHT Offset(1,34) A_Quake(4, 12, 0, 20, "")
+		NBFG A 1 BRIGHT Offset(-1,32)
+		NBFG A 1 BRIGHT Offset(-1,34)
+		NBFG A 1 BRIGHT Offset(1,32)
+		NBFG A 1 BRIGHT Offset(1,34)
+		NBFG A 1 BRIGHT Offset(-1,32)
+		NBFG A 1 BRIGHT Offset(-1,34)
+		NBFG A 1 BRIGHT Offset(1,32)
+		NBFG A 1 BRIGHT Offset(1,34)
+		NBFG A 1 BRIGHT Offset(-1,32)
+		NBFG A 1 BRIGHT Offset(-1,34)
+		NBFG A 1 BRIGHT Offset(1,32)
+		NBFG B 1 BRIGHT Offset(1,34)
+		NBFG B 1 BRIGHT Offset(-1,32)
+		NBFG C 1 BRIGHT Offset(-1,34)
+		NBFG C 1 BRIGHT Offset(1,32) A_FireCustomMissile("DNBFGBall", 0, 1)
+		NBFG D 1 BRIGHT Offset(1,34) A_PlaySound("Weapons/BFG/Fire",6)
+		NBFG D 1 BRIGHT Offset(-1,32) A_Recoil(3.0)
+		NBFG E 1 BRIGHT Offset(1,36)
+		NBFG E 1 BRIGHT Offset(1,43)
+		NBFG F 1 BRIGHT Offset(1,50)
+		NBFG G 1 Offset(1,53)
+		NBFG H 1 Offset(1,54)
+		NBFG A 1 Offset(1,50)
+		NBFG A 1 Offset(1,44)
+		NBFG A 1 Offset(1,40)
+		NBFG A 1 Offset(1,37)
+		NBFG A 1 Offset(1,35)
+		NBFG A 1 Offset(1,33)
+		TNT1 A 0 A_CheckReload
+		Goto Ready2
+	}
+}
+
+//Projectile recoded by Pillowblaster.
+
+ACTOR DNBFGBall
+{
+	PROJECTILE
+	Radius 8
+	Height 16
+	Damage (random(400,500))
+	Speed 40
+	Decal BFGLightning
+	+FORCERADIUSDMG
+	States
+	{
+	Spawn:
+		NBFP ABCD 1 BRIGHT A_SpawnItemEx("DNBFGTrailSpawner")
+		Loop
+	Death:
+		NBFP A 0 A_PlaySound("Weapons/BFG/Explode", CHAN_AUTO, 1.0, 0, 0)
+		NBFP A 0 A_Explode(512,768,0,1,1)
+		NBFP A 0 A_SpawnItemEx("DNBFGInitBlast")
+		NBFP A 0 A_SpawnItemEx("DNBFGReverseBlast")
+		NBFP A 0 A_SpawnItemEx("DNBFGMiniblastSpammer")
+		NBFP A 0 A_SpawnItemEx("DNBFGGLDEFThingy")
+		NBFP A 0 A_Quake(3,15,0,768,"")
+		TNT1 AAAAAA 1 A_SpawnItemEx("DNBFGParticleBlast")
+		TNT1 A 9
+		Stop
+	}
+}
+
+//Thingamajib used for GLDEF
+
+ACTOR DNBFGGLDEFThingy
+{
+	+NOINTERACTION
+	+NOGRAVITY
+	States
+	{
+	Spawn:
+		TNT1 A 35
+		Stop
+	}
+}
+//Basis for all effects
+
+ACTOR DNBFGBase
+{
+	+NOINTERACTION
+	+NOGRAVITY
+	Alpha 0.99
+	Renderstyle Add
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_Jump(256,"SpriteA","SpriteB","SpriteC","SpriteD")
+	SpriteA:
+		NBFP A 0 A_Jump(256,"Main")
+	SpriteB:
+		NBFP B 0 A_Jump(256,"Main")
+	SpriteC:
+		NBFP C 0 A_Jump(256,"Main")
+	SpriteD:
+		NBFP D 0 A_Jump(256,"Main")
+		Goto Main
+	}
+}
+
+//Trail
+
+ACTOR DNBFGTrailSpawner
+{
+	+NOINTERACTION
+	+NOGRAVITY
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		"####" "#" 0 A_SpawnItemEx("DNBFGTrail")
+		"####" "###" 0 A_SpawnItemEx("DNBFGTrailParticle",random(20,-20),random(20,-20),random(10,-20),frandom(5.0,0.5),0,frandom(3.0,0.5),random(225,135),0,60)
+		Stop
+	}
+}
+
+ACTOR DNBFGTrail : DNBFGBase
+{
+	States
+	{
+	Main:
+		"####" "#" 0 A_JumpIf(ScaleX<=0,"NULL")
+		"####" "#" 0 A_SetScale(ScaleX - FRandom(0.05,0.02))
+		"####" "#" 1 A_FadeOut(0.1)
+		Loop
+	}
+}
+
+ACTOR DNBFGTrailParticle : DNBFGBase
+{
+	Scale 0
+	Alpha 0
+	States
+	{
+	Main:
+		"####" "#" 0 A_SetScale(ScaleX+frandom(0.1,0.05))
+		"####" "#" 0 A_FadeIn(FRandom(0.7,0.5))
+	Looplet:
+		"####" "#" 0 A_JumpIf(ScaleX<=0,"NULL")
+		"####" "#" 0 A_Jump(192,2)
+		"####" "#" 0 A_FadeOut(frandom(0.01,0.005))
+		"####" "#" 0 A_ChangeVelocity(frandom(0.2,-0.2),frandom(0.2,-0.2),frandom(0.2,-0.2),0)
+		"####" "#" 1 A_SetScale(ScaleX - FRandom(0.002,0.001))
+		Loop
+	}
+}
+
+//Impact
+
+ACTOR DNBFGInitBlast : DNBFGBase
+{
+	States
+	{
+	Main:
+		"####" "#" 0 A_SetScale(ScaleX + FRandom(0.3,0.2))
+		"####" "#" 1 A_FadeOut(0.025)
+		Loop
+	}
+}
+
+ACTOR DNBFGReverseBlast : DNBFGBase
+{
+	Scale 5
+	States
+	{
+	Main:
+		"####" "#" 0 A_JumpIf(ScaleX<=0,"NULL")
+		"####" "#" 0 A_SetScale(ScaleX - FRandom(0.3,0.2))
+		"####" "#" 1 A_FadeOut(0.05)
+		Loop
+	}
+}
+
+ACTOR DNBFGParticleBlast : DNBFGBase
+{
+	Renderstyle Normal
+	Var Int User_Count;
+	States
+	{
+	Spawn:
+		TNT1 AA 0 A_SetUserVar("User_Count", 12)
+	Looplet:
+		TNT1 A 0 A_SetUserVar("User_Count", User_Count - 1)
+		TNT1 A random(1,2) A_SpawnItemEx("DNBFGParticle",random(35,-35),random(35,-35),random(35,-35),frandom(8.0,-8.0),frandom(8.0,-8.0),frandom(8.0,-8.0),random(0.0,360.0),0,40)
+		TNT1 A 0 A_JumpIf(User_Count <= 0,"OvertureEnds")
+		Loop
+	OvertureEnds:
+		TNT1 A 0
+		Stop
+	}
+}
+
+ACTOR DNBFGParticle : DNBFGBase
+{
+	Scale 0
+	Alpha 0
+	States
+	{
+	Main:
+		"####" "#" 0 A_SetScale(ScaleX+frandom(0.15,0.05))
+		"####" "#" 0 A_FadeIn(FRandom(0.7,0.5))
+	Looplet:
+		"####" "#" 0 A_JumpIf(ScaleX<=0,"NULL")
+		"####" "#" 0 A_Jump(192,2)
+		"####" "#" 0 A_FadeOut(frandom(0.005,0.002))
+		"####" "#" 0 A_ChangeVelocity(frandom(2.0,-2.0),frandom(2.0,-2.0),frandom(2.0,-2.0),0)
+		"####" "#" 1 A_SetScale(ScaleX - FRandom(0.002,0.001))
+		Loop
+	}
+}
+
+ACTOR DNBFGMiniblastSpammer : DNBFGBase
+{
+	Renderstyle Normal
+	Var Int User_Count;
+	States
+	{
+	Spawn:
+		TNT1 AA 0 A_SetUserVar("User_Count", 19)
+	Looplet:
+		TNT1 A 0 A_SetUserVar("User_Count", User_Count - 1)
+		TNT1 A 1 A_SpawnItemEx("DNBFGMiniblast",random(35,-35),random(35,-35),random(35,-35))
+		TNT1 A 0 A_JumpIf(User_Count <= 0,"OvertureEnds")
+		Loop
+	OvertureEnds:
+		TNT1 A 0
+		Stop
+	}
+}
+
+ACTOR DNBFGMiniblast : DNBFGBase
+{
+	States
+	{
+	Main:
+		"####" "#" 0 A_SetScale(ScaleX + FRandom(0.25,0.3))
+		"####" "#" 1 A_FadeOut(0.1)
+		Loop
+	}
+}
