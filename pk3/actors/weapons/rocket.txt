@@ -38,7 +38,7 @@ ACTOR DNRocketLauncher : DNWeapon replaces RocketLauncher
 	Weapon.AmmoUse2 1
 	Weapon.AmmoGive2 1
 	Weapon.SlotNumber 5
-	Weapon.SelectionOrder 5500
+	Weapon.SelectionOrder 9999
 	Inventory.PickupSound "Weapons/Rocket/Eject"
 	Inventory.PickupMessage "You got the rocket launcher! (slot 5)"
 	Tag "CORBEX @99 EMAW"
