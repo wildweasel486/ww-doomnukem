@@ -157,6 +157,7 @@ Actor Spark_B1
   Speed 0.25
   +Missile
   +NoBlockMap
+  Gravity 0.6
   RenderStyle Add
   Scale 0.025
   States
@@ -195,6 +196,7 @@ Actor Spark_G1
   +Missile
   +NoBlockMap
   RenderStyle Add
+  Gravity 0.3
   Scale 0.025
   States
   {
