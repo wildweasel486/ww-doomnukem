@@ -414,6 +414,7 @@ $random hazmat/hit { hazmat/hit1 hazmat/hit2 }
 hazmat/hit1 hazhit1
 hazmat/hit2 hazhit2
 hazmat/beep hazbeep
+hazmat/explode hazexplo
 
 // Doors (from Extreme Measures)
 
