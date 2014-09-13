@@ -40,3 +40,28 @@ ACTOR DNHaztroop replaces Arachnotron
         Stop
     }
 }
+
+ACTOR HazmatPlasma
+{
+	Radius 6
+	Height 8
+	Speed 25
+	Damage 5
+	Projectile
+	+RANDOMIZE
+	RenderStyle Add
+	Alpha 1.0
+	SeeSound "Caco/Fireball"
+	DeathSound "Caco/FireExplode"
+	States
+	{
+	Spawn:
+		CAFB AB 6 Bright
+		Loop
+	Death:
+		CAFB CC 1 A_SpawnItemEx("GreenSparkSpawner")
+		CAFB C 1 Bright A_Scream
+		CAFB DEFG 3 Bright
+		Stop
+	}
+}
