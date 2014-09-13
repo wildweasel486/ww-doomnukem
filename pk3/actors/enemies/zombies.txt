@@ -14,9 +14,10 @@ ACTOR DNZombieHenchman replaces Zombieman
 	MONSTER
 	+FloorClip
 	Decal BulletChip
-	DropItem "DNPistolAmmoPickup" 96
-	DropItem Chainsaw 24	//Revolver 24
-	DropItem Pistol 96	//DNDualPistolPickup 96
+	DropItem "DNPistolAmmoPickup" 128
+	DropItem Chainsaw 5	//Revolver 24
+	DropItem RevolverAmmoPickup 10 	//Revolver 24
+	DropItem Pistol 1	//DNDualPistolPickup 96
 	states
 	{
 	Spawn:
