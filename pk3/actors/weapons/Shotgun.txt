@@ -328,7 +328,7 @@ ACTOR NewShellBox : NewShell replaces ShellBox
 {
 	Inventory.Amount 12
 	Inventory.PickupMessage "Picked up a box of shells."
-	Inventory.PickupSound "Weapons/Shotgun/Load"
+	Inventory.PickupSound "Weapons/Sawedoff/In"
 	States
 	{
 	Spawn:
