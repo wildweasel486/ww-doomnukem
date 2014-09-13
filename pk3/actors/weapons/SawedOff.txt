@@ -83,9 +83,10 @@ ACTOR DoubleShotgun : DNWeapon replaces Shotgun
 	FireBoth:
 		SHTA B 0 A_PlaySound("Weapons/Sawedoff/DoubleFire", CHAN_WEAPON)
 		SHO9 A 0 A_TakeInventory("DoubleShotgunLoad",1,TIF_NOTAKEINFINITE)
-		SHO9 A 1 BRIGHT A_FireBullets(7, 4, 8, 6, "BulletPuff",0)
+		SHO9 A 1 BRIGHT A_FireBullets(7, 4, 7, 6, "BulletPuff",0)
 		SHO9 B 0 A_TakeInventory("DoubleShotgunLoad",1,TIF_NOTAKEINFINITE)
-		SHO9 B 1 BRIGHT A_FireBullets(7, 4, 8, 6, "BulletPuff",0)
+		SHO9 B 1 BRIGHT A_FireBullets(7, 4, 7, 6, "BulletPuff",0)
+		SHO9 B 0 BRIGHT A_FireBullets(7, 4, 2, 14, "BulletPuff", 0, 96)
 		PISF A 0 A_SpawnItemEx("GunSmoke", 50, -6, 32)
 		SHT2 A 1 Offset(0,52) A_AlertMonsters
 		SHT2 A 1 Offset(0,55) A_SetPitch(pitch - 2.5)
