@@ -150,3 +150,55 @@ ACTOR GibletM : GibletA
 		Stop
 	}
 }
+
+ACTOR BossDroplet : BloodDroplet
+{
+	Speed 10
+}
+
+ACTOR BossSpray
+{
+	+NOBLOCKMAP
+	+NOTELEPORT
+	+NOGRAVITY
+	States
+	{
+	Spawn:
+		TNT1 AAAAAA 0 A_CustomMissile("BossDroplet", frandom(-48.0,48.0), random(-48,48), 0, 2, 30)
+		TNT1 AAAAAA 0 A_CustomMissile("BossDroplet", frandom(-48.0,48.0), random(-48,48), 36, 2, 30)
+		TNT1 AAAAAA 0 A_CustomMissile("BossDroplet", frandom(-48.0,48.0), random(-48,48), 72, 2, 30)
+		TNT1 AAAAAA 0 A_CustomMissile("BossDroplet", frandom(-48.0,48.0), random(-48,48), 108, 2, 30)
+		TNT1 AAAAAA 0 A_CustomMissile("BossDroplet", frandom(-48.0,48.0), random(-48,48), 144, 2, 30)
+		TNT1 AAAAAA 0 A_CustomMissile("BossDroplet", frandom(-48.0,48.0), random(-48,48), 180, 2, 30)
+		TNT1 AAAAAA 0 A_CustomMissile("BossDroplet", frandom(-48.0,48.0), random(-48,48), 216, 2, 30)
+		TNT1 AAAAAA 0 A_CustomMissile("BossDroplet", frandom(-48.0,48.0), random(-48,48), 252, 2, 30)
+		TNT1 AAAAAA 0 A_CustomMissile("BossDroplet", frandom(-48.0,48.0), random(-48,48), 288, 2, 30)
+		TNT1 AAAAAA 0 A_CustomMissile("BossDroplet", frandom(-48.0,48.0), random(-48,48), 324, 2, 30)
+		Stop
+	}
+}
+
+ACTOR GibSpray
+{
+	+NOBLOCKMAP
+	+NOTELEPORT
+	+NOGRAVITY
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_CustomMissile("GibletA", frandom(-16.0,16.0), random(-8, 8), random(0,359), 2, random(0,85))
+		TNT1 A 0 A_CustomMissile("GibletB", frandom(-8.0,8.0), random(-8, 8), random(0,359), 2, random(0,85))
+		TNT1 A 0 A_CustomMissile("GibletC", frandom(-8.0,8.0), random(-8, 8), random(0,359), 2, random(0,85))
+		TNT1 A 0 A_CustomMissile("GibletD", frandom(-8.0,8.0), random(-8, 8), random(0,359), 2, random(0,85))
+		TNT1 A 0 A_CustomMissile("GibletE", frandom(-8.0,8.0), random(-8, 8), random(0,359), 2, random(0,85))
+		TNT1 A 0 A_CustomMissile("GibletF", frandom(-8.0,8.0), random(-8, 8), random(0,359), 2, random(0,85))
+		TNT1 A 0 A_CustomMissile("GibletG", frandom(-8.0,8.0), random(-8, 8), random(0,359), 2, random(0,85))
+		TNT1 A 0 A_CustomMissile("GibletH", frandom(-8.0,8.0), random(-8, 8), random(0,359), 2, random(0,85))
+		TNT1 A 0 A_CustomMissile("GibletI", frandom(-8.0,8.0), random(-8, 8), random(0,359), 2, random(0,85))
+		TNT1 A 0 A_CustomMissile("GibletJ", frandom(-8.0,8.0), random(-8, 8), random(0,359), 2, random(0,85))
+		TNT1 A 0 A_CustomMissile("GibletK", frandom(-8.0,8.0), random(-8, 8), random(0,359), 2, random(0,85))
+		TNT1 A 0 A_CustomMissile("GibletL", frandom(-8.0,8.0), random(-8, 8), random(0,359), 2, random(0,85))
+		TNT1 A 0 A_CustomMissile("GibletM", frandom(-8.0,8.0), random(-8, 8), random(0,359), 2, random(0,85))
+		Stop
+	}
+}

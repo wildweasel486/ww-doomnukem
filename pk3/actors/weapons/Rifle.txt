@@ -9,7 +9,7 @@ ACTOR DNRifle : DNWeapon replaces Chaingun
 	Weapon.AmmoGive2 2
 	Weapon.SlotNumber 4
 	Inventory.PickupSound "Weapons/Rifle/Click"
-	Inventory.PickupMessage "You got the Assault Rifle! (slot 4)"
+	Inventory.PickupMessage "You got the K&S R90-PCW Rifle! (slot 4)"
 	Weapon.SelectionOrder 4000
 	Tag "K&S R90-PCW"
 	AttackSound "Weapons/Rifle/Fire"

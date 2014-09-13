@@ -7,7 +7,7 @@ ACTOR DoubleShotgunLoad : Ammo
 
 ACTOR DoubleShotgun : DNWeapon replaces Shotgun
 {
-	Inventory.PickupMessage "You got the Sawed-Off! (slot 3)"
+	Inventory.PickupMessage "You got the Maxwell One-Two sawed-off! (slot 3)"
 	Inventory.PickupSound "Weapons/Sawedoff/Close"
 	Weapon.SlotNumber 3
 	Weapon.AmmoType "DoubleShotgunLoad"

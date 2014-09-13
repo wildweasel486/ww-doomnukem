@@ -33,14 +33,14 @@ ACTOR ChaingunAmmoSmall : ChaingunAmmo replaces Cell
 ACTOR DNChaingun : DNWeapon replaces PlasmaRifle
 {
 	Inventory.PickupSound "Weapons/Chaingun/Load"
-	Inventory.PickupMessage "You got the Chaingun! (slot 6)"
+	Inventory.PickupMessage "You got the Sobat 17.5 Chaingun! (slot 6)"
 	Weapon.Kickback 100
 	Weapon.SelectionOrder 700
 	Weapon.AmmoType "ChaingunAmmo"
 	Weapon.AmmoGive 100
 	Weapon.AmmoUse 1
 	Weapon.SlotNumber 6
-	Tag "Makoto Arms SOBAT 17.5"
+	Tag "Makoto Arms Sobat 17.5"
 	+Weapon.NoAlert
 	States
 	{

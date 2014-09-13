@@ -24,7 +24,7 @@ ACTOR TrenchShotgun : DNWeapon replaces SuperShotgun
 	Weapon.AmmoGive2 8
 	Weapon.Kickback 400
 	Weapon.SlotNumber 3
-	Inventory.PickupMessage "You got the Shotgun! (slot 3)"
+	Inventory.PickupMessage "You got the M2097 Bicentennial Trenchgun! (slot 3)"
 	Inventory.PickupSound "Weapons/Shotgun/Pump"
 	Weapon.SelectionOrder 3000
 	+WEAPON.NOAUTOFIRE
