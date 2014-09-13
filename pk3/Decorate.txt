@@ -41,6 +41,7 @@ ACTOR PressingZoom : Inventory{}
 #include "actors/enemies/knight.txt"
 #include "actors/enemies/baron.txt"
 #include "actors/enemies/ghoul.txt"
+#include "actors/enemies/haztroop.txt"
 
 #include "actors/bueller.txt"
 #include "actors/casings.txt"
