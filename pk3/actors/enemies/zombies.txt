@@ -90,7 +90,7 @@ ACTOR DNZombieHenchman replaces Zombieman
         THXZ F -1
 		Stop
 	XDeath:
-		SPOS M 5
+		SPOS M 5 A_CustomMissile("GibSpray",32.0,0,angle)
 		SPOS N 5 A_XScream
 		SPOS O 5 A_NoBlocking
 		SPOS PQRST 5
@@ -171,7 +171,7 @@ actor DNSawedOffZombie replaces ShotgunGuy
 		ZSDO N -1
 		stop
 	XDeath:
-		ZSDO O 5
+		ZSDO O 5 A_CustomMissile("GibSpray",32.0,0,angle)
 		ZSDO P 5 A_XScream
 		ZSDO Q 5 A_NoBlocking
 		ZSDO RSTUV 5
@@ -240,7 +240,7 @@ actor DNRifleman replaces ChaingunGuy
 		ZSDI E -1
 		stop
 	XDeath:
-		SPOS M 5
+		SPOS M 5 A_CustomMissile("GibSpray",32.0,0,angle)
 		SPOS N 5 A_XScream
 		SPOS O 5 A_NoBlocking
 		SPOS PQRST 5

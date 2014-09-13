@@ -29,6 +29,14 @@ ACTOR PressingZoom : Inventory{}
 #include "actors/weapons/chaingun.txt"
 #include "actors/weapons/bfg.txt"
 
+#include "actors/Droplets/Pools.txt" // Droplets by SidDoyle.
+#include "actors/Droplets/Droplets.txt"
+#include "actors/Droplets/gibs.txt"
+#include "actors/Droplets/Squirts.txt"
+#include "actors/Droplets/Ceiling.txt"
+#include "actors/Droplets/Liquid.txt"
+#include "actors/Droplets/gore.txt"
+
 #include "actors/enemies/zombies.txt"
 #include "actors/enemies/imps.txt"
 #include "actors/enemies/demon.txt"
@@ -48,14 +56,6 @@ ACTOR PressingZoom : Inventory{}
 #include "actors/droppers.txt"
 #include "actors/misc.txt"
 #include "actors/items.txt"
-
-#include "actors/Droplets/Pools.txt" // Droplets by SidDoyle.
-#include "actors/Droplets/Droplets.txt"
-#include "actors/Droplets/Squirts.txt"
-#include "actors/Droplets/Ceiling.txt"
-#include "actors/Droplets/Liquid.txt"
-#include "actors/Droplets/gore.txt"
-#include "actors/Droplets/gibs.txt"
 
 ACTOR DoomNukem : DoomPlayer
 {
