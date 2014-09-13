@@ -73,7 +73,7 @@ ACTOR DaedFire // : FatShot
 	Damage 8
 	Projectile
 	+RANDOMIZE
-	DeathSound "Weapons/Rocket/Explode"
+	DeathSound "Daedabus/RockExp"
 	SeeSound "Weapons/Rocket/Fire"
 	MissileHeight 0
 	Decal Scorch
