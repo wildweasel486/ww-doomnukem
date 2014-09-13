@@ -9,6 +9,8 @@ ACTOR DNHaztroop replaces Arachnotron
 	MONSTER
 	+FloorClip
 	+BossDeath
+	+MissileMore
+	+MissileEvenMore
 	Decal BulletChip
 	states
 	{
@@ -20,10 +22,15 @@ ACTOR DNHaztroop replaces Arachnotron
 		Loop
 	Missile:
 		HAZM E 4 A_FaceTarget
-		HAZM A 0 A_CustomMissile("GunSmokeSpawner",48)
-		HAZM A 0 A_SpawnItemEx("PistolCasing", 12,-20,32, 8,random(-2,2),random(0,4), random(-55,-80), SXF_NOCHECKPOSITION)
-		HAZM F 2 BRIGHT A_CustomBulletAttack(10,9,1,random(1,5))
-		HAZM E 1 A_FaceTarget
+		HAZM F 0 A_CustomMissile("GunSmokeSpawner",48)
+		HAZM F 2 Bright A_CustomMissile("HazmatPlasma")
+		HAZM E 3 A_FaceTarget
+		HAZM F 0 A_CustomMissile("GunSmokeSpawner",48)
+		HAZM F 2 Bright A_CustomMissile("HazmatPlasma")
+		HAZM E 3 A_FaceTarget
+		HAZM F 0 A_CustomMissile("GunSmokeSpawner",48)
+		HAZM F 2 Bright A_CustomMissile("HazmatPlasma")
+		HAZM E 10 A_FaceTarget
 		Goto See
 	Pain:
 		HAZM G 4
@@ -51,17 +58,18 @@ ACTOR HazmatPlasma
 	+RANDOMIZE
 	RenderStyle Add
 	Alpha 1.0
-	SeeSound "Caco/Fireball"
-	DeathSound "Caco/FireExplode"
+	Scale 0.25
+	SeeSound "Hazmat/Fire"
+	DeathSound "Hazmat/Hit"
 	States
 	{
 	Spawn:
-		CAFB AB 6 Bright
+		SPKB ACF 3 Bright
 		Loop
 	Death:
-		CAFB CC 1 A_SpawnItemEx("GreenSparkSpawner")
-		CAFB C 1 Bright A_Scream
-		CAFB DEFG 3 Bright
+		SPKB AAA 1 A_SpawnItemEx("BlueSparkSpawner")
+		SPKB B 3 Bright A_Scream
+		SPKB CDEFG 3 Bright A_SetScale(scalex - 0.05)
 		Stop
 	}
 }
