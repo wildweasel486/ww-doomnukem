@@ -1,3 +1,5 @@
+// Solarsnowfall's spark spawner from Realm667
+
 Actor BlueSparkSpawner
 {
 	Height 8
