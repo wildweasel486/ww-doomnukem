@@ -551,3 +551,187 @@ ACTOR GreenDrip3 : GreenDripper
 		Stop
 	}
 }
+
+// New pink ceiling blood for ww-doomnukem
+
+ACTOR CeilPinkDroplet : PinkDecoDroplet
+{
+	Height 1
+	Scale 0.1
+	-MISSILE
+	+NOGRAVITY
+	States
+	{
+	Spawn:
+		TNT1 A 1 NoDelay ACS_NamedExecuteAlways("BloodAlpha")
+		BLUP C 6 A_SetScale(1.0,0.05)
+		BLUP C 5 A_SetScale(0.8,0.1)
+		BLUP C 4 A_SetScale(0.65,0.2)
+		BLUP C 3 A_SetScale(0.55,0.4)
+		BLUP C 2 A_SetScale(0.5,0.5)
+		TNT1 A 0 A_ChangeFlag("NOGRAVITY", false)
+		TNT1 A 0 A_SetScale(0.5)
+		BLUP ABCD 2
+		TNT1 A 0 A_ChangeFlag("MISSILE", true)
+		goto Fall
+	}
+}
+
+ACTOR CeilPinkDrop2 : PinkDecoDrop2
+{
+	Height 1
+	Scale 0.1
+	-MISSILE
+	+NOGRAVITY
+	States
+	{
+	Spawn:
+		TNT1 A 1 NoDelay ACS_NamedExecuteAlways("BloodAlpha")
+		BLUP C 6 A_SetScale(0.67,0.05)
+		BLUP C 5 A_SetScale(0.53,0.1)
+		BLUP C 4 A_SetScale(0.43,0.2)
+		BLUP C 3 A_SetScale(0.37,0.4)
+		BLUP C 2 A_SetScale(0.33,0.5)
+		TNT1 A 0 A_ChangeFlag("NOGRAVITY", false)
+		TNT1 A 0 A_SetScale(0.33)
+		BLUP ABCD 2
+		TNT1 A 0 A_ChangeFlag("MISSILE", true)
+		goto Fall
+	}
+}
+
+ACTOR CeilPinkDrop3 : PinkDecoDrop3
+{
+	Height 1
+	Scale 0.1
+	-MISSILE
+	+NOGRAVITY
+	States
+	{
+	Spawn:
+		TNT1 A 1 NoDelay ACS_NamedExecuteAlways("BloodAlpha")
+		BLUP C 6 A_SetScale(0.33,0.05)
+		BLUP C 5 A_SetScale(0.27,0.1)
+		BLUP C 4 A_SetScale(0.22,0.2)
+		BLUP C 3 A_SetScale(0.19,0.4)
+		BLUP C 2 A_SetScale(0.17,0.5)
+		TNT1 A 0 A_ChangeFlag("NOGRAVITY", false)
+		TNT1 A 0 A_SetScale(0.17)
+		BLUP ABCD 2
+		TNT1 A 0 A_ChangeFlag("MISSILE", true)
+		goto Fall
+	}
+}
+
+ACTOR PinkDripper : CeilDripper
+{
+	States
+	{
+	Spawn:
+		//TNT1 A 0 NoDelay ThrustThingZ(0,35,0,1)
+		SPLP F 0 A_SetAngle(random(0.0,359.9))
+		SPLP F 1 A_SetScale(0.6,0.45)
+		SPLP F 1 A_SetScale(0.7,0.4)
+		SPLP F 1 A_SetScale(0.8,0.35)
+		SPLP F 1 A_SetScale(0.9,0.3)
+		SPLP F 1 A_SetScale(frandom(0.5,1.5))
+		TNT1 A 0 A_SetUserVar("user_duration", CallACS("BloodDuration"))
+		TNT1 A 0 A_SetUserVar("user_duration", random(user_duration-140, user_duration)/3)
+		goto Drippy
+	Drippy:
+		SPLP F 3 A_SetUserVar("user_duration", user_duration - 3)
+		TNT1 A 0 ThrustThingZ(0,35,0,1)
+		TNT1 A 0 A_JumpIf(user_duration <= 0, "Cleanup")
+		TNT1 A 0 A_Jump(252, "Drippy")
+		TNT1 A 0 A_SpawnItemEx("CeilPinkDrop2", 0, 0, 4, 0, 0, 0, 0, 0, 123)
+		goto Drippy
+	Cleanup:
+		TNT1 A 0 A_SpawnItemEx("PinkDrip2", 0, 0, 4, 0, 0, 0, 0, 0)
+		TNT1 A 0 A_SpawnItemEx("CeilPinkDroplet",0, 0, 4, 0, 0, 0, 0, 0)
+		SPLP F 5 A_SetScale(0.9,0.3)
+		SPLP F 4 A_SetScale(0.8,0.35)
+		SPLP F 4 A_SetScale(0.7,0.4)
+		SPLP F 3 A_SetScale(0.6,0.45)
+		SPLP F 3 A_SetScale(0.5,0.5)
+		SPLP F 2 A_SetScale(0.4,0.55)
+		SPLP F 2 A_SetScale(0.3,0.6)
+		SPLP F 1 A_SetScale(0.2,0.65)
+		SPLP F 1 A_SetScale(0.1,0.7)
+		Stop
+	}
+}
+
+ACTOR PinkDrip2 : PinkDripper
+{
+	scale 0.33
+	States
+	{
+	Spawn:
+		//TNT1 A 0 NoDelay ThrustThingZ(0,35,0,1)
+		SPLP F 0 A_SetAngle(random(0.0,359.9))
+		SPLP F 1 A_SetScale(0.33,0.5)
+		SPLP F 1 A_SetScale(0.4,0.45)
+		SPLP F 1 A_SetScale(0.47,0.4)
+		SPLP F 1 A_SetScale(0.53,0.35)
+		SPLP F 1 A_SetScale(0.6,0.3)
+		TNT1 A 0 A_SetUserVar("user_duration", CallACS("BloodDuration"))
+		TNT1 A 0 A_SetUserVar("user_duration", random(user_duration-140, user_duration)*2/3)
+		goto Drippy
+	Drippy:
+		SPLP F 3 A_SetUserVar("user_duration", user_duration - 3)
+		TNT1 A 0 ThrustThingZ(0,35,0,1)
+		TNT1 A 0 A_JumpIf(user_duration <= 0, "Cleanup")
+		TNT1 A 0 A_Jump(253, "Drippy")
+		TNT1 A 0 A_SpawnItemEx("CeilPinkDrop3", 0, 0, 4, 0, 0, 0, 0, 0, 125)
+		goto Drippy
+	Cleanup:
+		TNT1 A 0 A_SpawnItemEx("PinkDrip3", 0, 0, 4, 0, 0, 0, 0, 0)
+		TNT1 A 0 A_SpawnItemEx("CeilPinkDrop2", 0, 0, 4, 0, 0, 0, 0, 0)
+		SPLP F 5 A_SetScale(0.6,0.3)
+		SPLP F 4 A_SetScale(0.53,0.35)
+		SPLP F 4 A_SetScale(0.47,0.4)
+		SPLP F 3 A_SetScale(0.4,0.45)
+		SPLP F 3 A_SetScale(0.33,0.5)
+		SPLP F 2 A_SetScale(0.27,0.55)
+		SPLP F 2 A_SetScale(0.2,0.6)
+		SPLP F 1 A_SetScale(0.13,0.65)
+		SPLP F 1 A_SetScale(0.06,0.7)
+		Stop
+	}
+}
+
+ACTOR PinkDrip3 : PinkDripper
+{
+	scale 0.17
+	States
+	{
+	Spawn:
+		//TNT1 A 0 NoDelay ThrustThingZ(0,35,0,1)
+		SPLP F 0 A_SetAngle(random(0.0,359.9))
+		SPLP F 1 A_SetScale(0.17,0.5)
+		SPLP F 1 A_SetScale(0.2,0.45)
+		SPLP F 1 A_SetScale(0.24,0.4)
+		SPLP F 1 A_SetScale(0.27,0.35)
+		SPLP F 1 A_SetScale(0.3,0.3)
+		TNT1 A 0 A_SetUserVar("user_duration", CallACS("BloodDuration"))
+		TNT1 A 0 A_SetUserVar("user_duration", random(user_duration-140, user_duration))
+		goto Drippy
+	Drippy:
+		SPLP F 3 A_SetUserVar("user_duration", user_duration - 3)
+		TNT1 A 0 ThrustThingZ(0,35,0,1)
+		TNT1 A 0 A_JumpIf(user_duration <= 0, "Cleanup")
+		goto Drippy
+	Cleanup:
+		TNT1 A 0 A_SpawnItemEx("CeilPinkDrop3", 0, 0, 4, 0, 0, 0, 0, 0)
+		SPLP F 5 A_SetScale(0.3,0.3)
+		SPLP F 4 A_SetScale(0.27,0.35)
+		SPLP F 4 A_SetScale(0.24,0.4)
+		SPLP F 3 A_SetScale(0.2,0.45)
+		SPLP F 3 A_SetScale(0.17,0.5)
+		SPLP F 2 A_SetScale(0.14,0.55)
+		SPLP F 2 A_SetScale(0.1,0.6)
+		SPLP F 1 A_SetScale(0.07,0.65)
+		SPLP F 1 A_SetScale(0.03,0.7)
+		Stop
+	}
+}

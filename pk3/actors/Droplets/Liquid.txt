@@ -209,3 +209,10 @@ ACTOR GreenBFog3 : BloodFog3 {}
 ACTOR GreenDecoFog : DecoFog {}
 ACTOR GreenDecoFog2 : DecoFog2 {}
 ACTOR GreenDecoFog3 : DecoFog3 {}
+
+ACTOR PinkBFog : BloodFog {}
+ACTOR PinkBFog2 : BloodFog2 {}
+ACTOR PinkBFog3 : BloodFog3 {}
+ACTOR PinkDecoFog : DecoFog {}
+ACTOR PinkDecoFog2 : DecoFog2 {}
+ACTOR PinkDecoFog3 : DecoFog3 {}
