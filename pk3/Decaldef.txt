@@ -904,3 +904,230 @@ decalgroup GreenSpotL
 	GreenSpot4l	1
 	GreenSpot5l	1
 }
+
+// = = = = = = = = = =
+// Pinky Blood
+// = = = = = = = = = =
+
+decal RunPBlood1
+{
+	pic BRUNY1
+	shade "FCB6B4"
+	x-scale 0.3
+	y-scale 0.3
+	randomflipx
+	animator DripAnimateNoOx
+}
+
+decal RunPBlood2
+{
+	pic BRUNY2
+	shade "FCB6B4"
+	x-scale 0.3
+	y-scale 0.3
+	randomflipx
+	animator DripAnimateNoOx
+}
+
+decal RunPBlood3
+{
+	pic BRUNY3
+	shade "FCB6B4"
+	x-scale 0.3
+	y-scale 0.3
+	randomflipx
+	animator DripAnimateNoOx
+}
+
+decalgroup RunnyBloodPink
+{
+	RunPBlood1	3
+	RunPBlood2	2
+	RunPBlood3	1
+}
+
+decal PinkSpot1s
+{
+	pic BSPOT1
+	shade "FCB6B4"
+	x-scale 0.05
+	y-scale 0.1
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodPink
+}
+
+decal PinkSpot2s
+{
+	pic BSPOT2
+	shade "FCB6B4"
+	x-scale 0.05
+	y-scale 0.1
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodPink
+}
+
+decal PinkSpot3s
+{
+	pic BSPOT3
+	shade "FCB6B4"
+	x-scale 0.05
+	y-scale 0.1
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodPink
+}
+
+decal PinkSpot4s
+{
+	pic BSPOT4
+	shade "FCB6B4"
+	x-scale 0.17
+	y-scale 0.35
+	randomflipx
+	randomflipy
+}
+
+decal PinkSpot5s
+{
+	pic BSPOT5
+	shade "FCB6B4"
+	x-scale 0.17
+	y-scale 0.35
+	randomflipx
+	randomflipy
+}
+
+decal PinkSpot1m
+{
+	pic BSPOT1
+	shade "FCB6B4"
+	x-scale 0.1
+	y-scale 0.2
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodPink
+}
+
+decal PinkSpot2m
+{
+	pic BSPOT2
+	shade "FCB6B4"
+	x-scale 0.1
+	y-scale 0.2
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodPink
+}
+
+decal PinkSpot3m
+{
+	pic BSPOT3
+	shade "FCB6B4"
+	x-scale 0.1
+	y-scale 0.2
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodPink
+}
+
+decal PinkSpot4m
+{
+	pic BSPOT4
+	shade "FCB6B4"
+	x-scale 0.33
+	y-scale 0.66
+	randomflipx
+	randomflipy
+}
+
+decal PinkSpot5m
+{
+	pic BSPOT5
+	shade "FCB6B4"
+	x-scale 0.33
+	y-scale 0.66
+	randomflipx
+	randomflipy
+}
+
+decal PinkSpot1l
+{
+	pic BSPOT1
+	shade "FCB6B4"
+	x-scale 0.15
+	y-scale 0.3
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodPink
+}
+
+decal PinkSpot2l
+{
+	pic BSPOT2
+	shade "FCB6B4"
+	x-scale 0.15
+	y-scale 0.3
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodPink
+}
+
+decal PinkSpot3l
+{
+	pic BSPOT3
+	shade "FCB6B4"
+	x-scale 0.15
+	y-scale 0.3
+	randomflipx
+	randomflipy
+	lowerdecal RunnyBloodPink
+}
+
+decal PinkSpot4l
+{
+	pic BSPOT4
+	shade "FCB6B4"
+	x-scale 0.5
+	y-scale 1.0
+	randomflipx
+	randomflipy
+}
+
+decal PinkSpot5l
+{
+	pic BSPOT5
+	shade "FCB6B4"
+	x-scale 0.5
+	y-scale 1.0
+	randomflipx
+	randomflipy
+}
+
+decalgroup PinkSpotS
+{
+	PinkSpot1s	1
+	PinkSpot2s	1
+	PinkSpot3s	1
+	PinkSpot4s	1
+	PinkSpot5s	1
+}
+
+decalgroup PinkSpotM
+{
+	PinkSpot1m	1
+	PinkSpot2m	1
+	PinkSpot3m	1
+	PinkSpot4m	1
+	PinkSpot5m	1
+}
+
+decalgroup PinkSpotL
+{
+	PinkSpot1l	1
+	PinkSpot2l	1
+	PinkSpot3l	1
+	PinkSpot4l	1
+	PinkSpot5l	1
+}

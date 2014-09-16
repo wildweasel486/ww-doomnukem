@@ -598,3 +598,126 @@ ACTOR GreenDecoDrop3 : GreenDrop3
 		Stop
 	}
 }
+
+// New pink droplets for ww-doomnukem
+
+ACTOR PinkDroplet : BloodDroplet
+{
+	Decal PinkSpotL
+	States
+	{
+	Spawn:
+		BLUP A 1 NoDelay ACS_NamedExecuteAlways("BloodAlpha")
+		TNT1 A 0 ACS_NamedExecuteAlways("BloodScale")
+		goto Fall
+	Fall:
+		BLUP ABCDABCD 2
+		TNT1 A 0 A_JumpIf(z <= floorz, "Death")
+		Loop
+	Death:
+		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
+		TNT1 A 0 A_PlaySound("blood/drip", 0)
+		TNT1 A 0 A_CustomMissile("PinkDrop2", 2, 0, random(0,359), 2, random(0, 10))
+		SPLP A 1 A_JumpIf(ceilingz - z < 8.0, "Ceil")
+		SPLP B 2 A_JumpIf(z > floorz + 32.0, "Goodbye")
+		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
+		SPLP CD 2
+		SPLP E 1 A_SetAngle(random(0.0,359.9))
+		SPLP F 1 A_SetScale(0.6,0.45)
+		SPLP F 1 A_SetScale(0.7,0.4)
+		SPLP F 1 A_SetScale(0.8,0.35)
+		SPLP F 1 A_SetScale(0.9,0.3)
+		SPLP F 1 A_SetScale(frandom(0.5,1.5))
+		TNT1 A 0 A_SetUserVar("user_duration", CallACS("BloodDuration"))
+		SPLP F 10 A_SetTics(random(user_duration-140, user_duration))
+		goto Cleanup
+	Ceil:
+		TNT1 A 0 A_JumpIf(CallACS("SkyCheck")==0,1)
+		Stop
+		TNT1 A 0 A_SpawnItemEx("PinkDripper",0,0,10.0)
+		Stop
+	Fog:
+		TNT1 A 0 A_SpawnItemEx("PinkBFog")
+		Stop
+	Cleanup:
+		SPLP F 3 A_FadeOut(0.025)
+		Loop
+	}
+}
+
+ACTOR PinkDrop2 : PinkDroplet
+{
+	+DONTSPLASH
+	Radius 3
+	Height 3
+	Speed 6.5
+	Decal PinkSpotM
+	Scale 0.33
+	States
+	{
+	Spawn:
+		BLUP A 1 NoDelay ACS_NamedExecuteAlways("BloodAlpha")
+		TNT1 A 0 ACS_NamedExecuteAlways("BloodScale")
+		goto Fall
+	Death:
+		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
+		TNT1 A 0 A_PlaySound("blood/drip", 0, 0.67)
+		TNT1 A 0 A_CustomMissile("PinkDrop3", 2, 0, random(0,359), 2, random(10, 20))
+		SPLP A 1 A_JumpIf(ceilingz - z < 6.0, "Ceil")
+		SPLP B 2 A_JumpIf(z > floorz + 16.0, "Goodbye")
+		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
+		SPLP CD 2
+		SPLP E 1 A_SetAngle(random(0.0,359.9))
+		SPLP F 1 A_SetScale(0.39,0.30)
+		SPLP F 1 A_SetScale(0.46,0.27)
+		SPLP F 1 A_SetScale(frandom(0.26,0.78))
+		TNT1 A 0 A_SetUserVar("user_duration", CallACS("BloodDuration"))
+		SPLP F 10 A_SetTics(random(user_duration-140, user_duration))
+		goto Cleanup
+	Ceil:
+		TNT1 A 0 A_JumpIf(CallACS("SkyCheck")==0,1)
+		Stop
+		TNT1 A 0 A_SpawnItemEx("PinkDrip2",0,0,10.0)
+		Stop
+	Fog:
+		TNT1 A 0 A_SpawnItemEx("PinkBFog2")
+		Stop
+	}
+}
+
+ACTOR PinkDrop3 : PinkDroplet
+{
+	+DONTSPLASH
+	Radius 2
+	Height 2
+	Speed 7
+	Decal PinkSpotS
+	Scale 0.17
+	States
+	{
+	Spawn:
+		BLUP A 1 NoDelay ACS_NamedExecuteAlways("BloodAlpha")
+		TNT1 A 0 ACS_NamedExecuteAlways("BloodScale")
+		goto Fall
+	Death:
+		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
+		TNT1 A 0 A_PlaySound("blood/drip", 0, 0.33)
+		SPLP A 1 A_JumpIf(ceilingz - z < 4.0, "Ceil")
+		SPLP B 2 A_JumpIf(z > floorz + 8.0, "Goodbye")
+		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
+		SPLP CD 2
+		SPLP E 1 A_SetAngle(random(0.0,359.9))
+		SPLP F 1 A_SetScale(frandom(0.09,0.26))
+		TNT1 A 0 A_SetUserVar("user_duration", CallACS("BloodDuration"))
+		SPLP F 10 A_SetTics(random(user_duration-140, user_duration))
+		goto Cleanup
+	Ceil:
+		TNT1 A 0 A_JumpIf(CallACS("SkyCheck")==0,1)
+		Stop
+		TNT1 A 0 A_SpawnItemEx("PinkDrip3",0,0,10.0)
+		Stop
+	Fog:
+		TNT1 A 0 A_SpawnItemEx("PinkBFog3")
+		Stop
+	}
+}
