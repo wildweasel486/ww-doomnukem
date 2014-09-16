@@ -22,6 +22,7 @@ Actor LesserDemon : Demon replaces Demon
 	DeathSound "demon/Death"
 	ActiveSound "demon/sg2act"
 	BloodColor "FC B6 B4"
+	BloodType "PinkSquirt"
 	States
 	{
 	Spawn:
