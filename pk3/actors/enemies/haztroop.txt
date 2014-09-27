@@ -84,6 +84,7 @@ ACTOR HazmatPlasma
 	Scale 0.25
 	SeeSound "Hazmat/Fire"
 	DeathSound "Hazmat/Hit"
+	Obituary "%o learned about the fourth state of matter."
 	States
 	{
 	Spawn:

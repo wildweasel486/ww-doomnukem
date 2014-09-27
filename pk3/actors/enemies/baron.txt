@@ -68,9 +68,9 @@ actor BaronBall2 : BaronBall
   RenderStyle Add
   Alpha 1.0
   MissileHeight 0
-  Damage 8
-  Speed 12
-  Scale 0.75
+  Damage 10
+  Speed 10
+  Scale 0.95
   DeathSound "gauntimp/voidexplod"
   states
   {
@@ -100,6 +100,7 @@ ACTOR BaronBallEffect
 
 ACTOR KnightBall : BaronBall2
 {
-	Damage 8
-	Speed 15
+	Damage 6
+	Speed 18
+	Scale 0.65
 }

@@ -53,7 +53,7 @@ ACTOR Tomato replaces Cacodemon
 	CrashLoop:
 		CALI S 0 A_JumpIfInventory("CacoDeflateCounter", 100, "CrashFinish")
 		CALI S 0 A_GiveInventory("CacoDeflateCounter", 1)
-		CALI J 0 A_SpawnItemEx("BlueSquirt",0,0,32)
+		//CALI J 0 A_SpawnItemEx("BlueSquirt",0,0,24)
 		CALI S 0 A_SpawnItemEx("CacoSmoke",random(-20,20),random(-20,20),10)
 		CALI S 1 A_SetScale((scalex + 0.005), (scaley - 0.005))
 		Goto CrashLoop
