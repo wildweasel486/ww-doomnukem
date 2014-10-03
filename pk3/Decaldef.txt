@@ -219,7 +219,7 @@ decal BloodSpot1s
 	pic BSPOT1
 	shade "BloodDefault"
 	x-scale 0.05
-	y-scale 0.1
+	y-scale 0.05
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBlood
@@ -231,7 +231,7 @@ decal BloodSpot2s
 	pic BSPOT2
 	shade "BloodDefault"
 	x-scale 0.05
-	y-scale 0.1
+	y-scale 0.05
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBlood
@@ -243,7 +243,7 @@ decal BloodSpot3s
 	pic BSPOT3
 	shade "BloodDefault"
 	x-scale 0.05
-	y-scale 0.1
+	y-scale 0.05
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBlood
@@ -254,8 +254,8 @@ decal BloodSpot4s
 {
 	pic BSPOT4
 	shade "BloodDefault"
-	x-scale 0.3
-	y-scale 0.3
+	x-scale 0.2
+	y-scale 0.2
 	randomflipx
 	randomflipy
 	animator Oxidizer
@@ -277,7 +277,7 @@ decal BloodSpot1m
 	pic BSPOT1
 	shade "BloodDefault"
 	x-scale 0.1
-	y-scale 0.2
+	y-scale 0.1
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBlood
@@ -289,7 +289,7 @@ decal BloodSpot2m
 	pic BSPOT2
 	shade "BloodDefault"
 	x-scale 0.1
-	y-scale 0.2
+	y-scale 0.1
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBlood
@@ -301,7 +301,7 @@ decal BloodSpot3m
 	pic BSPOT3
 	shade "BloodDefault"
 	x-scale 0.1
-	y-scale 0.2
+	y-scale 0.1
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBlood
@@ -312,8 +312,8 @@ decal BloodSpot4m
 {
 	pic BSPOT4
 	shade "BloodDefault"
-	x-scale 0.45
-	y-scale 0.45
+	x-scale 0.4
+	y-scale 0.4
 	randomflipx
 	randomflipy
 	animator Oxidizer
@@ -446,7 +446,7 @@ decal BloodSpot1l
 	pic BSPOT1
 	shade "BloodDefault"
 	x-scale 0.15
-	y-scale 0.3
+	y-scale 0.15
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBlood
@@ -458,7 +458,7 @@ decal BloodSpot2l
 	pic BSPOT2
 	shade "BloodDefault"
 	x-scale 0.15
-	y-scale 0.3
+	y-scale 0.15
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBlood
@@ -470,7 +470,7 @@ decal BloodSpot3l
 	pic BSPOT3
 	shade "BloodDefault"
 	x-scale 0.15
-	y-scale 0.3
+	y-scale 0.15
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBlood
@@ -535,7 +535,7 @@ decal BlueSpot1s
 	pic BSPOT1
 	shade "000080"
 	x-scale 0.05
-	y-scale 0.1
+	y-scale 0.05
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodBlue
@@ -546,7 +546,7 @@ decal BlueSpot2s
 	pic BSPOT2
 	shade "000080"
 	x-scale 0.05
-	y-scale 0.1
+	y-scale 0.05
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodBlue
@@ -557,7 +557,7 @@ decal BlueSpot3s
 	pic BSPOT3
 	shade "000080"
 	x-scale 0.05
-	y-scale 0.1
+	y-scale 0.05
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodBlue
@@ -567,8 +567,8 @@ decal BlueSpot4s
 {
 	pic BSPOT4
 	shade "000080"
-	x-scale 0.17
-	y-scale 0.35
+	x-scale 0.2
+	y-scale 0.2
 	randomflipx
 	randomflipy
 }
@@ -577,8 +577,8 @@ decal BlueSpot5s
 {
 	pic BSPOT5
 	shade "000080"
-	x-scale 0.17
-	y-scale 0.35
+	x-scale 0.15
+	y-scale 0.15
 	randomflipx
 	randomflipy
 }
@@ -588,7 +588,7 @@ decal BlueSpot1m
 	pic BSPOT1
 	shade "000080"
 	x-scale 0.1
-	y-scale 0.2
+	y-scale 0.1
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodBlue
@@ -599,7 +599,7 @@ decal BlueSpot2m
 	pic BSPOT2
 	shade "000080"
 	x-scale 0.1
-	y-scale 0.2
+	y-scale 0.1
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodBlue
@@ -610,7 +610,7 @@ decal BlueSpot3m
 	pic BSPOT3
 	shade "000080"
 	x-scale 0.1
-	y-scale 0.2
+	y-scale 0.1
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodBlue
@@ -620,8 +620,8 @@ decal BlueSpot4m
 {
 	pic BSPOT4
 	shade "000080"
-	x-scale 0.33
-	y-scale 0.66
+	x-scale 0.4
+	y-scale 0.4
 	randomflipx
 	randomflipy
 }
@@ -630,8 +630,8 @@ decal BlueSpot5m
 {
 	pic BSPOT5
 	shade "000080"
-	x-scale 0.33
-	y-scale 0.66
+	x-scale 0.3
+	y-scale 0.3
 	randomflipx
 	randomflipy
 }
@@ -641,7 +641,7 @@ decal BlueSpot1l
 	pic BSPOT1
 	shade "000080"
 	x-scale 0.15
-	y-scale 0.3
+	y-scale 0.15
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodBlue
@@ -652,7 +652,7 @@ decal BlueSpot2l
 	pic BSPOT2
 	shade "000080"
 	x-scale 0.15
-	y-scale 0.3
+	y-scale 0.15
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodBlue
@@ -663,7 +663,7 @@ decal BlueSpot3l
 	pic BSPOT3
 	shade "000080"
 	x-scale 0.15
-	y-scale 0.3
+	y-scale 0.15
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodBlue
@@ -673,8 +673,8 @@ decal BlueSpot4l
 {
 	pic BSPOT4
 	shade "000080"
-	x-scale 0.5
-	y-scale 1.0
+	x-scale 0.6
+	y-scale 0.6
 	randomflipx
 	randomflipy
 }
@@ -683,8 +683,8 @@ decal BlueSpot5l
 {
 	pic BSPOT5
 	shade "000080"
-	x-scale 0.5
-	y-scale 1.0
+	x-scale 0.45
+	y-scale 0.45
 	randomflipx
 	randomflipy
 }
@@ -724,7 +724,7 @@ decal GreenSpot1s
 	pic BSPOT1
 	shade "587322"
 	x-scale 0.05
-	y-scale 0.1
+	y-scale 0.05
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodGreen
@@ -735,7 +735,7 @@ decal GreenSpot2s
 	pic BSPOT2
 	shade "587322"
 	x-scale 0.05
-	y-scale 0.1
+	y-scale 0.05
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodGreen
@@ -746,7 +746,7 @@ decal GreenSpot3s
 	pic BSPOT3
 	shade "587322"
 	x-scale 0.05
-	y-scale 0.1
+	y-scale 0.05
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodGreen
@@ -756,8 +756,8 @@ decal GreenSpot4s
 {
 	pic BSPOT4
 	shade "587322"
-	x-scale 0.17
-	y-scale 0.35
+	x-scale 0.2
+	y-scale 0.2
 	randomflipx
 	randomflipy
 }
@@ -766,8 +766,8 @@ decal GreenSpot5s
 {
 	pic BSPOT5
 	shade "587322"
-	x-scale 0.17
-	y-scale 0.35
+	x-scale 0.15
+	y-scale 0.15
 	randomflipx
 	randomflipy
 }
@@ -777,7 +777,7 @@ decal GreenSpot1m
 	pic BSPOT1
 	shade "587322"
 	x-scale 0.1
-	y-scale 0.2
+	y-scale 0.1
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodGreen
@@ -788,7 +788,7 @@ decal GreenSpot2m
 	pic BSPOT2
 	shade "587322"
 	x-scale 0.1
-	y-scale 0.2
+	y-scale 0.1
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodGreen
@@ -799,7 +799,7 @@ decal GreenSpot3m
 	pic BSPOT3
 	shade "587322"
 	x-scale 0.1
-	y-scale 0.2
+	y-scale 0.1
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodGreen
@@ -809,8 +809,8 @@ decal GreenSpot4m
 {
 	pic BSPOT4
 	shade "587322"
-	x-scale 0.33
-	y-scale 0.66
+	x-scale 0.4
+	y-scale 0.4
 	randomflipx
 	randomflipy
 }
@@ -819,8 +819,8 @@ decal GreenSpot5m
 {
 	pic BSPOT5
 	shade "587322"
-	x-scale 0.33
-	y-scale 0.66
+	x-scale 0.3
+	y-scale 0.3
 	randomflipx
 	randomflipy
 }
@@ -830,7 +830,7 @@ decal GreenSpot1l
 	pic BSPOT1
 	shade "587322"
 	x-scale 0.15
-	y-scale 0.3
+	y-scale 0.15
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodGreen
@@ -841,7 +841,7 @@ decal GreenSpot2l
 	pic BSPOT2
 	shade "587322"
 	x-scale 0.15
-	y-scale 0.3
+	y-scale 0.15
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodGreen
@@ -852,7 +852,7 @@ decal GreenSpot3l
 	pic BSPOT3
 	shade "587322"
 	x-scale 0.15
-	y-scale 0.3
+	y-scale 0.15
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodGreen
@@ -862,8 +862,8 @@ decal GreenSpot4l
 {
 	pic BSPOT4
 	shade "587322"
-	x-scale 0.5
-	y-scale 1.0
+	x-scale 0.6
+	y-scale 0.6
 	randomflipx
 	randomflipy
 }
@@ -872,8 +872,8 @@ decal GreenSpot5l
 {
 	pic BSPOT5
 	shade "587322"
-	x-scale 0.5
-	y-scale 1.0
+	x-scale 0.45
+	y-scale 0.45
 	randomflipx
 	randomflipy
 }
@@ -951,7 +951,7 @@ decal PinkSpot1s
 	pic BSPOT1
 	shade "FCB6B4"
 	x-scale 0.05
-	y-scale 0.1
+	y-scale 0.05
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodPink
@@ -962,7 +962,7 @@ decal PinkSpot2s
 	pic BSPOT2
 	shade "FCB6B4"
 	x-scale 0.05
-	y-scale 0.1
+	y-scale 0.05
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodPink
@@ -973,7 +973,7 @@ decal PinkSpot3s
 	pic BSPOT3
 	shade "FCB6B4"
 	x-scale 0.05
-	y-scale 0.1
+	y-scale 0.05
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodPink
@@ -983,8 +983,8 @@ decal PinkSpot4s
 {
 	pic BSPOT4
 	shade "FCB6B4"
-	x-scale 0.17
-	y-scale 0.35
+	x-scale 0.2
+	y-scale 0.2
 	randomflipx
 	randomflipy
 }
@@ -993,8 +993,8 @@ decal PinkSpot5s
 {
 	pic BSPOT5
 	shade "FCB6B4"
-	x-scale 0.17
-	y-scale 0.35
+	x-scale 0.15
+	y-scale 0.15
 	randomflipx
 	randomflipy
 }
@@ -1004,7 +1004,7 @@ decal PinkSpot1m
 	pic BSPOT1
 	shade "FCB6B4"
 	x-scale 0.1
-	y-scale 0.2
+	y-scale 0.1
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodPink
@@ -1015,7 +1015,7 @@ decal PinkSpot2m
 	pic BSPOT2
 	shade "FCB6B4"
 	x-scale 0.1
-	y-scale 0.2
+	y-scale 0.1
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodPink
@@ -1026,7 +1026,7 @@ decal PinkSpot3m
 	pic BSPOT3
 	shade "FCB6B4"
 	x-scale 0.1
-	y-scale 0.2
+	y-scale 0.1
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodPink
@@ -1036,8 +1036,8 @@ decal PinkSpot4m
 {
 	pic BSPOT4
 	shade "FCB6B4"
-	x-scale 0.33
-	y-scale 0.66
+	x-scale 0.4
+	y-scale 0.4
 	randomflipx
 	randomflipy
 }
@@ -1046,8 +1046,8 @@ decal PinkSpot5m
 {
 	pic BSPOT5
 	shade "FCB6B4"
-	x-scale 0.33
-	y-scale 0.66
+	x-scale 0.3
+	y-scale 0.3
 	randomflipx
 	randomflipy
 }
@@ -1057,7 +1057,7 @@ decal PinkSpot1l
 	pic BSPOT1
 	shade "FCB6B4"
 	x-scale 0.15
-	y-scale 0.3
+	y-scale 0.15
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodPink
@@ -1068,7 +1068,7 @@ decal PinkSpot2l
 	pic BSPOT2
 	shade "FCB6B4"
 	x-scale 0.15
-	y-scale 0.3
+	y-scale 0.15
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodPink
@@ -1079,7 +1079,7 @@ decal PinkSpot3l
 	pic BSPOT3
 	shade "FCB6B4"
 	x-scale 0.15
-	y-scale 0.3
+	y-scale 0.15
 	randomflipx
 	randomflipy
 	lowerdecal RunnyBloodPink
@@ -1089,8 +1089,8 @@ decal PinkSpot4l
 {
 	pic BSPOT4
 	shade "FCB6B4"
-	x-scale 0.5
-	y-scale 1.0
+	x-scale 0.6
+	y-scale 0.6
 	randomflipx
 	randomflipy
 }
@@ -1099,8 +1099,8 @@ decal PinkSpot5l
 {
 	pic BSPOT5
 	shade "FCB6B4"
-	x-scale 0.5
-	y-scale 1.0
+	x-scale 0.45
+	y-scale 0.45
 	randomflipx
 	randomflipy
 }

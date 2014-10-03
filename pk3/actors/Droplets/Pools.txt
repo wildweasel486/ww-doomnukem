@@ -1,32 +1,46 @@
 ACTOR BloodPool2
 {
+	+NOTONAUTOMAP
 	+NOTELEPORT
 	+THRUACTORS
 	+MOVEWITHSECTOR
+	+DONTSPLASH
 	RenderStyle Translucent
 	var int user_size;
 	States
 	{
 	Spawn:
 		TNT1 A 0 NoDelay A_JumpIf(CallACS("LiquidCheck"),"Fog")
-		TNT1 A 0 ACS_NamedExecuteAlways("BloodAlpha")
+		//TNT1 A 0 ACS_NamedExecuteAlways("BloodAlpha")
 		TNT1 A 0 A_SetUserVar("user_size", 6553.6)
 		TNT1 A 0 A_SetAngle(random(0.0,359.9))
 		goto Pool
 	Pool:
 		SPLT F 3 A_SetScale(user_size/65536.0, 1.0)
-		TNT1 A 0 A_SetUserVar("user_size", user_size + 655.36)
+		TNT1 A 0 A_SetUserVar("user_size", user_size + 327.68)
 		TNT1 A 0 A_JumpIf(user_size < 131072.0, "Pool")
 		goto Done
 	Done:
 		SPLT F -1
 		Stop
 	Fog:
-		TNT1 A 3 A_SpawnItemEx("DecoFog")
-		TNT1 A 3 A_SpawnItemEx("DecoFog2")
-		TNT1 A 3 A_SpawnItemEx("DecoFog3")
-		TNT1 A 0 A_Jump(254, "Fog")
-		Stop
+		TNT1 A 0 A_SetTranslucent(0.2)
+		TNT1 A 0 A_SetUserVar("user_size", 655.36)
+		TNT1 A 0 A_SetAngle(random(0.0,359.9))
+	FogPool:
+		BFOG A 3 A_SetScale(user_size/65536.0, 1.0)
+		TNT1 A 0 A_JumpIf(alpha > 0.33, 2)
+		TNT1 A 0 A_FadeIn(0.001)
+		TNT1 A 0 A_SetUserVar("user_size", user_size + random(1638.4, 3276.8))
+		TNT1 A 0 A_SetAngle(angle - 2)
+		TNT1 A 0 A_JumpIf(user_size < 131072.0, "FogPool")
+		goto FogDone
+	FogDone:
+		TNT1 A 0 A_SpawnItemEx("BloodFog")
+		BFOG AAAAAAAAAAAAAAAAAAAA 3 A_SetAngle(angle - 2)
+		TNT1 A 0 A_FadeOut(0.01, true)
+		TNT1 A 0 A_SetScale(scalex + 0.01)
+		Loop
 	}
 }
 
@@ -36,18 +50,30 @@ ACTOR BluePool : BloodPool2
 	{
 	Pool:
 		SPLB F 3 A_SetScale(user_size/65536.0, 1.0)
-		TNT1 A 0 A_SetUserVar("user_size", user_size + 655.36)
+		TNT1 A 0 A_SetUserVar("user_size", user_size + 327.68)
 		TNT1 A 0 A_JumpIf(user_size < 131072.0, "Pool")
 		goto Done
 	Done:
 		SPLB F -1
 		Stop
 	Fog:
-		TNT1 A 3 A_SpawnItemEx("BlueDecoFog")
-		TNT1 A 3 A_SpawnItemEx("BlueDecoFog2")
-		TNT1 A 3 A_SpawnItemEx("BlueDecoFog3")
-		TNT1 A 0 A_Jump(254, "Fog")
-		Stop
+		TNT1 A 0 A_SetTranslucent(0.2)
+		TNT1 A 0 A_SetUserVar("user_size", 655.36)
+		TNT1 A 0 A_SetAngle(random(0.0,359.9))
+	FogPool:
+		BFOG A 3 A_SetScale(user_size/65536.0, 1.0)
+		TNT1 A 0 A_JumpIf(alpha > 0.33, 2)
+		TNT1 A 0 A_FadeIn(0.001)
+		TNT1 A 0 A_SetUserVar("user_size", user_size + random(1638.4, 3276.8))
+		TNT1 A 0 A_SetAngle(angle - 2)
+		TNT1 A 0 A_JumpIf(user_size < 131072.0, "FogPool")
+		goto FogDone
+	FogDone:
+		TNT1 A 0 A_SpawnItemEx("BlueBFog")
+		BFOG AAAAAAAAAAAAAAAAAAAA 3 A_SetAngle(angle - 2)
+		TNT1 A 0 A_FadeOut(0.01, true)
+		TNT1 A 0 A_SetScale(scalex + 0.01)
+		Loop
 	}
 }
 
@@ -57,18 +83,30 @@ ACTOR GreenPool : BloodPool2
 	{
 	Pool:
 		SPLG F 3 A_SetScale(user_size/65536.0, 1.0)
-		TNT1 A 0 A_SetUserVar("user_size", user_size + 655.36)
+		TNT1 A 0 A_SetUserVar("user_size", user_size + 327.68)
 		TNT1 A 0 A_JumpIf(user_size < 131072.0, "Pool")
 		goto Done
 	Done:
 		SPLG F -1
 		Stop
 	Fog:
-		TNT1 A 3 A_SpawnItemEx("GreenDecoFog")
-		TNT1 A 3 A_SpawnItemEx("GreenDecoFog2")
-		TNT1 A 3 A_SpawnItemEx("GreenDecoFog3")
-		TNT1 A 0 A_Jump(254, "Fog")
-		Stop
+		TNT1 A 0 A_SetTranslucent(0.2)
+		TNT1 A 0 A_SetUserVar("user_size", 655.36)
+		TNT1 A 0 A_SetAngle(random(0.0,359.9))
+	FogPool:
+		BFOG A 3 A_SetScale(user_size/65536.0, 1.0)
+		TNT1 A 0 A_JumpIf(alpha > 0.33, 2)
+		TNT1 A 0 A_FadeIn(0.001)
+		TNT1 A 0 A_SetUserVar("user_size", user_size + random(1638.4, 3276.8))
+		TNT1 A 0 A_SetAngle(angle - 2)
+		TNT1 A 0 A_JumpIf(user_size < 131072.0, "FogPool")
+		goto FogDone
+	FogDone:
+		TNT1 A 0 A_SpawnItemEx("GreenBFog")
+		BFOG AAAAAAAAAAAAAAAAAAAA 3 A_SetAngle(angle - 2)
+		TNT1 A 0 A_FadeOut(0.01, true)
+		TNT1 A 0 A_SetScale(scalex + 0.01)
+		Loop
 	}
 }
 
@@ -85,10 +123,22 @@ ACTOR PinkPool : BloodPool2
 		SPLP F -1
 		Stop
 	Fog:
-		TNT1 A 3 A_SpawnItemEx("PinkDecoFog")
-		TNT1 A 3 A_SpawnItemEx("PinkDecoFog2")
-		TNT1 A 3 A_SpawnItemEx("PinkDecoFog3")
-		TNT1 A 0 A_Jump(254, "Fog")
-		Stop
+		TNT1 A 0 A_SetTranslucent(0.2)
+		TNT1 A 0 A_SetUserVar("user_size", 655.36)
+		TNT1 A 0 A_SetAngle(random(0.0,359.9))
+	FogPool:
+		BFOG A 3 A_SetScale(user_size/65536.0, 1.0)
+		TNT1 A 0 A_JumpIf(alpha > 0.33, 2)
+		TNT1 A 0 A_FadeIn(0.001)
+		TNT1 A 0 A_SetUserVar("user_size", user_size + random(1638.4, 3276.8))
+		TNT1 A 0 A_SetAngle(angle - 2)
+		TNT1 A 0 A_JumpIf(user_size < 131072.0, "FogPool")
+		goto FogDone
+	FogDone:
+		TNT1 A 0 A_SpawnItemEx("PinkBFog")
+		BFOG AAAAAAAAAAAAAAAAAAAA 3 A_SetAngle(angle - 2)
+		TNT1 A 0 A_FadeOut(0.01, true)
+		TNT1 A 0 A_SetScale(scalex + 0.01)
+		Loop
 	}
 }

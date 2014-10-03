@@ -1,4 +1,43 @@
 // From Droplets by SidDoyle.
+Model BloodPool2      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "bloodspot.md3"    // Model index, model file
+   Skin 0 "bloodfog.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 15 15 15            // Scale values
+   ZOffset 0.3
+   FrameIndex BFOG A 0 0         // The sprite lump, sprite frame, model index, frame number
+}
+
+Model BluePool      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "bloodspot.md3"    // Model index, model file
+   Skin 0 "bluefog.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 15 15 15            // Scale values
+   ZOffset 0.3
+   FrameIndex BFOG A 0 0         // The sprite lump, sprite frame, model index, frame number
+}
+
+Model GreenPool      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "bloodspot.md3"    // Model index, model file
+   Skin 0 "greenfog.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 15 15 15            // Scale values
+   ZOffset 0.3
+   FrameIndex BFOG A 0 0         // The sprite lump, sprite frame, model index, frame number
+}
+
+Model PinkPool      // Name of actor in DECORATE
+{
+   Path "models/bloodspot"    // Path to model in PK3
+   Model 0 "bloodspot.md3"    // Model index, model file
+   Skin 0 "pinkfog.png"     // Model index, texture (can be in any format supported by GZDoom)
+   Scale 15 15 15            // Scale values
+   ZOffset 0.3
+   FrameIndex BFOG A 0 0         // The sprite lump, sprite frame, model index, frame number
+}
 
 Model BloodFog      // Name of actor in DECORATE
 {

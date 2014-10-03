@@ -1,18 +1,44 @@
 #library "droplets"
 #include "zcommon.acs"
 
+//int total_drops;
+/*
+script "AllowBloodSpawn" (void)
+{
+	if (GetCVar("blood_limited")==0) {
+		SetResultValue(true);
+	}
+	else
+	{
+		int limit = GetCVar("blood_cap");
+		if (total_drops + 1 > limit)
+			SetResultValue(false);
+		else
+		{
+			total_drops++;
+			SetResultValue(true);
+		}
+	}
+}
+
+script "BloodDespawn" (void)
+{
+	if (total_drops > 0)
+		total_drops--;
+}
+
 script "BloodDuration" (void)
 {
 	SetResultValue(GetCVar("blood_secs")*35);
 }
-
+*/
 script "BloodScale" (void)
 {
 	int mult = GetCVar("blood_rand");
-	if (random(0,14) > 4)
-		mult = FixedMul(mult, random(0.666667, 2.0));
+	if (random(0,19) > 0)
+		mult = FixedMul(mult, random(0.6, 1.333333));
 	else
-		mult = FixedMul(mult, random(-0.666667, -0.333333));
+		mult = FixedMul(mult, random(-0.666667, 0.7));
 	int velx = GetActorVelX(0);
 	int vely = GetActorVelY(0);
 	velx = FixedMul(velx, mult);
@@ -72,45 +98,5 @@ script "LiquidCheck" (void)
 		CheckActorFloorTexture(0,"FWATER1")||
 		CheckActorFloorTexture(0,"FWATER2")||
 		CheckActorFloorTexture(0,"FWATER3")||
-		CheckActorFloorTexture(0,"FWATER4")||
-		CheckActorFloorTexture(0,"F_HWATR1")||
-		CheckActorFloorTexture(0,"F_HWATR2")||
-		CheckActorFloorTexture(0,"F_HWATR3")||
-		CheckActorFloorTexture(0,"F_PWATR1")||
-		CheckActorFloorTexture(0,"F_PWATR2")||
-		CheckActorFloorTexture(0,"F_PWATR3")||
-		CheckActorFloorTexture(0,"P_VWATR1")||
-		CheckActorFloorTexture(0,"F_VWATR2")||
-		CheckActorFloorTexture(0,"F_VWATR3")||
-		CheckActorFloorTexture(0,"F_WATR01")||
-		CheckActorFloorTexture(0,"F_WATR02")||
-		CheckActorFloorTexture(0,"F_WATR03")||
-		CheckActorFloorTexture(0,"FLATHUH1")||
-		CheckActorFloorTexture(0,"FLATHUH2")||
-		CheckActorFloorTexture(0,"FLATHUH3")||
-		CheckActorFloorTexture(0,"FLATHUH4")||
-		CheckActorFloorTexture(0,"FLTFLWW1")||
-		CheckActorFloorTexture(0,"FLTFLWW2")||
-		CheckActorFloorTexture(0,"FLTFLWW3")||
-		CheckActorFloorTexture(0,"FLTWAWA1")||
-		CheckActorFloorTexture(0,"FLTWAWA2")||
-		CheckActorFloorTexture(0,"FLTWAWA3")||
-		CheckActorFloorTexture(0,"FLTLAVA1")||
-		CheckActorFloorTexture(0,"FLTLAVA2")||
-		CheckActorFloorTexture(0,"FLTLAVA3")||
-		CheckActorFloorTexture(0,"FLTLAVA4")||
-		CheckActorFloorTexture(0,"FLTSLUD1")||
-		CheckActorFloorTexture(0,"FLTSLUD2")||
-		CheckActorFloorTexture(0,"FLTSLUD3")||
-		CheckActorFloorTexture(0,"X_001")||
-		CheckActorFloorTexture(0,"X_002")||
-		CheckActorFloorTexture(0,"X_003")||
-		CheckActorFloorTexture(0,"X_004")||
-		CheckActorFloorTexture(0,"X_005")||
-		CheckActorFloorTexture(0,"X_006")||
-		CheckActorFloorTexture(0,"X_007")||
-		CheckActorFloorTexture(0,"X_008")||
-		CheckActorFloorTexture(0,"X_009")||
-		CheckActorFloorTexture(0,"X_010")||
-		CheckActorFloorTexture(0,"X_011"));
+		CheckActorFloorTexture(0,"FWATER4"));
 }

@@ -7,6 +7,7 @@ ACTOR BloodFog
 	+NOBLOCKMAP
 	+MOVEWITHSECTOR
 	+SLIDESONWALLS
+	+NOTONAUTOMAP
 	Gravity 1
 	Speed 0.35
 	MaxStepHeight 1
@@ -18,6 +19,7 @@ ACTOR BloodFog
 	{
 	Spawn:
 		TNT1 A 0 NoDelay A_SetUserVar("user_size", 655.36)
+		TNT1 A 0 A_QueueCorpse
 		TNT1 A 0 A_SetAngle(random(0.0,359.9))
 		TNT1 A 0 A_SetUserVar("user_angle", angle)
 		goto Pool
@@ -79,6 +81,7 @@ ACTOR BloodFog2 : BloodFog
 	{
 	Spawn:
 		TNT1 A 0 NoDelay A_SetUserVar("user_size", 327.68)
+		TNT1 A 0 A_QueueCorpse
 		TNT1 A 0 A_SetAngle(random(0.0,359.9))
 		TNT1 A 0 A_SetUserVar("user_angle", angle)
 		goto Pool
@@ -141,6 +144,7 @@ ACTOR BloodFog3 : BloodFog
 	{
 	Spawn:
 		TNT1 A 0 NoDelay A_SetUserVar("user_size", 163.84)
+		TNT1 A 0 A_QueueCorpse
 		TNT1 A 0 A_SetAngle(random(0.0,359.9))
 		TNT1 A 0 A_SetUserVar("user_angle", angle)
 		goto Pool
@@ -216,3 +220,125 @@ ACTOR PinkBFog3 : BloodFog3 {}
 ACTOR PinkDecoFog : DecoFog {}
 ACTOR PinkDecoFog2 : DecoFog2 {}
 ACTOR PinkDecoFog3 : DecoFog3 {}
+
+ACTOR UWBloodFog
+{
+	Radius 4
+	Height 5
+	+FORCEXYBILLBOARD
+	+NOTELEPORT
+	+NOBLOCKMAP
+	+MOVEWITHSECTOR
+	+SLIDESONWALLS
+	+NOTONAUTOMAP
+	+NOGRAVITY
+	Speed 0.35
+	Scale 0.25
+	MaxStepHeight 1
+	RenderStyle Translucent
+	Alpha 1.0
+	States
+	{
+	Spawn:
+		HITB A 1 NoDelay A_ChangeVelocity(frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(-2.0,2.0))
+		HITB A 1 A_SetScale(scalex + 0.05)
+		HITB B 1
+		HITB B 1 A_SetScale(scalex + 0.05)
+		HITB C 1
+		HITB C 2 A_SetScale(scalex + 0.05)
+		HITB D 2
+		HITB D 2 A_SetScale(scalex + 0.05)
+		HITB E 2
+		HITB E 2 A_SetScale(scalex + 0.05)
+	Cleanup:
+		HITB E 0 A_JumpIf(waterlevel < 2, "Abort")
+		TNT1 A 0 A_FadeOut(0.0125,true)
+		TNT1 A 0 A_SetScale(scalex + 0.05)
+		HITB E 3 A_Wander
+		Loop
+	Abort:
+		"----" A 1 A_FadeOut(0.1,true)
+		Loop
+	}
+}
+
+ACTOR UWGreenFog : UWBloodFog
+{
+	States
+	{
+	Spawn:
+		HITG A 1 NoDelay A_ChangeVelocity(frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(-2.0,2.0))
+		HITG A 1 A_SetScale(scalex + 0.05)
+		HITG B 1
+		HITG B 1 A_SetScale(scalex + 0.05)
+		HITG C 1
+		HITG C 2 A_SetScale(scalex + 0.05)
+		HITG D 2
+		HITG D 2 A_SetScale(scalex + 0.05)
+		HITG E 2
+		HITG E 2 A_SetScale(scalex + 0.05)
+	Cleanup:
+		HITG E 0 A_JumpIf(waterlevel < 2, "Abort")
+		TNT1 A 0 A_FadeOut(0.0125,true)
+		TNT1 A 0 A_SetScale(scalex + 0.05)
+		HITG E 3 A_Wander
+		Loop
+	Abort:
+		"----" A 1 A_FadeOut(0.1,true)
+		Loop
+	}
+}
+
+ACTOR UWBlueFog : UWBloodFog
+{
+	States
+	{
+	Spawn:
+		HIBB A 1 NoDelay A_ChangeVelocity(frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(-2.0,2.0))
+		HIBB A 1 A_SetScale(scalex + 0.05)
+		HIBB B 1
+		HIBB B 1 A_SetScale(scalex + 0.05)
+		HIBB C 1
+		HIBB C 2 A_SetScale(scalex + 0.05)
+		HIBB D 2
+		HIBB D 2 A_SetScale(scalex + 0.05)
+		HIBB E 2
+		HIBB E 2 A_SetScale(scalex + 0.05)
+	Cleanup:
+		HIBB E 0 A_JumpIf(waterlevel < 2, "Abort")
+		TNT1 A 0 A_FadeOut(0.0125,true)
+		TNT1 A 0 A_SetScale(scalex + 0.05)
+		HIBB E 3 A_Wander
+		Loop
+	Abort:
+		"----" A 1 A_FadeOut(0.1,true)
+		Loop
+	}
+}
+
+ACTOR UWPinkFog : UWBloodFog
+{
+	States
+	{
+	Spawn:
+		HITP A 1 NoDelay A_ChangeVelocity(frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(-2.0,2.0))
+		HITP A 1 A_SetScale(scalex + 0.05)
+		HITP B 1
+		HITP B 1 A_SetScale(scalex + 0.05)
+		HITP C 1
+		HITP C 2 A_SetScale(scalex + 0.05)
+		HITP D 2
+		HITP D 2 A_SetScale(scalex + 0.05)
+		HITP E 2
+		HITP E 2 A_SetScale(scalex + 0.05)
+	Cleanup:
+		HITP E 0 A_JumpIf(waterlevel < 2, "Abort")
+		TNT1 A 0 A_FadeOut(0.0125,true)
+		TNT1 A 0 A_SetScale(scalex + 0.05)
+		HITP E 3 A_Wander
+		Loop
+	Abort:
+		"----" A 1 A_FadeOut(0.1,true)
+		Loop
+	}
+}
