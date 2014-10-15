@@ -19,8 +19,7 @@ ACTOR DNRifle : DNWeapon replaces Chaingun
 	States
 	{
 	Spawn:
-		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
-		RIFL A -1
+		RIFL A -1 Nodelay A_SetAngle(random(0,359))
 		Stop
 	Select:
 	Ready:
@@ -186,8 +185,7 @@ ACTOR DNRifleAmmoPickup : Ammo replaces ClipBox
 	States
 	{
 	Spawn:
-		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
-		RIFL B -1
+		RIFL B -1 Nodelay A_SetAngle(random(0,359))
 		Stop
 	}
 }

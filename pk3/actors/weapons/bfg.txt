@@ -1,4 +1,4 @@
-ACTOR BFGCell : Ammo 4204
+ACTOR BFGCell : Ammo
 {
 	Inventory.MaxAmount 10
 	Ammo.BackpackMaxAmount 20
@@ -11,6 +11,7 @@ ACTOR BFGCell : Ammo 4204
 	{
 	Spawn:
 		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+	Repeat:
 		BCEL ABC 4 BRIGHT
 		Loop
 	}
@@ -29,8 +30,7 @@ ACTOR DNBFG : DNWeapon replaces BFG9000
 	States
 	{
 	Spawn:
-		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
-		BFGP A -1
+		BFGP A -1 Nodelay A_SetAngle(random(0,359))
 		Stop
 	Deselect:
 		NBFG A 1 Offset(-3,35)

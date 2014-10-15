@@ -121,7 +121,7 @@ ACTOR DNPistol : DNWeapon
 		PISG A 1 Offset(1,33)
 		Goto Ready2
  	Spawn:
-		PISP A -1
+		PISP A -1 Nodelay A_SetAngle(random(0,359))
 		Stop
 	}
 }
@@ -138,7 +138,7 @@ ACTOR DNPistol2Ammo : Ammo
 	Inventory.Icon "PISPA0"
 }
 
-ACTOR DNPistolAmmoPickup : Ammo 4201
+ACTOR DNPistolAmmoPickup : Ammo
 {
 	Inventory.MaxAmount 12
 	Ammo.BackpackAmount 1
@@ -151,8 +151,7 @@ ACTOR DNPistolAmmoPickup : Ammo 4201
 	States
 	{
 	Spawn:
-		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
-		PISP B -1
+		PISP B -1 Nodelay A_SetAngle(random(0,359))
 		Stop
 	}
 }
@@ -392,9 +391,6 @@ ACTOR DNDualPistol : DNPistol
 		PI2R F 1 Offset(16,105)
 		TNT1 A 5
 		Goto Ready
- 	Spawn:
-		PISP A -1
-		Stop
 	}
 }
 
@@ -406,8 +402,7 @@ ACTOR DNDualPistolPickup : CustomInventory replaces Pistol
 	States
 	{
 	Spawn:
-		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
-		PISP A -1
+		PISP A -1 Nodelay A_SetAngle(random(0,359))
 		Stop
 	Pickup:
 		TNT1 A 0 A_JumpIfInventory("DNDualPistol", 1, "GiveAmmo")

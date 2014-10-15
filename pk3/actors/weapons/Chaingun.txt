@@ -1,4 +1,4 @@
-ACTOR ChaingunAmmo : Ammo 4203
+ACTOR ChaingunAmmo : Ammo
 {
 	Inventory.Icon "MCLPA0"
 	Inventory.PickupMessage "Picked up a box of chaingun ammo."
@@ -11,8 +11,7 @@ ACTOR ChaingunAmmo : Ammo 4203
 	States
 	{
 	Spawn:
-		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
-		MCLP A -1
+		MCLP A -1 Nodelay A_SetAngle(random(0,359))
 		Stop
 	}
 }
@@ -24,8 +23,7 @@ ACTOR ChaingunAmmoSmall : ChaingunAmmo replaces Cell
 	States
 	{
 	Spawn:
-		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
-		MCLP B -1
+		MCLP B -1 Nodelay A_SetAngle(random(0,359))
 		Stop
 	}
 }
@@ -45,8 +43,7 @@ ACTOR DNChaingun : DNWeapon replaces PlasmaRifle
 	States
 	{
 	Spawn:
-		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
-		MGUN A -1
+		MGUN A -1 Nodelay A_SetAngle(random(0,359))
 		Loop
 	Select:
 	Ready:

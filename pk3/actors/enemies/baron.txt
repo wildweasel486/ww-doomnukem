@@ -3,7 +3,6 @@
 
 ACTOR HZBaronOfHell : BaronOfHell replaces BaronOfHell
 {
-	spawnid 3
 	obituary "%o was brutalized by the Baron of Hell."
 	hitobituary "%o was severed by the Baron of Hell."
 	health 1000

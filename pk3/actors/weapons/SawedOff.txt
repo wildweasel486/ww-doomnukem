@@ -24,8 +24,7 @@ ACTOR DoubleShotgun : DNWeapon replaces Shotgun
 	States
 	{
 	Spawn:
-		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
-		SGN2 A -1
+		SGN2 A -1 Nodelay A_SetAngle(random(0,359))
 		Stop
 	Deselect:
 		SHT2 A 1 Offset(-3,35)

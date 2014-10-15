@@ -165,8 +165,7 @@ ACTOR Revolver : DNWeapon Replaces Chainsaw
 		REVI A 1 Offset(-1,33)
 		Goto Ready2
  	Spawn:
-		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
-		RVIC A -1
+		RVIC A -1 Nodelay A_SetAngle(random(0,359))
 		Stop
 	}
 }
@@ -177,7 +176,7 @@ ACTOR RevolverAmmo : Ammo
 	Inventory.Icon "RVICA0"
 }
 
-ACTOR RevolverAmmoPickup : Ammo 4202
+ACTOR RevolverAmmoPickup : Ammo
 {
 	Inventory.MaxAmount 8
 	Ammo.BackpackAmount 1
@@ -189,8 +188,7 @@ ACTOR RevolverAmmoPickup : Ammo 4202
 	States
 	{
 	Spawn:
-		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
-		RVIC B -1
+		RVIC B -1 Nodelay A_SetAngle(random(0,359))
 		Stop
 	}
 }
