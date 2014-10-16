@@ -5,8 +5,7 @@ ACTOR WWDNStimpack : Stimpack replaces Stimpack
 	States
 	{
 	Spawn:
-		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
-		STIM A -1
+		STIM A -1 Nodelay A_SetAngle(random(0,359))
 		Stop
 	}
 }
@@ -18,8 +17,7 @@ ACTOR WWDNMedikit : Medikit replaces Medikit
 	States
 	{
 	Spawn:
-		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
-		MEDI A -1
+		MEDI A -1 Nodelay A_SetAngle(random(0,359))
 		Stop
 	}
 }
@@ -31,8 +29,7 @@ ACTOR WWDNCigarettes : HealthBonus replaces HealthBonus
 	States
 	{
 	Spawn:
-		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
-		BON1 A -1
+		BON1 A -1 Nodelay A_SetAngle(random(0,359))
 		Stop
 	}
 }
@@ -74,8 +71,7 @@ ACTOR WWDNArmorBonus : ArmorBonus replaces ArmorBonus
 	States
 	{
 	Spawn:
-		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
-		BON2 A -1
+		BON2 A -1 Nodelay A_SetAngle(random(0,359))
 		Stop
 	}
 }
@@ -115,8 +111,7 @@ ACTOR WWDNBerserk : Berserk replaces Berserk
 	States
 	{
 	Spawn:
-		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
-		PSTR A -1
+		PSTR A -1 Nodelay A_SetAngle(random(0,359))
 		Stop
 	Pickup:
 		TNT1 A 0 A_GiveInventory("PowerStrength")
@@ -175,8 +170,31 @@ ACTOR DNBackpack : Backpack replaces Backpack
 	States
 	{
 	Spawn:
-		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
-		BPAK A -1
+		BPAK A -1 Nodelay A_SetAngle(random(0,359))
 		Stop
+	}
+}
+
+ACTOR WWDNRadsuit : Radsuit replaces Radsuit
+{
+	States
+	{
+	Spawn:
+		SUIT A -1 Bright Nodelay A_SetAngle(random(0,359))
+		Stop
+	}
+}
+
+ACTOR WWDNInfrared : Infrared replaces Infrared
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
+		Stop
+	Repeat:
+		PVIS A 6 Bright
+		PVIS B 6
+		Loop
 	}
 }

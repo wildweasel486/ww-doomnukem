@@ -17,8 +17,7 @@ ACTOR DNRocketAmmoPickup : Ammo replaces RocketAmmo
 	States
 	{
 	Spawn:
-		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
-		RKBX A -1
+		RKBX A -1 Nodelay A_SetAngle(random(0,359))
 		Stop
 	}
 }
@@ -48,8 +47,7 @@ ACTOR DNRocketLauncher : DNWeapon replaces RocketLauncher
 	States
 	{
 	Spawn:
-		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
-		LAUN A -1
+		LAUN A -1 Nodelay A_SetAngle(random(0,359))
 		Stop
 	Deselect:
 		RCKG A 1 Offset(1,35)
@@ -164,8 +162,6 @@ ACTOR DNRocketLauncher : DNWeapon replaces RocketLauncher
 actor NebRocket
 {
 	scale 0.5
-	Game Doom
-	SpawnID 127
 	Radius 11
 	Height 8
 	Speed 55

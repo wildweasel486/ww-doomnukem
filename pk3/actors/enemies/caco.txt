@@ -1,13 +1,12 @@
 ACTOR Tomato replaces Cacodemon
-{ 
-
+{
     Health 500
     Radius 31
     Height 56
     Speed 13
     PainChance 145
 	Mass 500
-    MONSTER 
+    MONSTER
     +NOGRAVITY
     +FLOAT
     Obituary "%o got tomatoed by a Caco."
@@ -17,6 +16,7 @@ ACTOR Tomato replaces Cacodemon
 	DeathSound "CacoLich/Death"
 	BloodType BlueSquirt
 	BloodColor "000080"
+	Var Int User_Deflate;
     States
     {
     Spawn:
@@ -26,9 +26,9 @@ ACTOR Tomato replaces Cacodemon
         CALI A 4 A_Chase
         Loop
     Missile:
-        CALI B 5 Bright  A_FaceTarget
-        CALI C 5 Bright  A_Custommissile ("BallLightning",35,0,0)
-        CALI D 5 Bright  A_FaceTarget
+        CALI B 5 Bright A_FaceTarget
+        CALI C 5 Bright A_Custommissile ("BallLightning",35,0,0)
+        CALI D 5 Bright A_FaceTarget
         Goto See
 	Melee:
 		CALI EFG 5 Bright A_FaceTarget
@@ -47,12 +47,12 @@ ACTOR Tomato replaces Cacodemon
         CALI KLMN 6
         Wait
     Crash:
-        CALI OP 6
+        CALI OP 6 //A_SetUserVar("User_Deflate",0)
         CALI Q 6 A_NoBlocking
         CALI R 6 A_PlaySound("caco/deflate", 5)
 	CrashLoop:
-		CALI S 0 A_JumpIfInventory("CacoDeflateCounter", 100, "CrashFinish")
-		CALI S 0 A_GiveInventory("CacoDeflateCounter", 1)
+		CALI S 0 A_JumpIf(User_Deflate>=100,"CrashFinish")
+		CALI S 0 A_SetUserVar("User_Deflate",User_Deflate+1)
 		//CALI J 0 A_SpawnItemEx("BlueSquirt",0,0,24)
 		CALI S 0 A_SpawnItemEx("CacoSmoke",random(-20,20),random(-20,20),10)
 		CALI S 1 A_SetScale((scalex + 0.005), (scaley - 0.005))
@@ -67,11 +67,6 @@ ACTOR Tomato replaces Cacodemon
 		"----" A -1 A_SpawnItemEx("BluePool",0,0,8)
 		Stop
     }
-}
-
-ACTOR CacoDeflateCounter : Inventory
-{
-	Inventory.MaxAmount 999
 }
 
 ACTOR BallLightning
