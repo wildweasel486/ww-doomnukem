@@ -172,6 +172,9 @@ ACTOR DNBFGBase
 	SpriteD:
 		NBFP D 0 A_Jump(256,"Main")
 		Goto Main
+	Main:
+		TNT1 A 0 // Let's see if this stops the warnings
+		Stop
 	}
 }
 
