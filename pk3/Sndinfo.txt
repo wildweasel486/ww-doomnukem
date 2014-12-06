@@ -416,6 +416,18 @@ hazmat/hit2 hazhit2
 hazmat/beep hazbeep
 hazmat/explode hazexplo
 
+// Cyber-Dragoon
+
+$random Weapons/DragoonRocket/Fire { Weapons/DragoonRocket/Fire1 Weapons/DragoonRocket/Fire2 Weapons/DragoonRocket/Fire3 }
+Weapons/DragoonRocket/Fire1 DRGFIR1
+Weapons/DragoonRocket/Fire2 DRGFIR2
+Weapons/DragoonRocket/Fire3 DRGFIR3
+$random Weapons/DragoonRocket/Explode { Weapons/DragoonRocket/Explode1 Weapons/DragoonRocket/Explode2 Weapons/DragoonRocket/Explode3 Weapons/DragoonRocket/Explode4 }
+Weapons/DragoonRocket/Explode1 DRGXPLO1
+Weapons/DragoonRocket/Explode2 DRGXPLO2
+Weapons/DragoonRocket/Explode3 DRGXPLO3
+Weapons/DragoonRocket/Explode4 DRGXPLO4
+
 // Doors (from Extreme Measures)
 
 doors/dr1_start dssl1bgn
