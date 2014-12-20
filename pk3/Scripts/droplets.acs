@@ -1,46 +1,17 @@
 #library "droplets"
 #include "zcommon.acs"
 
-//int total_drops;
-/*
-script "AllowBloodSpawn" (void)
-{
-	if (GetCVar("blood_limited")==0) {
-		SetResultValue(true);
-	}
-	else
-	{
-		int limit = GetCVar("blood_cap");
-		if (total_drops + 1 > limit)
-			SetResultValue(false);
-		else
-		{
-			total_drops++;
-			SetResultValue(true);
-		}
-	}
-}
-
-script "BloodDespawn" (void)
-{
-	if (total_drops > 0)
-		total_drops--;
-}
-
-script "BloodDuration" (void)
-{
-	SetResultValue(GetCVar("blood_secs")*35);
-}
-*/
 script "BloodScale" (void)
 {
 	int mult = GetCVar("blood_rand");
-	if (random(0,19) > 0)
-		mult = FixedMul(mult, random(0.6, 1.333333));
-	else
-		mult = FixedMul(mult, random(-0.666667, 0.7));
+	mult = FixedMul(mult, random(0.6, 1.333333));
 	int velx = GetActorVelX(0);
 	int vely = GetActorVelY(0);
+	if (random(0,4) == 0) {
+		int max = VectorLength(velx, vely)/2;
+		velx = random(-max, max);
+		vely = random(-max, max);
+	}
 	velx = FixedMul(velx, mult);
 	vely = FixedMul(vely, mult);
 	SetActorVelocity(0, velx, vely, GetActorVelZ(0), false, false);
