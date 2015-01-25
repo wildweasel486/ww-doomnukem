@@ -42,7 +42,7 @@ Actor WWDN_ExplosiveBarrel Replaces ExplosiveBarrel
 		BAR1 D -1
 		Wait
 	Death:
-		"####" "#" 5 Bright A_PlaySound("Weapons/Rocket/Explode", CHAN_AUTO, 1.0, 0, 0.5)
+		"####" "#" 5 Bright A_PlaySound("world/barrelx", CHAN_AUTO, 1.0, 0, 0.5)
 		BAR1 Y 5 A_SpawnItemEx("DN_Blastage",0,0,16,	0,0,0,	0,SXF_CLIENTSIDE,0)
 		BAR1 Y 0 A_SpawnItemEx("BarrelDebris1", 0,0,16, Random(-8,8),Random(-8,8),Random(4,20), Random(0,359))
 		BAR1 Y 0 A_SpawnItemEx("BarrelDebris2", 0,0,16, Random(-8,8),Random(-8,8),Random(4,20), Random(0,359))

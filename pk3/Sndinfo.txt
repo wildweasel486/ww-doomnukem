@@ -120,6 +120,12 @@ Weapons/Select1 WEAPSEL1
 Weapons/Select2 WEAPSEL2
 Weapons/Select3 WEAPSEL3
 
+$random world/barrelx { barrelex1 barrelex2 barrelex3 barrelex4 }
+barrelex1 BARRELX1
+barrelex2 BARRELX2
+barrelex3 BARRELX3
+barrelex4 BARRELX4
+
 // Shell Casings
 $random bulletcasing/bounce { bcase1 bcase2 bcase3 bcase4 }
 bcase1 bcase1
