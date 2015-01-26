@@ -120,6 +120,11 @@ Weapons/Select1 WEAPSEL1
 Weapons/Select2 WEAPSEL2
 Weapons/Select3 WEAPSEL3
 
+// Barrels
+
+Props/Barrel/Pain				BarlPai
+Props/Barrel/Death				BarlDth
+
 $random world/barrelx { barrelex1 barrelex2 barrelex3 barrelex4 }
 barrelex1 BARRELX1
 barrelex2 BARRELX2

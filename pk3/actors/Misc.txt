@@ -1,10 +1,11 @@
 Actor WWDN_ExplosiveBarrel Replaces ExplosiveBarrel
 {
 	SpawnID 125
-
-	Health 20
 	Radius 10
-	Height 42
+	Height 32
+
+	Health 30
+	PainChance 256
 
 	+Solid
 	+Shootable
@@ -15,10 +16,12 @@ Actor WWDN_ExplosiveBarrel Replaces ExplosiveBarrel
 	+OldRadiusDmg
 
 	DamageType "Explosive"
+	RadiusDamageFactor 1.5
 
 	Scale 0.7
 
-	DeathSound "world/barrelx"
+	PainSound "Props/Barrel/Pain"
+	DeathSound "Props/Barrel/Death"
 
 	Obituary "$OB_BARREL"
 
@@ -26,8 +29,6 @@ Actor WWDN_ExplosiveBarrel Replaces ExplosiveBarrel
 	{
 	Spawn:
 		BAR1 A 0
-		BAR1 A 0 A_JumpIf (Random[FX](0,1) == 0, 2)
-		BAR1 A 0 A_SetScale (-ScaleX, ScaleY)
 		BAR1 A 0 A_Jump (256, "Spawn1", "Spawn2", "Spawn3", "Spawn4")
 	Spawn1:
 		BAR1 A -1
@@ -41,19 +42,24 @@ Actor WWDN_ExplosiveBarrel Replaces ExplosiveBarrel
 	Spawn4:
 		BAR1 D -1
 		Wait
+	Pain:
+		"####" "#" 4 A_Pain
+		"####" "#" -1
+		Wait
 	Death:
-		"####" "#" 5 Bright A_PlaySound("world/barrelx", CHAN_AUTO, 1.0, 0, 0.5)
+		"####" "#" 5 Bright A_Scream
+		BAR1 Y 0 A_PlaySound("world/barrelx", Chan_Weapon)
 		BAR1 Y 5 A_SpawnItemEx("DN_Blastage",0,0,16,	0,0,0,	0,SXF_CLIENTSIDE,0)
-		BAR1 Y 0 A_SpawnItemEx("BarrelDebris1", 0,0,16, Random(-8,8),Random(-8,8),Random(4,20), Random(0,359))
-		BAR1 Y 0 A_SpawnItemEx("BarrelDebris2", 0,0,16, Random(-8,8),Random(-8,8),Random(4,20), Random(0,359))
-		BAR1 Y 0 A_SpawnItemEx("BarrelDebris3", 0,0,16, Random(-8,8),Random(-8,8),Random(4,20), Random(0,359))
-		BAR1 Y 0 A_SpawnItemEx("BarrelDebris4", 0,0,16, Random(-8,8),Random(-8,8),Random(4,20), Random(0,359))
-		BAR1 Y 0 A_SpawnItemEx("BarrelDebris5", 0,0,16, Random(-8,8),Random(-8,8),Random(4,20), Random(0,359))
-		BAR1 Y 0 A_SpawnItemEx("BarrelDebris6", 0,0,16, Random(-8,8),Random(-8,8),Random(4,20), Random(0,359))
-		BAR1 Y 0 A_SpawnItemEx("BarrelDebris7", 0,0,16, Random(-8,8),Random(-8,8),Random(4,20), Random(0,359))
-		BAR1 Y 0 A_SpawnItemEx("BarrelDebris8", 0,0,16, Random(-8,8),Random(-8,8),Random(4,20), Random(0,359))
-		BAR1 Y 0 A_SpawnItemEx("BarrelDebris9", 0,0,16, Random(-8,8),Random(-8,8),Random(4,20), Random(0,359))
-		BAR1 Y 0 A_SpawnItemEx("BarrelDebris0", 0,0,16, Random(-8,8),Random(-8,8),Random(4,20), Random(0,359))
+		BAR1 Y 0 A_SpawnItemEx("BarrelDebris1", 0,0,16, FRandom(-8,8),FRandom(-8,8),FRandom(4,20), Random(0,359))
+		BAR1 Y 0 A_SpawnItemEx("BarrelDebris2", 0,0,16, FRandom(-8,8),FRandom(-8,8),FRandom(4,20), Random(0,359))
+		BAR1 Y 0 A_SpawnItemEx("BarrelDebris3", 0,0,16, FRandom(-8,8),FRandom(-8,8),FRandom(4,20), Random(0,359))
+		BAR1 Y 0 A_SpawnItemEx("BarrelDebris4", 0,0,16, FRandom(-8,8),FRandom(-8,8),FRandom(4,20), Random(0,359))
+		BAR1 Y 0 A_SpawnItemEx("BarrelDebris5", 0,0,16, FRandom(-8,8),FRandom(-8,8),FRandom(4,20), Random(0,359))
+		BAR1 Y 0 A_SpawnItemEx("BarrelDebris6", 0,0,16, FRandom(-8,8),FRandom(-8,8),FRandom(4,20), Random(0,359))
+		BAR1 Y 0 A_SpawnItemEx("BarrelDebris7", 0,0,16, FRandom(-8,8),FRandom(-8,8),FRandom(4,20), Random(0,359))
+		BAR1 Y 0 A_SpawnItemEx("BarrelDebris8", 0,0,16, FRandom(-8,8),FRandom(-8,8),FRandom(4,20), Random(0,359))
+		BAR1 Y 0 A_SpawnItemEx("BarrelDebris9", 0,0,16, FRandom(-8,8),FRandom(-8,8),FRandom(4,20), Random(0,359))
+		BAR1 Y 0 A_SpawnItemEx("BarrelDebris0", 0,0,16, FRandom(-8,8),FRandom(-8,8),FRandom(4,20), Random(0,359))
 		BAR1 Y 5 Bright
 		BAR1 Y 5 Bright A_Explode
 		BAR1 Y 5 Bright A_NoBlocking
@@ -62,14 +68,13 @@ Actor WWDN_ExplosiveBarrel Replaces ExplosiveBarrel
 	}
 }
 
-
 Actor WWDN_BurningBarrel : BurningBarrel Replaces BurningBarrel
 {
 	SpawnID 149
 
 	Radius 16
 	Height 32
-	ProjectilePassHeight -16
+	ProjectilePassHeight -32
 
 	+SOLID
 
@@ -87,7 +92,6 @@ Actor WWDN_BurningBarrel : BurningBarrel Replaces BurningBarrel
 		Loop
 	}
 }
-
 
 ACTOR BarrelDebris1 // REMINDER: FIX THE BARRELFRAG BLOCKMAP ISSUE
 {
