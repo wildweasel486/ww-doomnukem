@@ -8,7 +8,6 @@ ACTOR BloodFog
 	+MOVEWITHSECTOR
 	+SLIDESONWALLS
 	+NOTONAUTOMAP
-	Gravity 1
 	Speed 0.35
 	MaxStepHeight 1
 	RenderStyle Translucent

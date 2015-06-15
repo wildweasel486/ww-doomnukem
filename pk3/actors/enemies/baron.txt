@@ -1,43 +1,58 @@
 
 // The Bruiser Brothers
 
-ACTOR HZBaronOfHell : BaronOfHell replaces BaronOfHell
+ACTOR HZBaronOfHell replaces BaronOfHell
 {
-	obituary "%o was brutalized by the Baron of Hell."
-	hitobituary "%o was severed by the Baron of Hell."
-	health 1000
-	radius 24
-	height 64
-	mass 1000
-	speed 8
-	painchance 50
-	seesound "baron/sight"
-	painsound "baron/pain"
-	deathsound "baron/death"
-	activesound "baron/sight"
-	BloodType GreenSquirt
-	BloodColor "58 73 22"
-	MONSTER
+	Health 1000
+	Radius 24
+	Height 64
+	Mass 1000
+	Speed 2.66666667
+	PainChance 50
+	Monster
 	+FLOORCLIP
 	+BOSSDEATH
-	states
+	SeeSound "baron/sight"
+	PainSound "baron/pain"
+	DeathSound "baron/death"
+	Obituary "%o was brutalized by the Baron of Hell."
+	HitObituary "%o was severed by the Baron of Hell."
+	ActiveSound "baron/sight"
+	BloodType GreenSquirt
+	BloodColor "58 73 22"
+	States
 	{
 	Spawn:
 		NBRN AB 10 A_Look
-		loop
+		Loop
 	See:
-		NBRN AABBCCDD 3 A_Chase
-		loop
+		NBRN A 1 A_Chase
+		NBRN AA 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		NBRN A 1 A_Chase
+		NBRN AA 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		NBRN B 1 A_Chase
+		NBRN BB 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		NBRN B 1 A_Chase
+		NBRN BB 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		NBRN C 1 A_Chase
+		NBRN CC 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		NBRN C 1 A_Chase
+		NBRN CC 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		NBRN D 1 A_Chase
+		NBRN DD 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		NBRN D 1 A_Chase
+		NBRN DD 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		Loop
 	Melee:
-		TRO5 E 0 A_PlaySound("gauntimp/meleeswing")
+		NBRN E 0 A_PlaySound("gauntimp/meleeswing")
 	Missile:
 		NBRN EF 8 A_FaceTarget
-		NBRN G 8 A_CustomComboAttack("BaronBall2", 32, 10 * random(1, 8), "Weapons/Sledge/Hit")
-		goto See
+		NBRN G 8 A_CustomComboAttack("BaronBall2",32,10 * random(1,8),"Weapons/Sledge/Hit")
+		Goto See
 	Pain:
 		NBRN H 2
 		NBRN H 2 A_Pain
-		goto See
+		Goto See
 	Death:
 		BOSS I 8 A_SpawnItemEx("GreenSquirt",0,0,32)
 		TNT1 A 0 A_SpawnItemEx("GreenSquirt",0,0,32)
@@ -46,41 +61,33 @@ ACTOR HZBaronOfHell : BaronOfHell replaces BaronOfHell
 		TNT1 A 0 A_SpawnItemEx("GreenSquirt",0,0,32)
 		BOSS L 8 A_NoBlocking
 		BOSS MN 8
-		BOSS O 1 A_BossDeath
-		goto Slide
-	Slide:
-		"----" A 1 A_JumpIf(velx + vely + velz == 0, "Pool")
-		Loop
-	Pool:
-		"----" A -1 A_SpawnItemEx("GreenPool",0,0,8)
+		BOSS O 0 A_BossDeath
+		BOSS O 1 A_JumpIf(velx + vely + velz == 0,1)
+		Wait
+		BOSS O -1 A_SpawnItemEx("GreenPool",0,0,8)
 		Stop
 	Raise:
 		BOSS ONMLKJI 8
-		goto See
+		Goto See
 	}
 }
 
-actor BaronBall2 : BaronBall
+ACTOR BaronBall2 : BaronBall
 {
-  decal BaronScorch
-  MissileType BaronBallEffect
-  RenderStyle Add
-  Alpha 1.0
-  MissileHeight 0
-  Damage 10
-  Speed 10
-  Scale 0.95
-  DeathSound "gauntimp/voidexplod"
-  states
-  {
-  Spawn:
-    BAL7 A 0 A_PlaySoundEx("gauntimp/voidloop", "Body", 1)
-    ARCB AAABBBCCC 1 bright A_SpawnItemEx("BaronBallEffect", 0, 0, 0)
-    loop
-  Death:
-      ARCB JKLMN 3 bright
-      Stop
-  }
+ 	Damage 10
+	Speed 10
+	Scale .95
+	DeathSound "gauntimp/voidexplod"
+	States
+	{
+	Spawn:
+		BAL7 A 0 A_PlaySound("gauntimp/voidloop",CHAN_BODY,1,1)
+		ARCB AAABBBCCC 1 BRIGHT A_SpawnItemEx("BaronBallEffect")
+		loop
+	Death:
+		ARCB JKLMN 3 bright
+		Stop
+	}
 }
 
 ACTOR BaronBallEffect
@@ -101,5 +108,5 @@ ACTOR KnightBall : BaronBall2
 {
 	Damage 6
 	Speed 18
-	Scale 0.65
+	Scale .65
 }

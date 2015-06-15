@@ -5,7 +5,7 @@ ACTOR TribalKnight replaces HellKnight
 	radius 24
 	height 64
 	mass 1000
-	speed 8
+	speed 2.66666667
 	painchance 50
 	seesound "tribalknight/sight"
 	painsound "tribalknight/pain"
@@ -22,23 +22,37 @@ ACTOR TribalKnight replaces HellKnight
 		BOS3 AB 10 A_Look
 		loop
 	See:
-		BOS3 AABBCCDD 3 A_Chase
+		BOS3 A 1 A_Chase
+		BOS3 AA 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		BOS3 A 1 A_Chase
+		BOS3 AA 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		BOS3 B 1 A_Chase
+		BOS3 BB 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		BOS3 B 1 A_Chase
+		BOS3 BB 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		BOS3 C 1 A_Chase
+		BOS3 CC 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		BOS3 C 1 A_Chase
+		BOS3 CC 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		BOS3 D 1 A_Chase
+		BOS3 DD 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		BOS3 D 1 A_Chase
+		BOS3 DD 1 A_Chase("","",CHF_NOPLAYACTIVE)
 		loop
 	Melee:
-		BOS3 E 0 A_PlaySound("tribalknight/attack", CHAN_BODY)
+		BOS3 E 0 A_PlaySound("tribalknight/attack")
 		BOS3 EF 8 A_FaceTarget
-		BOS3 G 8 A_CustomMeleeAttack(10, "Weapons/Sledge/Hit", "gauntimp/meleeswing")
+		BOS3 G 8 A_CustomMeleeAttack(10,"Weapons/Sledge/Hit","gauntimp/meleeswing")
 		goto See
 	Missile:
-		BOS3 E 0 A_Jump(48, "Missile2")
-		BOS3 E 0 A_PlaySound("tribalknight/attack", CHAN_BODY)
+		BOS3 E 0 A_PlaySound("tribalknight/attack")
+		BOS3 E 0 A_Jump(48,"Missile2")
 		BOS3 EF 8 A_FaceTarget
-		BOS3 G 8 A_CustomMissile("KnightBall", 32)
+		BOS3 G 8 A_CustomMissile("KnightBall",32)
 		goto See
 	Missile2:
-		BOS3 E 0 A_PlaySound("tribalknight/attack", CHAN_BODY)
 		BOS3 HI 8 A_FaceTarget
-		BOS3 J 8 A_CustomMissile("BaronBall2", 32)
+		BOS3 J 8 A_CustomMissile("BaronBall2",32)
 		goto See
 	Pain:
 		BOS3 K 2
@@ -52,13 +66,10 @@ ACTOR TribalKnight replaces HellKnight
 		TNT1 L 0 A_SpawnItemEx("GreenSquirt",0,0,32)
 		BOS3 O 8 A_NoBlocking
 		BOS3 PQ 8 A_SpawnItemEx("GreenSquirt",0,0,32)
-		BOS3 R -1
-		goto Slide
-	Slide:
-		"----" A 1 A_JumpIf(velx + vely + velz == 0, "Pool")
-		Loop
+		BOS3 R 1 A_JumpIf(velx + vely + velz == 0,1)
+		Wait
 	Pool:
-		"----" A -1 A_SpawnItemEx("GreenPool",0,0,8)
+		"####" "#" -1 A_SpawnItemEx("GreenPool",0,0,8)
 		Stop
 	XDeath:
 		XARC A 7 A_SpawnItemEx("GreenSquirt",0,0,32)
@@ -68,8 +79,8 @@ ACTOR TribalKnight replaces HellKnight
 		XARC A 0 A_SpawnItemEx("GreenSquirt",0,0,32)
 		XARC D 7 A_NoBlocking
 		XARC EFGH 7 A_SpawnItemEx("GreenSquirt",0,0,32)
-		XARC I -1
-		goto Slide
+		XARC I 1 A_JumpIf(velx + vely + velz == 0,"Pool")
+		Wait
 	Raise:
 		BOS3 ONMLKJI 8
 		goto See

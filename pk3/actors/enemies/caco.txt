@@ -3,10 +3,10 @@ ACTOR Tomato replaces Cacodemon
     Health 500
     Radius 31
     Height 56
-    Speed 13
+    Speed 3.25
     PainChance 145
 	Mass 500
-    MONSTER
+    Monster
     +NOGRAVITY
     +FLOAT
     Obituary "%o got tomatoed by a Caco."
@@ -23,16 +23,17 @@ ACTOR Tomato replaces Cacodemon
         CALI A 10 A_Look
         Loop
     See:
-        CALI A 4 A_Chase
+        CALI A 1 A_Chase
+        CALI AAA 1 A_Chase("","",CHF_NOPLAYACTIVE)
         Loop
     Missile:
         CALI B 5 Bright A_FaceTarget
-        CALI C 5 Bright A_Custommissile ("BallLightning",35,0,0)
+        CALI C 5 Bright A_CustomMissile("BallLightning",35)
         CALI D 5 Bright A_FaceTarget
         Goto See
 	Melee:
 		CALI EFG 5 Bright A_FaceTarget
-		CALI F 2 Bright A_CustomMeleeAttack((15))
+		CALI F 2 Bright A_CustomMeleeAttack(15)
 		CALI G 2 Bright
 		CALI A 5
 		Goto See
@@ -47,25 +48,24 @@ ACTOR Tomato replaces Cacodemon
         CALI KLMN 6
         Wait
     Crash:
-        CALI OP 6 //A_SetUserVar("User_Deflate",0)
+        CALI OP 6
         CALI Q 6 A_NoBlocking
-        CALI R 6 A_PlaySound("caco/deflate", 5)
+        CALI R 6 A_PlaySound("caco/deflate",5)
 	CrashLoop:
-		CALI S 0 A_JumpIf(User_Deflate>=100,"CrashFinish")
 		CALI S 0 A_SetUserVar("User_Deflate",User_Deflate+1)
 		//CALI J 0 A_SpawnItemEx("BlueSquirt",0,0,24)
 		CALI S 0 A_SpawnItemEx("CacoSmoke",random(-20,20),random(-20,20),10)
 		CALI S 1 A_SetScale((scalex + 0.005), (scaley - 0.005))
-		Goto CrashLoop
-	CrashFinish:
-		CALI S -1
-        goto Slide
-	Slide:
-		"----" A 1 A_JumpIf(velx + vely + velz == 0, "Pool")
+		CALI S 0 A_JumpIf(User_Deflate>=100,1)
 		Loop
-	Pool:
-		"----" A -1 A_SpawnItemEx("BluePool",0,0,8)
+		CALI S 1 A_JumpIf(velx + vely + velz == 0,1)
+		Wait
+		CALI S -1 A_SpawnItemEx("BluePool",0,0,8)
 		Stop
+	Raise:
+		CALI S 6 A_UnSetFloorClip
+		CALI RQPOMNLKJ 6 A_SetScale(1.0,1.0)
+		Goto See
     }
 }
 
@@ -79,7 +79,6 @@ ACTOR BallLightning
 	Projectile
 	+RANDOMIZE
 	RenderStyle Add
-	Alpha 1.0
 	SeeSound "Caco/Fireball"
 	DeathSound "Caco/FireExplode"
 	States
@@ -91,6 +90,18 @@ ACTOR BallLightning
 		CAFB CC 1 A_SpawnItemEx("GreenSparkSpawner")
 		CAFB C 1 Bright A_Scream
 		CAFB DEFG 3 Bright
+		Stop
+	}
+}
+
+ACTOR DeadTomato replaces DeadCacodemon
+{
+	XScale 1.5
+	YScale .5
+	States
+	{
+	Spawn:
+		CALI S -1
 		Stop
 	}
 }

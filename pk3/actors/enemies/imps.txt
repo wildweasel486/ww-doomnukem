@@ -1,173 +1,129 @@
 
 // Impbomination by Gez, Dreadopp, and Damien Daurio
 
-Actor DNImpVariant1 : DoomImp
+ACTOR DNImpVariant1
 {
+	Height 56
+	Mass 100
+	Speed 2.66666667
+	PainChance 200
+	Monster
+	+FLOORCLIP
+	Health 70
 	SeeSound "gauntimp/sight"
 	PainSound "gauntimp/pain"
 	DeathSound "gauntimp/death"
+	ActiveSound "imp/active"
 	Obituary "%o got imped."
-	Health 70
 	States
 	{
 	Spawn:
-	  TRO5 AB 10 A_Look
-	  Loop
+		TRO5 AB 10 A_Look
+		Loop
 	See:
-	  TRO5 AABBCCDD 3 A_Chase
-	  Loop
-  	Melee:
-		TRO5 E 0 A_PlaySound("gauntimp/meleeswing")
-  	Missile:
-	  TRO5 EF 8 A_FaceTarget
-	  TRO5 G 6 A_CustomComboAttack("NewImpBall",32,4,"gauntimp/meleehit")
-	  Goto See
-  	Pain:
-	  TRO5 H 2
-	  TRO5 H 2 A_Pain
-	  Goto See
-  	Death:
-	  TRO5 I 8
-	  TRO5 J 8 A_Scream
-	  TRO5 K 6
-	  TRO5 L 6 A_NoBlocking
-	  TROO M -1
-	  Stop
-  	XDeath:
-	  TROO N 5
-	  TROO O 5 A_XScream
-	  TROO P 5
-	  TROO Q 5 A_NoBlocking
-	  TROO RST 5
-	  TROO U -1
-	  Stop
-  	Raise:
-	  TROO M 8
-	  TRO5 L 8
-	  TRO5 KJI 6
-	  Goto See
+		"####" A 1 A_Chase
+		"####" AA 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		"####" A 1 A_Chase
+		"####" AA 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		"####" B 1 A_Chase
+		"####" BB 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		"####" B 1 A_Chase
+		"####" BB 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		"####" C 1 A_Chase
+		"####" CC 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		"####" C 1 A_Chase
+		"####" CC 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		"####" D 1 A_Chase
+		"####" DD 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		"####" D 1 A_Chase
+		"####" DD 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		Loop
+	Melee:
+		"####" E 0 A_PlaySound("gauntimp/meleeswing")
+		TNT1 A 0 A_Jump(256,"Missile")
+	Missile:
+		TRO5 EF 8 A_FaceTarget
+		TRO5 G 6 A_CustomComboAttack("NewImpBall",32,4*random(1,8),"gauntimp/meleehit")
+		Goto See
+	Pain:
+		"####" H 2
+		"####" H 2 A_Pain
+		Goto See
+	Death:
+		TRO5 I 8
+		TRO5 J 8 A_Scream
+		TRO5 K 6
+		TRO5 L 6 A_NoBlocking
+		TROO M -1
+		Stop
+	XDeath:
+		TROO N 5
+		TROO O 5 A_XScream
+		TROO P 5
+		TROO Q 5 A_NoBlocking
+		TROO RST 5
+		TROO U -1
+		Stop
+	Raise:
+		TROO M 8
+		TRO5 L 8
+		TRO5 KJI 6
+		Goto See
 	}
 }
 
 // Stimp by ItsNatureToDie and Vader.
 
-Actor DNImpVariant2 : DoomImp
+ACTOR DNImpVariant2 : DNImpVariant1
 {
-    Health 55
-    Radius 20
-    Height 56
-    Speed 11
-    PainChance 200
-    MONSTER
-    +FLOORCLIP
-    SeeSound "gauntimp/sight"
-	PainSound "gauntimp/pain"
-	DeathSound "gauntimp/death"
-    ActiveSound "imp/active"
-    Obituary "%o got imped."
-    States
-    {
-    Spawn:
-	  TRO3 AB 10 A_Look
-	  Loop
-    See:
-	  TRO3 AABBCCDD 3 A_Chase
-	  Loop
-    Melee:
-	TRO5 E 0 A_PlaySound("gauntimp/meleeswing")
-    Missile:
-	  TRO3 EF 8 A_FaceTarget
-	  TRO3 G 6 A_CustomComboAttack("SmallImpBall",32,2,"gauntimp/meleehit")
-	  Goto See
-    Pain:
-	  TRO3 H 2
-	  TRO3 H 2 A_Pain
-	  Goto See
-    Death:
-	  TRO3 I 8
-	  TRO3 J 8 A_Scream
-	  TRO3 K 6
-	  TRO3 L 6 A_Fall
-	  TRO3 M -1
-	  Stop
-    XDeath:
-	  TROO N 5
-	  TROO O 5 A_XScream
-	  TROO P 5
-	  TROO Q 5 A_Fall
-	  TROO RST 5
-	  TROO U -1
-	  Stop
-    Raise:
-	  TRO3 ML 8
-	  TRO3 KJI 6
-	  Goto See
-    }
+	Health 55
+	Speed 3.66666667
+	States
+	{
+	Spawn:
+		TRO3 AB 10 A_Look
+		Loop
+	Missile:
+		TRO3 EF 8 A_FaceTarget
+		TRO3 G 6 A_CustomComboAttack("SmallImpBall",32,2*random(1,8),"gauntimp/meleehit")
+		Goto See
+	Death:
+		"####" I 8
+		"####" J 8 A_Scream
+		"####" K 6
+		"####" L 6 A_NoBlocking
+		"####" M -1
+		Stop
+	Raise:
+		"####" ML 8
+		"####" KJI 6
+		Goto See
+	}
 }
 
-Actor DNImpVariant3 : DoomImp
+ACTOR DNImpVariant3 : DNImpVariant2
 {
-    Health 65
-    Radius 20
-    Height 56
-    Speed 7
-    PainChance 200
-    MONSTER
-    +FLOORCLIP
-    SeeSound "gauntimp/sight"
-	PainSound "gauntimp/pain"
-	DeathSound "gauntimp/death"
-    ActiveSound "imp/active"
-    Obituary "%o got imped."
-    States
-    {
-    Spawn:
-      TRO4 AB 10 A_Look
-      Loop
-    See:
-      TRO4 AABBCCDD 3 A_Chase
-      Loop
-    Melee:
-	TRO5 E 0 A_PlaySound("gauntimp/meleeswing")
-    Missile:
-	  TRO4 EF 8 A_FaceTarget
-      TNT1 A 0 A_Jump(128,2)
-      TRO4 G 6 A_TroopAttack
-      Goto See
-      TRO4 G 6 A_CustomComboAttack("LargeImpBall",32,3,"gauntimp/meleehit")
-      Goto See
-    Pain:
-      TRO4 H 2
-      TRO4 H 2 A_Pain
-      Goto See
-    Death:
-      TRO4 I 8
-      TRO4 J 8 A_Scream
-      TRO4 K 6
-      TRO4 L 6 A_NoBlocking
-      TRO4 M -1
-      Stop
-    XDeath:
-      TROO N 5
-      TROO O 5 A_XScream
-      TROO P 5
-      TROO Q 5 A_NoBlocking
-      TROO RST 5
-      TROO U -1
-      Stop
-    Raise:
-      TRO4 ML 8
-      TRO4 KJI 6
-      Goto See
-    }
+	Health 65
+	Speed 2.33333333
+	States
+	{
+	Spawn:
+		TRO4 AB 10 A_Look
+		Loop
+	Missile:
+		TRO4 EF 8 A_FaceTarget
+		TNT1 A 0 A_Jump(128,2)
+		TRO4 G 6 A_CustomComboAttack("NewImpBall",32,3*random(1,8),"gauntimp/meleehit")
+		Goto See
+		TRO4 G 6 A_CustomComboAttack("LargeImpBall",32,3*random(1,8),"gauntimp/meleehit")
+		Goto See
+	}
 }
 
-ACTOR NewImpBall replaces DoomImpBall
+ACTOR NewImpBall : DoomImpBall replaces DoomImpBall
 {
 	DamageType Fire
-	RenderStyle Add
 	Alpha 0.9
-	Damage 3
 	Scale 0.75
 	SeeSound "psiamp/fireball"
 	DeathSound "psiamp/firehit"
@@ -175,134 +131,75 @@ ACTOR NewImpBall replaces DoomImpBall
 	Height 6
 	Speed 15
 	Decal DoomImpScorch
-	PROJECTILE
-	-STRIFEDAMAGE
 	-NOTELEPORT
 	States
 	{
 	Spawn:
-		BRB2 AAABBB 1 BRIGHT A_CustomMissile("FireSmokeTrail",0,0,0)
+		BRB2 AAABBB 1 BRIGHT A_SpawnItemEx("FireSmokeTrail")
 		Goto Spawn+1
 	Death:
 		BFS1 A 0 A_Scream
-  		BFS1 A 0 A_CustomMissile("FireBallFrags", 24 , 0, random(0, 360), 2, random(5, 45))
-  		BFS1 A 0 A_CustomMissile("FireBallFrags", 24 , 0, random(0, 360), 2, random(5, 45))
-  		BFS1 A 0 A_CustomMissile("FireBallFrags", 24 , 0, random(0, 360), 2, random(5, 45))
-  		BFS1 A 0 A_CustomMissile("FireBallFrags", 24 , 0, random(0, 360), 2, random(5, 45))
-  		BFS1 A 0 A_CustomMissile("FireBallFrags", 24 , 0, random(0, 360), 2, random(5, 45))
-  		BFS1 A 0 A_CustomMissile("FireBallFrags", 24 , 0, random(0, 360), 2, random(5, 45))
-  		BFS1 A 0 A_CustomMissile("FireBallFrags", 24 , 0, random(0, 360), 2, random(5, 45))
-  		BFS1 A 0 A_CustomMissile("FireBallFrags", 24 , 0, random(0, 360), 2, random(5, 45))
-  		BFS1 A 0 A_CustomMissile("FireBallFrags", 24 , 0, random(0, 360), 2, random(5, 45))
-  		BFS1 A 0 A_CustomMissile("FireBallFrags", 24 , 0, random(0, 360), 2, random(5, 45))
-  		BRB2 CDEFGHIJKLMNOP 1 BRIGHT
-  		Stop
+		BFS1 AAAAAAAAAA 0 A_CustomMissile("FireBallFrags", 24 , 0, random(0, 360), 2, random(5, 45))
+		BRB2 CDEFGHIJKLMNOP 1 BRIGHT
+		Stop
 	}
 }
 
 ACTOR FireBallFrags
 {
-	Health 4
-	radius 3
-	height 6
-	speed 5
-	Scale 0.5
+	Radius 3
+	Height 6
+	Speed 5
 	Mass 0
-	Damage 0
 	Scale 0.2
-	ReactionTime 1
-	DamageType Fire
-	PROJECTILE
-	+STRIFEDAMAGE
-	+doombounce
+	Projectile
 	+DONTSPLASH
 	-NOGRAVITY
+	BounceType Doom
 	RenderStyle Add
 	States
 	{
-    Spawn:
-      	FLM1 A 0 A_Jump(128,"Spawn2")
-		FLM1 A 0 A_Jump(128,"Spawn3")
-		FLM1 A 0 A_Jump(128,"Spawn4")
-		FLM1 A 0 A_Jump(128,"Spawn5")
-		FLM1 A 0 A_Jump(128,"Spawn6")
-		FLM1 ABCDEFGHIJKL 1 BRIGHT
-		Stop
-	Spawn2:
-		FLM2 ABCDEFGHIJKL 1 BRIGHT
-		Stop
-	Spawn3:
-		FLM3 ABCDEFGHIJKL 1 BRIGHT
-		Stop
-	Spawn4:
-		FLM4 ABCDEFGHIJKL 1 BRIGHT
-		Stop
-	Spawn5:
-		FLM5 ABCDEFGHIJKL 1 BRIGHT
-		Stop
-	Spawn6:
-		FLM6 ABCDEFGHIJKL 1 BRIGHT
+	Spawn:
+		FLM1 A 0 NODELAY A_Jump(128,"End")
+		FLM2 A 0 A_Jump(128,"End")
+		FLM3 A 0 A_Jump(128,"End")
+		FLM4 A 0 A_Jump(128,"End")
+		FLM5 A 0 A_Jump(128,"End")
+		FLM6 A 0 A_Jump(128,"End")
+	End:
+		"####" ABCDEFGHIJKL 1 BRIGHT
 		Stop
 	}
 }
 
-ACTOR FireSmokeTrail : PlasmaBall
+ACTOR FireSmokeTrail : FireBallFrags
 {
-    Scale 0.15
-	RenderStyle Add
-    Alpha 0.8
-    Damage 0
-    Speed 0
-    + NOCLIP
-    SeeSound ""
-    DeathSound ""
-    States
-    {
-    Spawn:
-      	FLM1 A 0 A_Jump(128,"Spawn2")
-		FLM1 A 0 A_Jump(128,"Spawn3")
-		FLM1 A 0 A_Jump(128,"Spawn4")
-		FLM1 A 0 A_Jump(128,"Spawn5")
-		FLM1 A 0 A_Jump(128,"Spawn6")
-		FLM1 ABCDEFGHIJKL 1 BRIGHT
-		Stop
-	Spawn2:
-		FLM2 ABCDEFGHIJKL 1 BRIGHT
-		Stop
-	Spawn3:
-		FLM3 ABCDEFGHIJKL 1 BRIGHT
-		Stop
-	Spawn4:
-		FLM4 ABCDEFGHIJKL 1 BRIGHT
-		Stop
-	Spawn5:
-		FLM5 ABCDEFGHIJKL 1 BRIGHT
-		Stop
-	Spawn6:
-		FLM6 ABCDEFGHIJKL 1 BRIGHT
-		Stop
-	}
+	+NOCLIP
+	+NOGRAVITY
+	-DONTSPLASH
+	BounceType None
+	Speed 0
+	Scale 0.15
+	Alpha 0.8
 }
 
-Actor SmallImpBall : NewImpBall
+ACTOR SmallImpBall : NewImpBall
 {
-    Radius 8
-    Height 6
-    Speed 18
-	FastSpeed 20
-    Damage 2
-    Scale .75
+	Radius 8
+	Height 6
+	Speed 18
+	Damage 2
+	Scale .75
 }
 
-Actor LargeImpBall : NewImpBall
+ACTOR LargeImpBall : NewImpBall
 {
-    Radius 6
-    Scale 1.75
-    Height 8
-    Speed 10
-    FastSpeed 20
-    Damage 4
-    Alpha 1
+	Radius 6
+	Scale 1.75
+	Height 8
+	Speed 10
+	Damage 4
+	Alpha 1
 }
 
 ACTOR ImpBallEffect
@@ -316,5 +213,18 @@ ACTOR ImpBallEffect
 	Spawn:
 		BAL1 CDE 2
 		Stop
+	}
+}
+
+ACTOR DeadDNImpVariant replaces DeadDoomImp
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_Jump(256,1,2,3)
+		TROO M -1
+		TRO3 M -1
+		TRO4 M -1
+        Stop
 	}
 }

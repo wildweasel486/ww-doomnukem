@@ -3,24 +3,23 @@
 //Sprites: Id Software
 //Sprite Edit: Eriance
 
-Actor LesserDemon : Demon replaces Demon
+ACTOR LesserDemon replaces Demon
 {
-	Health 200
-	PainChance 140
-	Speed 12
 	Radius 30
 	Height 56
-	Mass 650
 	Monster
-	+FloorClip
-	+LongMeleeRange
-	+DontHurtSpecies
+	+FLOORCLIP
+	Health 200
+	PainChance 140
+	Speed 6
+	Mass 650
+	MeleeThreshold 192
 	Obituary "%o was crunchy and tasted great with ketchup."
 	SeeSound "Monster/sg2sit"
 	AttackSound "Monster/sg2atk"
-	PainSound "demon/Pain"
-	DeathSound "demon/Death"
 	ActiveSound "demon/sg2act"
+	PainSound "demon/pain"
+	DeathSound "demon/death"
 	BloodColor "FC B6 B4"
 	BloodType "PinkSquirt"
 	States
@@ -29,7 +28,22 @@ Actor LesserDemon : Demon replaces Demon
 		SAR2 AB 10 A_Look
 		Loop
 	See:
-		SAR2 AABBCCDD 2 A_Chase
+		SAR2 A 1 A_Chase
+		SAR2 A 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		SAR2 A 1 A_Chase
+		SAR2 A 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		SAR2 B 1 A_Chase
+		SAR2 B 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		SAR2 B 1 A_Chase
+		SAR2 B 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		SAR2 C 1 A_Chase
+		SAR2 C 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		SAR2 C 1 A_Chase
+		SAR2 C 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		SAR2 D 1 A_Chase
+		SAR2 D 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		SAR2 D 1 A_Chase
+		SAR2 D 1 A_Chase("","",CHF_NOPLAYACTIVE)
 		Loop
 	Melee:
 		SAR2 EF 8 A_FaceTarget
@@ -57,5 +71,15 @@ Actor LesserDemon : Demon replaces Demon
 	Raise:
 		SAR2 NMLKJI 5
 		Goto See
+	}
+}
+
+ACTOR DeadLesserDemon replaces DeadDemon
+{
+	States
+	{
+	Spawn:
+		SAR2 N -1
+		Stop
 	}
 }

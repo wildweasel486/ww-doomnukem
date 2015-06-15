@@ -10,7 +10,6 @@ ACTOR DNWeapon : Weapon
 	Flash:
 		TNT1 A 2 A_Light2
 		TNT1 A 2 A_Light1
-		TNT1 A 2 A_Light0
 		Goto LightDone
 	}
 }
