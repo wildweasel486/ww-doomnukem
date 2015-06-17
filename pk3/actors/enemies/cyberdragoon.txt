@@ -17,11 +17,11 @@ ACTOR CyberDragoon : Cyberdemon replaces Cyberdemon
 		CYBR BB 1 A_Chase("","",CHF_NOPLAYACTIVE)
 		CYBR C 1 A_Metal
 		CYBR CC 1 A_Chase("","",CHF_NOPLAYACTIVE)
-		CYBR C 1 A_Metal
+		CYBR C 1 A_Chase
 		CYBR CC 1 A_Chase("","",CHF_NOPLAYACTIVE)
-		CYBR D 1 A_Metal
+		CYBR D 1 A_Chase
 		CYBR DD 1 A_Chase("","",CHF_NOPLAYACTIVE)
-		CYBR D 1 A_Metal
+		CYBR D 1 A_Chase
 		CYBR DD 1 A_Chase("","",CHF_NOPLAYACTIVE)
 		Loop
 	Missile:
