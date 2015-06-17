@@ -36,6 +36,9 @@ ACTOR CyberDragoon : Cyberdemon replaces Cyberdemon
 		Loop
 		CYBR E 1
 		Loop
+	Pain:
+		CYBR G 10 A_Pain
+		Goto See
 	Missile.Fire:
 		CYBR E 0 A_PlaySound("Weapons/DragoonRocket/Fire", CHAN_WEAPON,1.0,0,ATTN_NONE)
 		CYBR F 6 BRIGHT A_CustomMissile("DragoonRocket", 40, -8, 0, CMF_AIMDIRECTION)
