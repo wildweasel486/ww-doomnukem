@@ -5,7 +5,7 @@ ACTOR DNHaztroop replaces Arachnotron
 	Height 64
 	Radius 28
 	ActiveSound "zombieradio"
-	Speed 1.5
+	Speed 6
 	Monster
 	+FLOORCLIP
 	+BOSSDEATH
@@ -15,9 +15,14 @@ ACTOR DNHaztroop replaces Arachnotron
 	states
 	{
 	Spawn:
-		HAZM AB 10 A_Look
+		HAZM AB 10 A_LookEx(0,0,0,0,0,"SeeFirst")
 		Loop
+	SeeFirst:
+		HAZM A 4 A_Chase
+		HAZM A 0 A_SetSpeed(1.5)
+		Goto See+5
 	See:
+		HAZM A 0 A_SetSpeed(1.5)
 		HAZM A 1 A_Chase
 		HAZM AAA 1 A_Chase("","",CHF_NOPLAYACTIVE)
 		HAZM A 1 A_Chase

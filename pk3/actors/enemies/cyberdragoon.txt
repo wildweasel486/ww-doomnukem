@@ -2,11 +2,18 @@
 
 ACTOR CyberDragoon : Cyberdemon replaces Cyberdemon
 {
-	Speed 5.33333333
 	var int user_locktimer;
 	States
 	{
+	Spawn:
+		CYBR AB 10 A_LookEx(0,0,0,0,0,"SeeFirst")
+		Loop
+	SeeFirst:
+		CYBR A 3 A_Hoof
+		CYBR A 0 A_SetSpeed(16.0/3.0)
+		Goto See+4
 	See:
+		CYBR A 0 A_SetSpeed(16.0/3.0)
 		CYBR A 1 A_Hoof
 		CYBR AA 1 A_Chase("","",CHF_NOPLAYACTIVE)
  		CYBR A 1 A_Chase

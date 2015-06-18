@@ -9,7 +9,7 @@
 Actor Vore replaces Archvile
 {
 	Health 700
-	Speed 3.33333333
+	Speed 10
 	Height 56
 	Mass 1000
 	RadiusDamageFactor 0.5
@@ -25,9 +25,14 @@ Actor Vore replaces Archvile
 	States
 	{
 	Spawn:
-		VORE D 10 A_Look
+		VORE D 10 A_LookEx(0,0,0,0,0,"SeeFirst")
 		Loop
+	SeeFirst:
+		VORE A 3 A_Chase
+		VORE A 0 A_SetSpeed(10.0/3.0)
+		Goto See+4
 	See:
+		VORE A 0 A_SetSpeed(10.0/3.0)
 		VORE A 1 A_Chase
 		VORE AA 1 A_Chase("","",CHF_NOPLAYACTIVE)
 		VORE A 1 A_Chase
