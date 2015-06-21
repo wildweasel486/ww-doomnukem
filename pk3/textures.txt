@@ -258,7 +258,7 @@ Sprite DPSFF0, 320, 168
 
 Sprite HAZMN0, 49, 19
 {
-	Offset 24, 16
+	Offset 24, 15
 	Patch HAZMM0, 0, 0
 	Patch VOBTA0, 35, 5
 	{

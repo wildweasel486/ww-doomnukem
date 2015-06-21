@@ -2,7 +2,7 @@
 -Sprites by id software (recolored)
 -Sounds by IMX
 -DECORATE by IMX
- 
+
  Additional note - This monster, along with the Fiend, was done
  looking forward to a PC conversion of the mobile release of Doom RPG
  I took some liberties regarding the behaviour and strenght of the
@@ -15,75 +15,90 @@
 
 ACTOR RevGhoul replaces Revenant
 {
-  Health 300
-  Radius 20
-  Height 56
-  Mass 500
-  Speed 8
-  PainChance 100
-  Monster
-  MeleeThreshold 196
-  +MISSILEMORE 
-  +FLOORCLIP
-  SeeSound "RevGhoul/Sight"
-  PainSound "RevGhoul/pain"
-  DeathSound "RevGhoul/death"
-  ActiveSound "RevGhoul/active"
-  MeleeSound "RevGhoul/melee"
-  HitObituary "%o felt the power of the Ghoul's fist."
-  Obituary "%o couldn't evade a Ghoul's fireball."
-  States
-  {
-  Spawn:
-    GHUL AB 10 A_Look
-    Loop
-  See:
-    GHUL AABBCCDDEEFF 2 A_Chase
-    Loop
-  Melee:
-    GHUL G 1 A_FaceTarget
-    GHUL G 6 A_PlaySound ("RevGhoul/Swing")
-    GHUL H 6 A_FaceTarget
-    GHUL I 6 A_CustomMeleeAttack(random(1,10)*6,"skeleton/melee","none")
-    Goto See
-  Missile:
-    GHUL J 1 Bright A_FaceTarget
-    GHUL J 9 Bright A_FaceTarget
-    GHUL K 10 A_CustomMissile ("GhoulRocket",62,11)
-    GHUL K 10 A_FaceTarget
-    Goto See
-  Pain:
-    GHUL L 5
-    GHUL L 5 A_Pain
-    Goto See
-  Death:
-    GHUL LM 7
-    GHUL N 7 A_Scream
-    GHUL O 7 A_NoBlocking
-    GHUL P 7
-    GHUL Q -1
-    Stop
-  Raise:
-    GHUL Q 5
-    GHUL PONML 5
-    Goto See
-  }
+	Health 300
+	Height 56
+	Mass 500
+	Speed 8
+	PainChance 100
+	Monster
+	MeleeThreshold 196
+	+MISSILEMORE
+	+FLOORCLIP
+	SeeSound "RevGhoul/Sight"
+	PainSound "RevGhoul/pain"
+	DeathSound "RevGhoul/death"
+	ActiveSound "RevGhoul/active"
+	MeleeSound "RevGhoul/melee"
+	HitObituary "%o felt the power of the Ghoul's fist."
+	Obituary "%o couldn't evade a Ghoul's fireball."
+	States
+	{
+	Spawn:
+		GHUL AB 10 A_LookEx(0,0,0,0,0,"SeeFirst")
+		Loop
+	SeeFirst:
+		GHUL A 2 A_Chase
+		GHUL A 0 A_SetSpeed(4)
+		Goto See+3
+	See:
+		GHUL A 0 A_SetSpeed(4)
+		GHUL A 1 A_Chase
+		GHUL A 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		GHUL A 1 A_Chase
+		GHUL A 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		GHUL B 1 A_Chase
+		GHUL B 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		GHUL B 1 A_Chase
+		GHUL B 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		GHUL C 1 A_Chase
+		GHUL C 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		GHUL C 1 A_Chase
+		GHUL C 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		GHUL D 1 A_Chase
+		GHUL D 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		GHUL D 1 A_Chase
+		GHUL D 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		GHUL E 1 A_Chase
+		GHUL E 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		GHUL E 1 A_Chase
+		GHUL E 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		GHUL F 1 A_Chase
+		GHUL F 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		GHUL F 1 A_Chase
+		GHUL F 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		Loop
+	Melee:
+		GHUL G 1 A_FaceTarget
+		GHUL G 6 A_PlaySound ("RevGhoul/Swing")
+		GHUL H 6 A_FaceTarget
+		GHUL I 6 A_CustomMeleeAttack(random(1,10)*6,"skeleton/melee","")
+		Goto See
+	Missile:
+		GHUL J 10 Bright A_FaceTarget
+		GHUL K 10 A_CustomMissile ("GhoulRocket",62,11)
+		GHUL K 10 A_FaceTarget
+		Goto See
+	Pain:
+		GHUL L 5
+		GHUL L 5 A_Pain
+		Goto See
+	Death:
+		GHUL LM 7
+		GHUL N 7 A_Scream
+		GHUL O 7 A_NoBlocking
+		GHUL P 7
+		GHUL Q -1
+		Stop
+	Raise:
+		GHUL QPONML 5
+		Goto See
+	}
 }
-
 
 ACTOR GhoulRocket : RevenantTracer
 {
-	Radius 11
-	Height 8
-	Speed 10
 	FastSpeed 15
 	Damage 7
-	Projectile 
-	+SEEKERMISSILE 
-	+RANDOMIZE
-	SeeSound "skeleton/attack"
-	DeathSound "skeleton/tracex"
-	RenderStyle Add
 	States
 	{
 	Spawn:

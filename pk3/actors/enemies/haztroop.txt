@@ -6,19 +6,39 @@ ACTOR DNHaztroop replaces Arachnotron
 	Radius 28
 	ActiveSound "zombieradio"
 	Speed 6
-	MONSTER
-	+FloorClip
-	+BossDeath
-	+MissileMore
-	+MissileEvenMore
+	Monster
+	+FLOORCLIP
+	+BOSSDEATH
+	+MISSILEMORE
+	+MISSILEEVENMORE
 	Decal BulletChip
 	states
 	{
 	Spawn:
-		HAZM AB 10 A_Look
+		HAZM AB 10 A_LookEx(0,0,0,0,0,"SeeFirst")
 		Loop
+	SeeFirst:
+		HAZM A 4 A_Chase
+		HAZM A 0 A_SetSpeed(1.5)
+		Goto See+5
 	See:
-		HAZM AABBCCDD 4 A_Chase
+		HAZM A 0 A_SetSpeed(1.5)
+		HAZM A 1 A_Chase
+		HAZM AAA 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		HAZM A 1 A_Chase
+		HAZM AAA 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		HAZM B 1 A_Chase
+		HAZM BBB 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		HAZM B 1 A_Chase
+		HAZM BBB 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		HAZM C 1 A_Chase
+		HAZM CCC 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		HAZM C 1 A_Chase
+		HAZM CCC 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		HAZM D 1 A_Chase
+		HAZM DDD 1 A_Chase("","",CHF_NOPLAYACTIVE)
+		HAZM D 1 A_Chase
+		HAZM DDD 1 A_Chase("","",CHF_NOPLAYACTIVE)
 		Loop
 	Missile:
 		HAZM E 4 A_FaceTarget
@@ -39,34 +59,34 @@ ACTOR DNHaztroop replaces Arachnotron
 	Death:
         HAZM H 5 A_BossDeath
         HAZM I 5 A_Scream
-        HAZM J 5
-        HAZM JK 2
-        HAZM K 5 A_Fall
+        HAZM J 7
+        HAZM K 2
+        HAZM K 5 A_NoBlocking
 		HAZM L 5
         HAZM M 35
-		HAZM N 5 A_PlaySound("hazmat/beep", CHAN_BODY)
+		HAZM N 5 A_PlaySound("hazmat/beep")
 		HAZM M 30
-		HAZM N 5 A_PlaySound("hazmat/beep", CHAN_BODY)
+		HAZM N 5 A_PlaySound("hazmat/beep")
 		HAZM M 25
-		HAZM N 5 A_PlaySound("hazmat/beep", CHAN_BODY)
+		HAZM N 5 A_PlaySound("hazmat/beep")
 		HAZM M 20
-		HAZM N 5 A_PlaySound("hazmat/beep", CHAN_BODY)
+		HAZM N 5 A_PlaySound("hazmat/beep")
 		HAZM M 15
-		HAZM N 5 A_PlaySound("hazmat/beep", CHAN_BODY)
+		HAZM N 5 A_PlaySound("hazmat/beep")
 		HAZM M 10
-		HAZM N 5 A_PlaySound("hazmat/beep", CHAN_BODY)
+		HAZM N 5 A_PlaySound("hazmat/beep")
 		HAZM M 5
-		HAZM N 5 A_PlaySound("hazmat/beep", CHAN_BODY)
+		HAZM N 5 A_PlaySound("hazmat/beep")
 		HAZM M 4
-		HAZM N 4 A_PlaySound("hazmat/beep", CHAN_BODY)
+		HAZM N 4 A_PlaySound("hazmat/beep")
 		HAZM M 3
-		HAZM N 3 A_PlaySound("hazmat/beep", CHAN_BODY)
+		HAZM N 3 A_PlaySound("hazmat/beep")
 		HAZM M 2
-		HAZM N 2 A_PlaySound("hazmat/beep", CHAN_BODY)
+		HAZM N 2 A_PlaySound("hazmat/beep")
 		HAZM M 1
-		TNT1 A 0 A_PlaySound("hazmat/explode", CHAN_BODY)
+		TNT1 A 0 A_PlaySound("hazmat/explode")
 		TNT1 A 0 A_Explode(64,128)
-		TNT1 A 0 A_SpawnItemEx("DN_Blastage",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+		TNT1 A 0 A_SpawnItemEx("DN_Blastage")
         Stop
     }
 }
@@ -80,8 +100,7 @@ ACTOR HazmatPlasma
 	Projectile
 	+RANDOMIZE
 	RenderStyle Add
-	Alpha 1.0
-	Scale 0.25
+	Scale .25
 	SeeSound "Hazmat/Fire"
 	DeathSound "Hazmat/Hit"
 	Obituary "%o learned about the fourth state of matter."

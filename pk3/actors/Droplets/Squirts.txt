@@ -63,8 +63,7 @@ ACTOR BloodSquirt replaces Blood
 	}
 }
 
-ACTOR BloodSquirt2 : BloodSquirt replaces BloodSplatter
-{}
+ACTOR BloodSquirt2 : BloodSquirt replaces BloodSplatter{}
 
 ACTOR BlueSquirt : BloodSquirt
 {

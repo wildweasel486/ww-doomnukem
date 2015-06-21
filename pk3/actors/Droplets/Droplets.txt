@@ -18,35 +18,29 @@ ACTOR BloodDroplet
 	Gravity 1
 	MaxStepHeight 1
 	Speed 8
-	Scale 0.5
+	Scale .5
 	States
 	{
 	Spawn:
 		BLUD A 1 NoDelay ACS_NamedExecuteAlways("BloodAlpha")
-		TNT1 A 0 ACS_NamedExecuteAlways("BloodScale")
-		TNT1 A 0 A_JumpIf(waterlevel > 0, "Underwater")
-		goto Fall
+		BLUD A 0 ACS_NamedExecuteAlways("BloodScale")
 	Fall:
-		TNT1 A 0 A_JumpIf(z <= floorz, "Death")
-		BLUD ABCD 2 A_ScaleVelocity(0.95)
-		TNT1 A 0 A_JumpIf(waterlevel > 0, "Underwater")
+		"####" A 0 A_JumpIf(z <= floorz, "Death")
+		"####" A 0 A_JumpIf(waterlevel > 0, "Underwater")
+		"####" ABCD 2 A_ScaleVelocity(0.95)
 		Loop
 	Death:
-		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
-		TNT1 A 0 A_PlaySound("blood/drip", 0)
-		TNT1 A 0 A_SpawnItemEx("BloodDrop2",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
-		SPLT A 1 A_JumpIf(ceilingz - z < 8.0, "Ceil")
-		SPLT B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
-		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
-		SPLT CD 1
-		SPLT E 1 A_SetAngle(random(0.0,359.9))
-		SPLT F 1 A_SetScale(0.6,0.45)
-		SPLT F 1 A_SetScale(0.7,0.4)
-		SPLT F 1 A_SetScale(0.8,0.35)
-		SPLT F 1 A_SetScale(0.9,0.3)
-		SPLT F 1 A_SetScale(frandom(0.78,1.22),1.0)
-		TNT1 A 0 A_QueueCorpse
-		SPLT F -1
+		SPLT A 0 A_SpawnItemEx("BloodDrop2",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
+		"####" A 0 A_ChangeFlag("WINDTHRUST", false)
+		"####" A 0 A_PlaySound("blood/drip", 0)
+		"####" A 1 A_JumpIf(ceilingz - z < 8.0, "Ceil")
+		"####" B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
+		"####" A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
+		"####" CD 1
+		"####" E 1 A_SetAngle(random(0.0,359.9))
+		"####" FFFF 1 A_SetScale(scalex+.1,scaley-.05)
+		"####" F 1 A_SetScale(frandom(0.78,1.22),1.0)
+		"####" F -1 A_QueueCorpse
 		stop
 	Underwater:
 		TNT1 A 0 A_SpawnItemEx("UWBloodFog",0,0,0,velx/3,vely/3,velz/3)
@@ -55,15 +49,16 @@ ACTOR BloodDroplet
 		TNT1 A 0
 		Stop
 	Ceil:
-		TNT1 A 0 A_JumpIf(CallACS("SkyCheck")==0,1)
+		TNT1 A 0 A_JumpIf(CallACS("SkyCheck")==0,"CielTrue")
 		Stop
+	CielTrue:
 		TNT1 A 0 A_SpawnItemEx("CeilDripper",0,0,10.0)
 		Stop
 	Fog:
 		TNT1 A 0 A_SpawnItemEx("BloodFog")
 		Stop
 	Cleanup:
-		SPLT F 3 A_FadeOut(0.025)
+		"####" F 3 A_FadeOut(0.025)
 		Loop
 	}
 }
@@ -75,44 +70,20 @@ ACTOR BlueDroplet : BloodDroplet
 	{
 	Spawn:
 		BLUB A 1 NoDelay ACS_NamedExecuteAlways("BloodAlpha")
-		TNT1 A 0 ACS_NamedExecuteAlways("BloodScale")
+		BLUB A 0 ACS_NamedExecuteAlways("BloodScale")
 		goto Fall
-	Fall:
-		TNT1 A 0 A_JumpIf(z <= floorz, "Death")
-		TNT1 A 0 A_JumpIf(waterlevel > 0, "Underwater")
-		BLUB ABCD 2 A_ScaleVelocity(0.95)
-		Loop
 	Death:
-		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
-		TNT1 A 0 A_PlaySound("blood/drip", 0)
-		TNT1 A 0 A_SpawnItemEx("BlueDrop2",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
-		SPLB A 1 A_JumpIf(ceilingz - z < 8.0, "Ceil")
-		SPLB B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
-		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
-		SPLB CD 1
-		SPLB E 1 A_SetAngle(random(0.0,359.9))
-		SPLB F 1 A_SetScale(0.6,0.45)
-		SPLB F 1 A_SetScale(0.7,0.4)
-		SPLB F 1 A_SetScale(0.8,0.35)
-		SPLB F 1 A_SetScale(0.9,0.3)
-		SPLB F 1 A_SetScale(frandom(0.78,1.22),1.0)
-		TNT1 A 0 A_QueueCorpse
-		SPLB F -1
-		stop
+		SPLB A 0 A_SpawnItemEx("BlueDrop2",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
+		Goto Super::Death+1
 	Underwater:
 		TNT1 A 0 A_SpawnItemEx("UWBlueFog",0,0,0,velx/3,vely/3,velz/3)
 		Stop
-	Ceil:
-		TNT1 A 0 A_JumpIf(CallACS("SkyCheck")==0,1)
-		Stop
+	CielTrue:
 		TNT1 A 0 A_SpawnItemEx("BlueDripper",0,0,10.0)
 		Stop
 	Fog:
 		TNT1 A 0 A_SpawnItemEx("BlueBFog")
 		Stop
-	Cleanup:
-		SPLB F 3 A_FadeOut(0.025)
-		Loop
 	}
 }
 
@@ -123,44 +94,20 @@ ACTOR GreenDroplet : BloodDroplet
 	{
 	Spawn:
 		BLUG A 1 NoDelay ACS_NamedExecuteAlways("BloodAlpha")
-		TNT1 A 0 ACS_NamedExecuteAlways("BloodScale")
+		BLUG A 0 ACS_NamedExecuteAlways("BloodScale")
 		goto Fall
-	Fall:
-		TNT1 A 0 A_JumpIf(z <= floorz, "Death")
-		TNT1 A 0 A_JumpIf(waterlevel > 0, "Underwater")
-		BLUG ABCD 2 A_ScaleVelocity(0.95)
-		Loop
 	Death:
-		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
-		TNT1 A 0 A_PlaySound("blood/drip", 0)
-		TNT1 A 0 A_SpawnItemEx("GreenDrop2",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
-		SPLG A 1 A_JumpIf(ceilingz - z < 8.0, "Ceil")
-		SPLG B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
-		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
-		SPLG CD 1
-		SPLG E 1 A_SetAngle(random(0.0,359.9))
-		SPLG F 1 A_SetScale(0.6,0.45)
-		SPLG F 1 A_SetScale(0.7,0.4)
-		SPLG F 1 A_SetScale(0.8,0.35)
-		SPLG F 1 A_SetScale(0.9,0.3)
-		SPLG F 1 A_SetScale(frandom(0.78,1.22),1.0)
-		TNT1 A 0 A_QueueCorpse
-		SPLG F -1
-		stop
+		SPLG A 0 A_SpawnItemEx("GreenDrop2",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
+		Goto Super::Death+1
 	Underwater:
 		TNT1 A 0 A_SpawnItemEx("UWGreenFog",0,0,0,velx/3,vely/3,velz/3)
 		Stop
-	Ceil:
-		TNT1 A 0 A_JumpIf(CallACS("SkyCheck")==0,1)
-		Stop
+	CielTrue:
 		TNT1 A 0 A_SpawnItemEx("GreenDripper",0,0,10.0)
 		Stop
 	Fog:
 		TNT1 A 0 A_SpawnItemEx("GreenBFog")
 		Stop
-	Cleanup:
-		SPLG F 3 A_FadeOut(0.025)
-		Loop
 	}
 }
 
@@ -171,44 +118,20 @@ ACTOR PinkDroplet : BloodDroplet
 	{
 	Spawn:
 		BLUP A 1 NoDelay ACS_NamedExecuteAlways("BloodAlpha")
-		TNT1 A 0 ACS_NamedExecuteAlways("BloodScale")
+		BLUP A 0 ACS_NamedExecuteAlways("BloodScale")
 		goto Fall
-	Fall:
-		TNT1 A 0 A_JumpIf(z <= floorz, "Death")
-		TNT1 A 0 A_JumpIf(waterlevel > 0, "Underwater")
-		BLUP ABCD 2 A_ScaleVelocity(0.95)
-		Loop
 	Death:
-		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
-		TNT1 A 0 A_PlaySound("blood/drip", 0)
-		TNT1 A 0 A_SpawnItemEx("PinkDrop2",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
-		SPLP A 1 A_JumpIf(ceilingz - z < 8.0, "Ceil")
-		SPLP B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
-		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
-		SPLP CD 1
-		SPLP E 1 A_SetAngle(random(0.0,359.9))
-		SPLP F 1 A_SetScale(0.6,0.45)
-		SPLP F 1 A_SetScale(0.7,0.4)
-		SPLP F 1 A_SetScale(0.8,0.35)
-		SPLP F 1 A_SetScale(0.9,0.3)
-		SPLP F 1 A_SetScale(frandom(0.78,1.22),1.0)
-		TNT1 A 0 A_QueueCorpse
-		SPLP F -1
-		stop
+		SPLP A 0 A_SpawnItemEx("PinkDrop2",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
+		Goto Super::Death+1
 	Underwater:
 		TNT1 A 0 A_SpawnItemEx("UWPinkFog",0,0,0,velx/3,vely/3,velz/3)
 		Stop
-	Ceil:
-		TNT1 A 0 A_JumpIf(CallACS("SkyCheck")==0,1)
-		Stop
+	CielTrue:
 		TNT1 A 0 A_SpawnItemEx("GreenDripper",0,0,10.0)
 		Stop
 	Fog:
 		TNT1 A 0 A_SpawnItemEx("GreenBFog")
 		Stop
-	Cleanup:
-		SPLP F 3 A_FadeOut(0.025)
-		Loop
 	}
 }
 
@@ -217,21 +140,8 @@ ACTOR DecoDroplet : BloodDroplet
 	States
 	{
 	Death:
-		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
-		TNT1 A 0 A_PlaySound("blood/drip", 0)
-		TNT1 A 0 A_SpawnItemEx("DecoDrop2",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
-		SPLT A 1
-		SPLT B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
-		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
-		SPLT CD 1
-		SPLT E 1 A_SetAngle(random(0.0,359.9))
-		SPLT F 1 A_SetScale(0.6,0.45)
-		SPLT F 1 A_SetScale(0.7,0.4)
-		SPLT F 1 A_SetScale(0.8,0.35)
-		SPLT F 1 A_SetScale(0.9,0.3)
-		SPLT F 1 A_SetScale(frandom(0.78,1.22),1.0)
-		SPLT F random(35,175)
-		goto Cleanup
+		SPLT A 0 A_SpawnItemEx("DecoDrop2",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
+		Goto Super::Death+1
 	Fog:
 		TNT1 A 0 A_SpawnItemEx("DecoFog")
 		Stop
@@ -243,18 +153,15 @@ ACTOR BlueDecoDroplet : BlueDroplet
 	States
 	{
 	Death:
+		SPLB A 0 A_SpawnItemEx("BlueDecoDrop2",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
 		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
 		TNT1 A 0 A_PlaySound("blood/drip", 0)
-		TNT1 A 0 A_SpawnItemEx("BlueDecoDrop2",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
 		SPLB A 1
 		SPLB B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
 		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
 		SPLB CD 1
 		SPLB E 1 A_SetAngle(random(0.0,359.9))
-		SPLB F 1 A_SetScale(0.6,0.45)
-		SPLB F 1 A_SetScale(0.7,0.4)
-		SPLB F 1 A_SetScale(0.8,0.35)
-		SPLB F 1 A_SetScale(0.9,0.3)
+		SPLB FFFF 1 A_SetScale(scalex+.1,scaley-.05)
 		SPLB F 1 A_SetScale(frandom(0.78,1.22),1.0)
 		SPLB F random(35,175)
 		goto Cleanup
@@ -269,18 +176,15 @@ ACTOR GreenDecoDroplet : GreenDroplet
 	States
 	{
 	Death:
+		TNT1 A 0 A_SpawnItemEx("GreenDecoDrop2",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
 		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
 		TNT1 A 0 A_PlaySound("blood/drip", 0)
-		TNT1 A 0 A_SpawnItemEx("GreenDecoDrop2",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
 		SPLG A 1
 		SPLG B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
 		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
 		SPLG CD 1
 		SPLG E 1 A_SetAngle(random(0.0,359.9))
-		SPLG F 1 A_SetScale(0.6,0.45)
-		SPLG F 1 A_SetScale(0.7,0.4)
-		SPLG F 1 A_SetScale(0.8,0.35)
-		SPLG F 1 A_SetScale(0.9,0.3)
+		SPLG FFFF 1 A_SetScale(scalex+.1,scaley-.05)
 		SPLG F 1 A_SetScale(frandom(0.78,1.22),1.0)
 		SPLG F random(35,175)
 		goto Cleanup
@@ -295,18 +199,15 @@ ACTOR PinkDecoDroplet : PinkDroplet
 	States
 	{
 	Death:
+		TNT1 A 0 A_SpawnItemEx("PinkDecoDrop2",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
 		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
 		TNT1 A 0 A_PlaySound("blood/drip", 0)
-		TNT1 A 0 A_SpawnItemEx("PinkDecoDrop2",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
 		SPLP A 1
 		SPLP B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
 		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
 		SPLP CD 1
 		SPLP E 1 A_SetAngle(random(0.0,359.9))
-		SPLP F 1 A_SetScale(0.6,0.45)
-		SPLP F 1 A_SetScale(0.7,0.4)
-		SPLP F 1 A_SetScale(0.8,0.35)
-		SPLP F 1 A_SetScale(0.9,0.3)
+		SPLP FFFF 1 A_SetScale(scalex+.1,scaley-.05)
 		SPLP F 1 A_SetScale(frandom(0.78,1.22),1.0)
 		SPLP F random(35,175)
 		goto Cleanup
@@ -328,12 +229,12 @@ ACTOR BloodDrop2 : BloodDroplet
 	{
 	Spawn:
 		BLUD A 1 NoDelay ACS_NamedExecuteAlways("BloodAlpha")
-		TNT1 A 0 ACS_NamedExecuteAlways("BloodScale")
+		BLUD A 0 ACS_NamedExecuteAlways("BloodScale")
 		goto Fall
 	Death:
+		TNT1 A 0 A_SpawnItemEx("BloodDrop3",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
 		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
 		TNT1 A 0 A_PlaySound("blood/drip", 0, 0.67)
-		TNT1 A 0 A_SpawnItemEx("BloodDrop3",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
 		SPLT A 1 A_JumpIf(ceilingz - z < 6.0, "Ceil")
 		SPLT B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
 		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
@@ -342,17 +243,14 @@ ACTOR BloodDrop2 : BloodDroplet
 		SPLT F 1 A_SetScale(0.39,0.30)
 		SPLT F 1 A_SetScale(0.46,0.27)
 		SPLT F 1 A_SetScale(frandom(0.26,0.78),0.52)
-		TNT1 A 0 A_QueueCorpse
-		SPLT F -1
+		SPLT F -1 A_QueueCorpse
 		stop
 	Underwater:
 		TNT1 A 0 A_Jump(128,1)
 		Stop
 		TNT1 A 0 A_SpawnItemEx("UWBloodFog",0,0,0,velx/3,vely/3,velz/3)
 		Stop
-	Ceil:
-		TNT1 A 0 A_JumpIf(CallACS("SkyCheck")==0,1)
-		Stop
+	CielTrue:
 		TNT1 A 0 A_SpawnItemEx("CeilDrip2",0,0,10.0)
 		Stop
 	Fog:
@@ -373,12 +271,12 @@ ACTOR BlueDrop2 : BlueDroplet
 	{
 	Spawn:
 		BLUB A 1 NoDelay ACS_NamedExecuteAlways("BloodAlpha")
-		TNT1 A 0 ACS_NamedExecuteAlways("BloodScale")
+		BLUB A 0 ACS_NamedExecuteAlways("BloodScale")
 		goto Fall
 	Death:
+		TNT1 A 0 A_SpawnItemEx("BlueDrop3",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
 		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
 		TNT1 A 0 A_PlaySound("blood/drip", 0, 0.67)
-		TNT1 A 0 A_SpawnItemEx("BlueDrop3",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
 		SPLB A 1 A_JumpIf(ceilingz - z < 6.0, "Ceil")
 		SPLB B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
 		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
@@ -387,17 +285,14 @@ ACTOR BlueDrop2 : BlueDroplet
 		SPLB F 1 A_SetScale(0.39,0.30)
 		SPLB F 1 A_SetScale(0.46,0.27)
 		SPLB F 1 A_SetScale(frandom(0.26,0.78),0.52)
-		TNT1 A 0 A_QueueCorpse
-		SPLB F -1
+		SPLB F -1 A_QueueCorpse
 		stop
 	Underwater:
 		TNT1 A 0 A_Jump(128,1)
 		Stop
 		TNT1 A 0 A_SpawnItemEx("UWBlueFog",0,0,0,velx/3,vely/3,velz/3)
 		Stop
-	Ceil:
-		TNT1 A 0 A_JumpIf(CallACS("SkyCheck")==0,1)
-		Stop
+	CielTrue:
 		TNT1 A 0 A_SpawnItemEx("BlueDrip2",0,0,10.0)
 		Stop
 	Fog:
@@ -418,12 +313,12 @@ ACTOR GreenDrop2 : GreenDroplet
 	{
 	Spawn:
 		BLUG A 1 NoDelay ACS_NamedExecuteAlways("BloodAlpha")
-		TNT1 A 0 ACS_NamedExecuteAlways("BloodScale")
+		BLUG A 0 ACS_NamedExecuteAlways("BloodScale")
 		goto Fall
 	Death:
+		TNT1 A 0 A_SpawnItemEx("GreenDrop3",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
 		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
 		TNT1 A 0 A_PlaySound("blood/drip", 0, 0.67)
-		TNT1 A 0 A_SpawnItemEx("GreenDrop3",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
 		SPLG A 1 A_JumpIf(ceilingz - z < 6.0, "Ceil")
 		SPLG B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
 		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
@@ -432,17 +327,14 @@ ACTOR GreenDrop2 : GreenDroplet
 		SPLG F 1 A_SetScale(0.39,0.30)
 		SPLG F 1 A_SetScale(0.46,0.27)
 		SPLG F 1 A_SetScale(frandom(0.26,0.78),0.52)
-		TNT1 A 0 A_QueueCorpse
-		SPLG F -1
+		SPLG F -1 A_QueueCorpse
 		stop
 	Underwater:
 		TNT1 A 0 A_Jump(128,1)
 		Stop
 		TNT1 A 0 A_SpawnItemEx("UWGreenFog",0,0,0,velx/3,vely/3,velz/3)
 		Stop
-	Ceil:
-		TNT1 A 0 A_JumpIf(CallACS("SkyCheck")==0,1)
-		Stop
+	CielTrue:
 		TNT1 A 0 A_SpawnItemEx("GreenDrip2",0,0,10.0)
 		Stop
 	Fog:
@@ -463,12 +355,12 @@ ACTOR PinkDrop2 : PinkDroplet
 	{
 	Spawn:
 		BLUP A 1 NoDelay ACS_NamedExecuteAlways("BloodAlpha")
-		TNT1 A 0 ACS_NamedExecuteAlways("BloodScale")
+		BLUP A 0 ACS_NamedExecuteAlways("BloodScale")
 		goto Fall
 	Death:
+		TNT1 A 0 A_SpawnItemEx("PinkDrop3",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
 		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
 		TNT1 A 0 A_PlaySound("blood/drip", 0, 0.67)
-		TNT1 A 0 A_SpawnItemEx("PinkDrop3",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
 		SPLP A 1 A_JumpIf(ceilingz - z < 6.0, "Ceil")
 		SPLP B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
 		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
@@ -477,17 +369,14 @@ ACTOR PinkDrop2 : PinkDroplet
 		SPLP F 1 A_SetScale(0.39,0.30)
 		SPLP F 1 A_SetScale(0.46,0.27)
 		SPLP F 1 A_SetScale(frandom(0.26,0.78),0.52)
-		TNT1 A 0 A_QueueCorpse
-		SPLP F -1
+		SPLP F -1 A_QueueCorpse
 		stop
 	Underwater:
 		TNT1 A 0 A_Jump(128,1)
 		Stop
 		TNT1 A 0 A_SpawnItemEx("UWPinkFog",0,0,0,velx/3,vely/3,velz/3)
 		Stop
-	Ceil:
-		TNT1 A 0 A_JumpIf(CallACS("SkyCheck")==0,1)
-		Stop
+	CielTrue:
 		TNT1 A 0 A_SpawnItemEx("PinkDrip2",0,0,10.0)
 		Stop
 	Fog:
@@ -502,10 +391,9 @@ ACTOR DecoDrop2 : BloodDrop2
 	States
 	{
 	Death:
-		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
-		TNT1 A 0 A_PlaySound("blood/drip", 0, 0.67)
 		TNT1 A 0 A_SpawnItemEx("DecoDrop3",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
-		SPLT A 1
+		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
+		SPLT A 1 A_PlaySound("blood/drip", 0, 0.67)
 		SPLT B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
 		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
 		SPLT CD 1
@@ -527,10 +415,9 @@ ACTOR BlueDecoDrop2 : BlueDrop2
 	States
 	{
 	Death:
-		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
-		TNT1 A 0 A_PlaySound("blood/drip", 0, 0.67)
 		TNT1 A 0 A_SpawnItemEx("BlueDecoDrop3",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
-		SPLB A 1
+		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
+		SPLB A 1 A_PlaySound("blood/drip", 0, 0.67)
 		SPLB B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
 		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
 		SPLB CD 1
@@ -552,10 +439,9 @@ ACTOR GreenDecoDrop2 : GreenDrop2
 	States
 	{
 	Death:
-		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
-		TNT1 A 0 A_PlaySound("blood/drip", 0, 0.67)
 		TNT1 A 0 A_SpawnItemEx("GreenDecoDrop3",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
-		SPLG A 1
+		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
+		SPLG A 1 A_PlaySound("blood/drip", 0, 0.67)
 		SPLG B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
 		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
 		SPLG CD 1
@@ -577,10 +463,9 @@ ACTOR PinkDecoDrop2 : PinkDrop2
 	States
 	{
 	Death:
-		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
-		TNT1 A 0 A_PlaySound("blood/drip", 0, 0.67)
 		TNT1 A 0 A_SpawnItemEx("PinkDecoDrop3",0,0,4,frandom(-2.0,2.0),frandom(-2.0,2.0),frandom(0.0,2.0))
-		SPLP A 1
+		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
+		SPLP A 1 A_PlaySound("blood/drip", 0, 0.67)
 		SPLP B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
 		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
 		SPLP CD 1
@@ -608,7 +493,7 @@ ACTOR BloodDrop3 : BloodDroplet
 	{
 	Spawn:
 		BLUD A 1 NoDelay ACS_NamedExecuteAlways("BloodAlpha")
-		TNT1 A 0 ACS_NamedExecuteAlways("BloodScale")
+		BLUD A 0 ACS_NamedExecuteAlways("BloodScale")
 		goto Fall
 	Death:
 		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
@@ -619,15 +504,12 @@ ACTOR BloodDrop3 : BloodDroplet
 		SPLT CD 1
 		SPLT E 1 A_SetAngle(random(0.0,359.9))
 		SPLT F 1 A_SetScale(frandom(0.09,0.26),0.175)
-		TNT1 A 0 A_QueueCorpse
-		SPLT F -1
+		SPLT F -1 A_QueueCorpse
 		stop
 	Underwater:
 		TNT1 A 0
 		Stop
-	Ceil:
-		TNT1 A 0 A_JumpIf(CallACS("SkyCheck")==0,1)
-		Stop
+	CielTrue:
 		TNT1 A 0 A_SpawnItemEx("CeilDrip3",0,0,10.0)
 		Stop
 	Fog:
@@ -648,7 +530,7 @@ ACTOR BlueDrop3 : BlueDroplet
 	{
 	Spawn:
 		BLUB A 1 NoDelay ACS_NamedExecuteAlways("BloodAlpha")
-		TNT1 A 0 ACS_NamedExecuteAlways("BloodScale")
+		BLUB A 0 ACS_NamedExecuteAlways("BloodScale")
 		goto Fall
 	Death:
 		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
@@ -659,15 +541,12 @@ ACTOR BlueDrop3 : BlueDroplet
 		SPLB CD 1
 		SPLB E 1 A_SetAngle(random(0.0,359.9))
 		SPLB F 1 A_SetScale(frandom(0.09,0.26),0.175)
-		TNT1 A 0 A_QueueCorpse
-		SPLB F -1
+		SPLB F -1 A_QueueCorpse
 		stop
 	Underwater:
 		TNT1 A 0
 		Stop
-	Ceil:
-		TNT1 A 0 A_JumpIf(CallACS("SkyCheck")==0,1)
-		Stop
+	CielTrue:
 		TNT1 A 0 A_SpawnItemEx("BlueDrip3",0,0,10.0)
 		Stop
 	Fog:
@@ -688,7 +567,7 @@ ACTOR GreenDrop3 : GreenDroplet
 	{
 	Spawn:
 		BLUG A 1 NoDelay ACS_NamedExecuteAlways("BloodAlpha")
-		TNT1 A 0 ACS_NamedExecuteAlways("BloodScale")
+		BLUG A 0 ACS_NamedExecuteAlways("BloodScale")
 		goto Fall
 	Death:
 		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
@@ -696,18 +575,14 @@ ACTOR GreenDrop3 : GreenDroplet
 		SPLG A 1 A_JumpIf(ceilingz - z < 4.0, "Ceil")
 		SPLG B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
 		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
-		SPLG CD 1
-		SPLG E 1
+		SPLG CDE 1
 		SPLG F 1 A_SetScale(frandom(0.09,0.26),0.175)
-		TNT1 A 0 A_QueueCorpse
-		SPLG F -1
+		SPLG F -1 A_QueueCorpse
 		stop
 	Underwater:
 		TNT1 A 0
 		Stop
-	Ceil:
-		TNT1 A 0 A_JumpIf(CallACS("SkyCheck")==0,1)
-		Stop
+	CielTrue:
 		TNT1 A 0 A_SpawnItemEx("GreenDrip3",0,0,10.0)
 		Stop
 	Fog:
@@ -728,7 +603,7 @@ ACTOR PinkDrop3 : PinkDroplet
 	{
 	Spawn:
 		BLUP A 1 NoDelay ACS_NamedExecuteAlways("BloodAlpha")
-		TNT1 A 0 ACS_NamedExecuteAlways("BloodScale")
+		BLUP A 0 ACS_NamedExecuteAlways("BloodScale")
 		goto Fall
 	Death:
 		TNT1 A 0 A_ChangeFlag("WINDTHRUST", false)
@@ -736,18 +611,14 @@ ACTOR PinkDrop3 : PinkDroplet
 		SPLP A 1 A_JumpIf(ceilingz - z < 4.0, "Ceil")
 		SPLP B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
 		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
-		SPLP CD 1
-		SPLP E 1
+		SPLP CDE 1
 		SPLP F 1 A_SetScale(frandom(0.09,0.26),0.175)
-		TNT1 A 0 A_QueueCorpse
-		SPLP F -1
+		SPLP F -1 A_QueueCorpse
 		stop
 	Underwater:
 		TNT1 A 0
 		Stop
-	Ceil:
-		TNT1 A 0 A_JumpIf(CallACS("SkyCheck")==0,1)
-		Stop
+	CielTrue:
 		TNT1 A 0 A_SpawnItemEx("PinkDrip3",0,0,10.0)
 		Stop
 	Fog:
@@ -767,8 +638,7 @@ ACTOR DecoDrop3 : BloodDrop3
 		SPLT A 1
 		SPLT B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
 		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
-		SPLT CD 1
-		SPLT E 1
+		SPLT CDE 1
 		SPLT F 1 A_SetScale(frandom(0.09,0.26),0.175)
 		SPLT F random(35,175)
 		goto Cleanup
@@ -789,8 +659,7 @@ ACTOR BlueDecoDrop3 : BlueDrop3
 		SPLB A 1
 		SPLB B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
 		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
-		SPLB CD 1
-		SPLB E 1
+		SPLB CDE 1
 		SPLB F 1 A_SetScale(frandom(0.09,0.26),0.175)
 		SPLB F random(35,175)
 		goto Cleanup
@@ -811,8 +680,7 @@ ACTOR GreenDecoDrop3 : GreenDrop3
 		SPLG A 1
 		SPLG B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
 		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
-		SPLG CD 1
-		SPLG E 1
+		SPLG CDE 1
 		SPLG F 1 A_SetScale(frandom(0.09,0.26),0.175)
 		SPLG F random(35,175)
 		goto Cleanup
@@ -833,8 +701,7 @@ ACTOR PinkDecoDrop3 : PinkDrop3
 		SPLP A 1
 		SPLP B 1 A_JumpIf(z > floorz + 8.0, "Goodbye")
 		TNT1 A 0 A_JumpIf(CallACS("LiquidCheck"),"Fog")
-		SPLP CD 1
-		SPLP E 1
+		SPLP CDE 1
 		SPLP F 1 A_SetScale(frandom(0.09,0.26),0.175)
 		SPLP F random(35,175)
 		goto Cleanup
