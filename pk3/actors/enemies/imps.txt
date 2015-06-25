@@ -53,7 +53,7 @@ ACTOR DNImpVariant1
 	Pain:
 		"####" H 2
 		"####" H 2 A_Pain
-		Goto See
+		"####" H 0 A_Jump(256,"See")
 	Death:
 		TRO5 I 8
 		TRO5 J 8 A_Scream
@@ -73,7 +73,7 @@ ACTOR DNImpVariant1
 		TROO M 8
 		TRO5 L 8
 		TRO5 KJI 6
-		Goto See
+		"####" A 0 A_Jump(256,"See")
 	}
 }
 
@@ -124,7 +124,7 @@ ACTOR DNImpVariant2 : DNImpVariant1
 	Raise:
 		"####" ML 8
 		"####" KJI 6
-		Goto See
+		"####" A 0 A_Jump(256,"See")
 	}
 }
 
