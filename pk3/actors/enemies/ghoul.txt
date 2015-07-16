@@ -18,7 +18,7 @@ ACTOR RevGhoul replaces Revenant
 	Health 300
 	Height 56
 	Mass 500
-	Speed 8
+	Speed 4
 	PainChance 100
 	Monster
 	MeleeThreshold 196
@@ -34,14 +34,9 @@ ACTOR RevGhoul replaces Revenant
 	States
 	{
 	Spawn:
-		GHUL AB 10 A_LookEx(0,0,0,0,0,"SeeFirst")
+		GHUL AB 10 A_Look
 		Loop
-	SeeFirst:
-		GHUL A 2 A_Chase
-		GHUL A 0 A_SetSpeed(4)
-		Goto See+3
 	See:
-		GHUL A 0 A_SetSpeed(4)
 		GHUL A 1 A_Chase
 		GHUL A 1 A_Chase("","",CHF_NOPLAYACTIVE)
 		GHUL A 1 A_Chase

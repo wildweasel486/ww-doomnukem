@@ -11,7 +11,7 @@ Actor DNDaedabus replaces Fatso
 	Radius 48
 	Height 64
 	Mass 1500
-	Speed 8
+	Speed 2
 	PainChance 80
 	BloodColor "73 00 00"
 	SeeSound "Daedabus/Sight"
@@ -25,14 +25,9 @@ Actor DNDaedabus replaces Fatso
 	States
 	{
 	Spawn:
-		DAED AB 15 A_LookEx(0,0,0,0,0,"SeeFirst")
+		DAED AB 15 A_Look
 		Loop
-	SeeFirst:
-		DAED A 4 A_Chase
-		DAED A 0 A_SetSpeed(2)
-		Goto See+5
 	See:
-		DAED A 0 A_SetSpeed(2)
 		DAED A 1 A_Chase
 		DAED AAA 1 A_Chase("","",CHF_NOPLAYACTIVE)
 		DAED A 1 A_Chase
