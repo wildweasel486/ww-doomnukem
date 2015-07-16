@@ -9,7 +9,7 @@ ACTOR MechDemon replaces Spectre
 {
 	//$Category Monsters
 	Health 300
-	Speed 12
+	Speed 6
 	Height 56
 	Radius 30
 	Mass 400
@@ -25,16 +25,9 @@ ACTOR MechDemon replaces Spectre
 	States
 	{
 	Spawn:
-		SRG2 AB 10 A_LookEx(0,0,0,0,0,"SeeFirst")
+		SRG2 AB 10 A_Look
 		Loop
-	SeeFirst:
-		SRG2 A 0 A_SpawnItemEx("BloodDemonStepPuff")
-		SRG2 A 0 A_PlaySound("blooddemon/walk")
-		SRG2 A 2 A_Chase
-		DAED A 0 A_SetSpeed(6)
-		Goto See+5
 	See:
-		DAED A 0 A_SetSpeed(6)
 		SRG2 A 0 A_SpawnItemEx("BloodDemonStepPuff")
 		SRG2 A 0 A_PlaySound("blooddemon/walk")
 		SRG2 A 1 A_Chase

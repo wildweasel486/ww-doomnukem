@@ -9,7 +9,7 @@ ACTOR DNZombieHenchman replaces Zombieman
 	PainSound "weakzombie/pain"
 	DeathSound "weakzombie/death"
 	ActiveSound "zombieradio"
-	Speed 6
+	Speed 1.5
 	MONSTER
 	+FloorClip
 	Decal BulletChip
@@ -20,14 +20,9 @@ ACTOR DNZombieHenchman replaces Zombieman
 	states
 	{
 	Spawn:
-		TIPZ A 10 A_LookEx(0,0,0,0,0,"SeeFirst")
+		TIPZ A 10 A_Look
 		Loop
-	SeeFirst:
-		THPZ A 4 A_Chase
-		THPZ A 0 A_SetSpeed(1.5)
-		Goto See+5
 	See:
-		THPZ A 0 A_SetSpeed(1.5)
 		THPZ A 1 A_Chase
 		THPZ AAA 1 A_Chase("","",CHF_NOPLAYACTIVE)
 		THPZ A 1 A_Chase
@@ -140,7 +135,7 @@ ACTOR DNSawedOffZombie replaces ShotgunGuy
 	health 30
 	height 56
 	mass 100
-	speed 8
+	speed 2.66666667
 	painchance 255
 	SeeSound "averagezombie/sight"
 	AttackSound "Weapons/Sawedoff/Fire"
@@ -154,14 +149,9 @@ ACTOR DNSawedOffZombie replaces ShotgunGuy
 	states
 	{
 	Spawn:
-		ZSDO AB 10 A_LookEx(0,0,0,0,0,"SeeFirst")
+		ZSDO AB 10 A_Look
 		loop
-	SeeFirst:
-		ZSDO A 3 A_Chase
-		ZSDO A 0 A_SetSpeed(8.0/3.0)
-		Goto See+4
 	See:
-		ZSDO A 0 A_SetSpeed(8.0/3.0)
 		ZSDO A 1 A_Chase
 		ZSDO AA 1 A_Chase("","",CHF_NOPLAYACTIVE)
 		ZSDO A 1 A_Chase
@@ -221,7 +211,7 @@ actor DNRifleman replaces ChaingunGuy
 	health 70
 	height 56
 	mass 100
-	speed 8
+	speed 2
 	painchance 64
 	decal bulletchip
 	SeeSound "strongzombie/sight"
@@ -235,14 +225,9 @@ actor DNRifleman replaces ChaingunGuy
 	states
 	{
 	Spawn:
-		ZSEC E 1 A_LookEx(0,0,0,0,0,"SeeFirst")
+		ZSEC E 1 A_Look
 		loop
-	SeeFirst:
-		ZSEC A 4 A_Chase
-		ZSEC A 0 A_SetSpeed(2)
-		Goto See+5
 	See:
-		ZSEC A 0 A_SetSpeed(2)
 		ZSEC A 1 A_Chase
 		ZSEC AAA 1 A_Chase("","",CHF_NOPLAYACTIVE)
 		ZSEC A 1 A_Chase

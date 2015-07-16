@@ -7,7 +7,7 @@ ACTOR HZBaronOfHell replaces BaronOfHell
 	Radius 24
 	Height 64
 	Mass 1000
-	Speed 8
+	Speed 2.66666667
 	PainChance 50
 	Monster
 	+FLOORCLIP
@@ -23,14 +23,9 @@ ACTOR HZBaronOfHell replaces BaronOfHell
 	States
 	{
 	Spawn:
-		NBRN AB 10 A_LookEx(0,0,0,0,0,"SeeFirst")
+		NBRN AB 10 A_Look
 		Loop
-	SeeFirst:
-		NBRN A 3 A_Chase
-		NBRN A 0 A_SetSpeed(8.0/3.0)
-		Goto See+4
 	See:
-		NBRN A 0 A_SetSpeed(8.0/3.0)
 		NBRN A 1 A_Chase
 		NBRN AA 1 A_Chase("","",CHF_NOPLAYACTIVE)
 		NBRN A 1 A_Chase
