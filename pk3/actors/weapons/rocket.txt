@@ -293,8 +293,8 @@ Actor DNMissile_Blast1 : DN_MissileTrail
 	States
 	{
 	Spawn:
-		BLST A 0 NODELAY A_FadeOut(frandom(0.05,0.1))
-		BLST A 1 A_SetScale(ScaleX + frandom(0.025,0.035))
+		BLAS A 0 NODELAY A_FadeOut(frandom(0.05,0.1))
+		BLAS A 1 A_SetScale(ScaleX + frandom(0.025,0.035))
 		Loop
 	}
 }
@@ -306,8 +306,8 @@ Actor DNMissile_Blast2 : DN_MissileTrail
 	States
 	{
 	Spawn:
-		BLST B 0 NODELAY A_FadeOut(frandom(0.04,0.1))
-		BLST B 1 A_SetScale(ScaleX + frandom(0.035,0.045))
+		BLAS B 0 NODELAY A_FadeOut(frandom(0.04,0.1))
+		BLAS B 1 A_SetScale(ScaleX + frandom(0.035,0.045))
 		Loop
 	}
 }
@@ -319,8 +319,8 @@ Actor DNMissile_Blast3 : DN_MissileTrail
 	States
 	{
 	Spawn:
-		BLST C 0 NODELAY A_FadeOut(frandom(0.03,0.1))
-		BLST C 1 A_SetScale(ScaleX + frandom(0.05,0.06))
+		BLAS C 0 NODELAY A_FadeOut(frandom(0.03,0.1))
+		BLAS C 1 A_SetScale(ScaleX + frandom(0.05,0.06))
 		Loop
 	}
 }
@@ -332,8 +332,8 @@ Actor DNMissile_Blast4 : DN_MissileTrail
 	States
 	{
 	Spawn:
-		BLST D 0 NODELAY A_FadeOut(frandom(0.02,0.1))
-		BLST D 1 A_SetScale(ScaleX + frandom(0.06,0.08))
+		BLAS D 0 NODELAY A_FadeOut(frandom(0.02,0.1))
+		BLAS D 1 A_SetScale(ScaleX + frandom(0.06,0.08))
 		Loop
 	}
 }
