@@ -191,7 +191,6 @@ ACTOR WWDNInfrared : Infrared replaces Infrared
 	{
 	Spawn:
 		TNT1 A 0 Nodelay A_SetAngle(random(0,359))
-		Stop
 	Repeat:
 		PVIS A 6 Bright
 		PVIS B 6
