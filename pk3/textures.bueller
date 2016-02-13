@@ -405,7 +405,7 @@ Sprite FLAMK0L0, 128, 128
 	}
 }
 
-Sprite BLSTA0, 256, 256
+Sprite BLASA0, 256, 256
 {
 	Offset 128, 128
 	Patch BLAST_01, 0, 0
@@ -415,7 +415,7 @@ Sprite BLSTA0, 256, 256
 	}
 }
 
-Sprite BLSTB0, 256, 256
+Sprite BLASB0, 256, 256
 {
 	Offset 128, 128
 	Patch BLAST_01, 0, 0
@@ -425,7 +425,7 @@ Sprite BLSTB0, 256, 256
 	}
 }
 
-Sprite BLSTC0, 256, 256
+Sprite BLASC0, 256, 256
 {
 	Offset 128, 128
 	Patch BLAST_01, 0, 0
@@ -435,7 +435,7 @@ Sprite BLSTC0, 256, 256
 	}
 }
 
-Sprite BLSTD0, 256, 256
+Sprite BLASD0, 256, 256
 {
 	Offset 128, 128
 	Patch BLAST_01, 0, 0
