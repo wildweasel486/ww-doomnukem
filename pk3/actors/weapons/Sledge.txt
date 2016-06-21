@@ -3,8 +3,8 @@ ACTOR Sledge : DNWeapon replaces Fist
 	Weapon.Kickback 300
 	Weapon.SlotNumber 1
 	Weapon.SelectionOrder 9999
-	Obituary "%o was hammered in by %k"
-	Tag "Sledge Hammer!"
+	Obituary "$WWDNSLEDGEOBIT"
+	Tag "$WWDNSLEDGENAME"
 	+WEAPON.WIMPY_WEAPON
 	+WEAPON.MELEEWEAPON
 	+WEAPON.NOALERT
