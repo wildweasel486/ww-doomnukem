@@ -95,6 +95,7 @@ ACTOR BloodDemonArm
 
 ACTOR BloodDemonStepPuff
 {
+	+NOTELEPORT
 	States
 	{
 	Spawn:
