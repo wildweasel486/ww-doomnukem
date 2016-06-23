@@ -1,0 +1,4 @@
+[enu default]
+
+WWDNSLEDGENAME="Sledge Hammer!";
+WWDNSLEDGEOBIT="%o was hammered in by %k";

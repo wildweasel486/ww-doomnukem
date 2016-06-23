@@ -11,33 +11,3 @@ script "DNPistolAmmo" ENTER
 	Delay(1);
 	Restart;
 }
-script "DualieSynthLeft"(void)
-{
-	while(CheckInventory("SynthFireActive"))
-	{
-		if(GetPlayerInput(-1,INPUT_BUTTONS) & BT_ATTACK)
-		{
-			GiveInventory("SynthFireLeft",1);
-				Delay(1);
-			TakeInventory("SynthFireLeft",1);
-			while(GetPlayerInput(-1,INPUT_BUTTONS) & BT_ATTACK)
-				Delay(1); // if still pressing, take a break
-		}
-		Delay(1);
-	}
-}
-script "DualieSynthRight"(void)
-{
-	while(CheckInventory("SynthFireActive"))
-	{
-		if(GetPlayerInput(-1,INPUT_BUTTONS) & BT_ALTATTACK)
-		{
-			GiveInventory("SynthFireRight",1);
-				Delay(1);
-			TakeInventory("SynthFireRight",1);
-			while(GetPlayerInput(-1,INPUT_BUTTONS) & BT_ALTATTACK)
-				Delay(1); // if still pressing, take a break
-		}
-		Delay(1);
-	}
-}
