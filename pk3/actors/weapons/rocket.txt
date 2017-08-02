@@ -368,13 +368,13 @@ Actor DNMissile_Smoke : DN_MissileTrail
 	Scaling: //Why so derplicated? Because smoke is one hell of an ass to make look good, when mixed with rest of stuff.
 		"####" "#" 0 A_SetScale(frandom(0.05,0.075))
 	FadingIn:
-		"####" "#" 0 A_ChangeVelocity(random(-0.02,0.02),random(-0.02,0.02),random(0.0,0.05),CVF_RELATIVE)
+		"####" "#" 0 A_ChangeVelocity(frandom(-0.02,0.02),frandom(-0.02,0.02),frandom(0.0,0.05),CVF_RELATIVE)
 		"####" "#" 0 A_FadeIn(frandom(0.02,0.04))
 		"####" "#" 0 A_SetScale(ScaleX + frandom(0.01,0.015))
 		"####" "#" 1 A_JumpIf(Alpha>=0.5,"Main")
 		Loop
 	Main:
-		"####" "#" 0 A_ChangeVelocity(random(-0.02,0.02),random(-0.02,0.02),random(0.0,0.05),CVF_RELATIVE)
+		"####" "#" 0 A_ChangeVelocity(frandom(-0.02,0.02),frandom(-0.02,0.02),frandom(0.0,0.05),CVF_RELATIVE)
 		"####" "#" 0 A_FadeOut(frandom(0.02,0.04))
 		"####" "#" 1 A_SetScale(ScaleX + frandom(0.01,0.015))
 		Loop
@@ -474,7 +474,7 @@ Actor DNMissile_FlightFlare : DNMissile_Flare
 	States
 	{
 	Main:
-		"####" "#" 1 Bright A_SetScale(ScaleX-random(0.001,0.003))
+		"####" "#" 1 Bright A_SetScale(ScaleX-frandom(0.001,0.003))
 		"####" "#" 0 A_FadeOut(frandom(0.2,0.4))
 		"####" "#" 0 A_JumpIf(ScaleX > 0, "Main")
 		Stop
@@ -500,13 +500,13 @@ Actor DNMissile_Smoke2 : DNMissile_Smoke
 	Scaling:
 		"####" "#" 0 A_SetScale(frandom(0.03,0.035))
 	FadingIn:
-		"####" "#" 0 A_ChangeVelocity(random(-0.02,0.02),random(-0.02,0.02),random(0.0,0.05),CVF_RELATIVE)
+		"####" "#" 0 A_ChangeVelocity(frandom(-0.02,0.02),frandom(-0.02,0.02),frandom(0.0,0.05),CVF_RELATIVE)
 		"####" "#" 0 A_FadeIn(frandom(0.06,0.04))
 		"####" "#" 0 A_SetScale(ScaleX + frandom(0.01,0.015))
 		"####" "#" 1 A_JumpIf(Alpha>=0.4,"Main")
 		Loop
 	Main:
-		"####" "#" 0 A_ChangeVelocity(random(-0.02,0.02),random(-0.02,0.02),random(0.0,0.05),CVF_RELATIVE)
+		"####" "#" 0 A_ChangeVelocity(frandom(-0.02,0.02),frandom(-0.02,0.02),frandom(0.0,0.05),CVF_RELATIVE)
 		"####" "#" 0 A_FadeOut(frandom(0.03,0.04))
 		"####" "#" 1 A_SetScale(ScaleX + frandom(0.005,0.003))
 		Loop
