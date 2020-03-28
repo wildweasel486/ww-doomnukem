@@ -52,19 +52,22 @@ ACTOR Revolver : DNWeapon Replaces Chainsaw
 	Fire:
 		REVI A 0 A_JumpIfInventory("RevolverAmmo",1,1)
 		Goto Dryfire
-		REVI A 0 A_GunFlash
-		PISF A 0 A_FireCustomMissile("GunSmokeSpawner",0,0,0,8)
-		REVF A 1 BRIGHT A_FireBullets (frandom(-0.1,0.1), frandom(-0.1,0.1), 3, 30, "BulletPuff", FBF_ExplicitAngle|FBF_NoRandom|FBF_UseAmmo)
-		REVF B 1 BRIGHT Offset(0,38) A_SetPitch (pitch - 0.5)
-		REVF C 1 Offset(0,44) A_SetPitch (pitch - 0.9)
-		REVF D 1 Offset(0,56) A_SetPitch (pitch - 1.4)
-		REVF C 1 Offset(0,52) A_AlertMonsters
-		REVI A 1 Offset(0,50) A_SetPitch (pitch - 1.0)
-		REVI A 1 Offset(0,47) A_SetPitch (pitch - 0.5)
-		REVI A 1 Offset(0,44) A_SetPitch (pitch + 0.3)
-		REVI A 1 Offset(0,40) A_SetPitch (pitch + 0.6)
-		REVI A 1 Offset(0,36) A_SetPitch (pitch + 0.9)
-		REVI A 1 Offset(0,34)
+		
+		RV2F A 1 BRIGHT {
+			A_FireBullets (frandom(-0.1,0.1), frandom(-0.1,0.1), 3, 30, "BulletPuff", FBF_ExplicitAngle|FBF_NoRandom|FBF_UseAmmo);
+			A_GunFlash;
+			A_FireCustomMissile("GunSmokeSpawner",0,0,0,8);
+		}
+		RV2F B 1 BRIGHT A_SetPitch (pitch - 0.5)
+		RV2F C 1 Offset(0,44) A_SetPitch (pitch - 0.9)
+		RV2F D 1 Offset(0,56) A_SetPitch (pitch - 1.4)
+		RV2F E 1 Offset(0,52) A_AlertMonsters
+		RV2F F 1 Offset(0,50) A_SetPitch (pitch - 1.0)
+		RV2F G 1 Offset(0,47) A_SetPitch (pitch - 0.5)
+		RV2F H 1 Offset(0,44) A_SetPitch (pitch + 0.3)
+		RV2F I 1 Offset(0,40) A_SetPitch (pitch + 0.6)
+		RV2F J 1 Offset(0,36) A_SetPitch (pitch + 0.9)
+		RV2F K 1 Offset(0,34)
 		REVI A 1 Offset(0,33)
 		REVI A 1 Offset(0,32)
 		TNT1 A 0 A_CheckReload
@@ -112,58 +115,19 @@ ACTOR Revolver : DNWeapon Replaces Chainsaw
 		REVI A 1 A_WeaponReady(WRF_NOFIRE)
 		Goto Ready2
 	ProperReload:
-		REVI A 1 Offset(-1,33)
-		REVI A 1 Offset(-4,34)
-		REVI A 1 Offset(-7,36)
-		REVR A 1 Offset(-10,37)
-		REVR B 1 Offset(-11,38) A_Jump(128,2)
-		REVR C 1 Offset(-12,37)
-		REVR C 1 Offset(-13,38)
-		REVR C 1 Offset(-12,38)
-		REVR D 1 Offset(-9,39)
-		REVR E 1 Offset(-5,42)
-		REVR F 1 Offset(-1,44) A_PlaySound("Weapons/Revolver/Open", 6)
-		REVR GGGGGG 0 A_SpawnItemEx("MagnumCasing", 0,0,20, random(-2,2),random(-2,2),0, random(1,359), SXF_NOCHECKPOSITION)
-		REVR G 1 Offset(1,45) A_Jump(128,2)
-		REVR G 1 Offset(2,46)
-		REVR G 1 Offset(3,47)
-		REVR G 1 Offset(3,46)
-		REVR G 1 Offset(2,45)
-		REVR H 1 Offset(-1,44)
-		REVR I 1 Offset(-3,42)
-		REVR J 1 Offset(-6,39)
-		REVR K 1 Offset(-9,37) A_PlaySound("Weapons/Revolver/Load", 5)
-		TNT1 A 0 A_Giveinventory("RevolverAmmo",6)
-		TNT1 A 0 A_Takeinventory("RevolverAmmoPickup",1,TIF_NOTAKEINFINITE)
-		REVR K 1 Offset(-9,36) A_Jump(128,2)
-		REVR K 1 Offset(-8,35)
-		REVR K 1 Offset(-8,34)
-		REVR K 1 Offset(-7,33)
-		REVR K 1 Offset(-7,32)
-		REVR K 1 Offset(-8,34)
-		REVR K 1 Offset(-9,36)
-		REVR L 1 Offset(-8,35)
-		REVR M 1 Offset(-7,34)
-		REVR F 1 Offset(-8,35) A_PlaySound("Weapons/Revolver/Close", 6)
-		REVR E 1 Offset(-8,35) A_Jump(128,2)
-		REVR D 1 Offset(-8,35)
-		REVR D 1 Offset(-9,36)
-		REVR D 1 Offset(-10,37)
-		REVR D 1 Offset(-10,38)
-		REVR C 1 Offset(-11,38)
-		REVR C 1 Offset(-11,37)
-		REVR C 1 Offset(-11,36)
-		REVR B 1 Offset(-14,35)
-		REVR B 1 Offset(-14,34)
-		REVR A 1 Offset(-18,36) A_Jump(128,2)
-		REVR A 1 Offset(-16,37)
-		REVR A 1 Offset(-13,36)
-		REVR A 1 Offset(-10,35)
-		REVR A 1 Offset(-6,34)
-		REVR A 1 Offset(-2,33)
-		REVI A 1 Offset(-7,35)
-		REVI A 1 Offset(-4,34)
-		REVI A 1 Offset(-1,33)
+		RV2R ABCDEFGHIJK 1
+		RV2R L 1 A_StartSound("Weapons/Revolver/Open")
+		RV2R MNO 1
+		RV2R OOOOOO 0 A_SpawnItemEx("MagnumCasing", 0,0,20, random(-2,2),random(-2,2),0, random(1,359), SXF_NOCHECKPOSITION)
+		RV2R PQRSTUVWXY 1
+		RV2R Z 1 {
+			A_StartSound("Weapons/Revolver/Load");
+			A_Giveinventory("RevolverAmmo",6);
+			A_Takeinventory("RevolverAmmoPickup",1,TIF_NOTAKEINFINITE);
+		}
+		RV3R ABCDEFGHIJ 1
+		RV3R K 1 A_StartSound("Weapons/Revolver/Close")
+		RV3R LMNOPQRSTUVWX 1
 		Goto Ready2
  	Spawn:
 		RVIC A -1 Nodelay A_SetAngle(random(0,359))
