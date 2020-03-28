@@ -66,34 +66,28 @@ ACTOR DNRifle : DNWeapon replaces Chaingun
 		RIFG A 0 A_JumpIfInventory("DNRifleSighting", 1, "FireZoom")
 		TNT1 A 0 A_JumpIfInventory("DNRifleAmmo",1,1)
 		Goto Dryfire
-		RIFF A 1 BRIGHT A_FireBullets(2, 2, -1, 12, "BulletPuff")
-		RIFF A 0 A_SpawnItemEx("RifleCasing", 12,-20,32, 8,random(-2,2),random(0,4), random(-55,-80), SXF_NOCHECKPOSITION)
-		PISF A 0 A_FireCustomMissile("GunSmokeSpawner",0,0,0,8)
-		RIFF A 0 A_AlertMonsters
+		RIFF A 1 BRIGHT {
+			A_FireBullets(2, 2, -1, 4, "BulletPuff");
+			A_SpawnItemEx("RifleCasing", 12,-20,32, 8,random(-2,2),random(0,4), random(-55,-80), SXF_NOCHECKPOSITION);
+			A_FireCustomMissile("GunSmokeSpawner",0,0,0,8);
+			A_AlertMonsters;
+		}
 		RIFF B 1 A_SetPitch(pitch - 0.5)
-		RIFF C 1 A_JumpIfInventory("DNRifleSeq", 1, 4)
-		RIFF C 0 A_GiveInventory("DNRifleSeq", 1)
-		RIFF C 1 A_SetPitch(pitch - 0.25)
-		RIFF C 0 A_Jump(256, 2)
-		RIFF C 0 A_TakeInventory("DNRifleSeq", 1)
-		RIFG A 1 A_SetPitch(pitch + 0.25)
+		RIFF C 1 A_SetPitch(pitch + 0.25)
 		RIFG A 0 A_Refire
 		Goto Ready2
 	FireZoom:
 		TNT1 A 0 A_JumpIfInventory("DNRifleAmmo",1,1)
 		Goto DryfireZoom
-		RI2F A 1 BRIGHT A_FireBullets(0, 0, 1, 12, "BulletPuff")
+		RI2F A 1 BRIGHT A_FireBullets(0, 0, 1, 6, "BulletPuff")
 		RIFF A 0 A_SpawnItemEx("RifleCasing", 12,-20,32, 8,random(-2,2),random(0,4), random(-55,-80), SXF_NOCHECKPOSITION)
 		PISF A 0 A_FireCustomMissile("GunSmokeSpawner",0,0,0,8)
 		RI2F A 0 A_AlertMonsters
 		RI2F B 0 A_SetAngle(angle + frandom(-1.0, 1.0))
 		RI2F B 1 A_SetPitch(pitch - 1.0)
-		RI2G A 1 A_JumpIfInventory("DNRifleSeq", 1, 4)
-		RI2G A 0 A_GiveInventory("DNRifleSeq", 1)
 		RI2G A 1 A_SetPitch(pitch - 0.5)
-		RI2G A 0 A_Jump(256, 2)
-		RI2G A 0 A_TakeInventory("DNRifleSeq", 1)
 		RI2G A 1 A_SetPitch(pitch + 0.5)
+		RI2G A 3
 		RI2G A 0 A_Refire
 		Goto Ready2
 	Zoom:
@@ -142,24 +136,20 @@ ACTOR DNRifle : DNWeapon replaces Chaingun
 	Reload:
 		RIFG A 0 A_ClearRefire
 		RIFG A 0 A_JumpIfInventory("DNRifleSighting", 1, "ReloadZoom")
-		RIFG A 0 A_JumpIfInventory("DNRifleAmmo", 20, 2)
+		RIFG A 0 A_JumpIfInventory("DNRifleAmmo", 0, 2)
 		RIFG A 0 A_JumpIfInventory("DNRifleAmmoPickup", 1, "ProperReload")
 		RIFG A 1 A_WeaponReady(WRF_NOFIRE)
 		Goto Ready2
 	ProperReload:
 		RIFR ABCDEF 1
-		RIFR G 1 Offset(2,31) A_PlaySound("Weapons/Rifle/Out", 6)
-		RIFR G 1 Offset(4,30) A_Jump(128,2)
-		RIFR G 1 Offset(5,31)
-		RIFR G 1 Offset(3,32)
-		RIFR H 1 Offset(1,33)
-		RIFR IJK 2
+		RIFR G 1 A_PlaySound("Weapons/Rifle/Out", 6)
+		RIFR HIJKLMN 1
 		TNT1 A 0 A_TakeInventory("DNRifleAmmoPickup", 1,TIF_NOTAKEINFINITE)
-		TNT1 A 0 A_GiveInventory("DNRifleAmmo", 20)
-		RIFR L 2 A_PlaySound("Weapons/Rifle/In", 5)
-		RIFR MNOPQ 2
-		RIFR R 2 A_PlaySound("Weapons/Rifle/Click", 6)
-		RIFR S 2
+		TNT1 A 0 A_GiveInventory("DNRifleAmmo", 99)
+		RIFR O 1 A_PlaySound("Weapons/Rifle/In", 5)
+		RIFR PQRSTUVWXY 1
+		RIFR Z 1 A_PlaySound("Weapons/Rifle/Click", 6)
+		RFR2 ABCD 1
 		Goto Ready2
 	}
 }
@@ -169,7 +159,7 @@ ACTOR DNRifleSighting : Inventory{}
 ACTOR DNRifleAmmo : Ammo
 {
 	Inventory.Icon "RIFLA0"
-	Inventory.MaxAmount 20
+	Inventory.MaxAmount 30
 	+IGNORESKILL
 }
 
