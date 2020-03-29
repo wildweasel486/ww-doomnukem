@@ -13,7 +13,7 @@ ACTOR DoubleShotgun : DNWeapon replaces Shotgun
 	Weapon.AmmoType "DoubleShotgunLoad"
 	Weapon.AmmoUse 1
 	Weapon.AmmoType2 "NewShell"
-	Weapon.AmmoUse2 1
+	Weapon.AmmoUse2 0 // Altfire DOES take ammo - it just doesn't take it like this.
 	Weapon.AmmoGive2 2
 	Weapon.Kickback 1000
 	Weapon.SelectionOrder 5000
@@ -57,6 +57,9 @@ ACTOR DoubleShotgun : DNWeapon replaces Shotgun
 			A_StartSound("Weapons/Sawedoff/Fire", CHAN_WEAPON, CHANF_OVERLAP);
 			A_FireBullets(7, 4, 8, 6, "BulletPuff");
 			A_FireCustomMissile("GunSmokeSpawner",0,0,0,8);
+			// This TakeInventory needs to stay here so altfire won't have
+			// infinite ammo if there's a shell missing.
+			A_TakeInventory("DoubleShotgunLoad", 1, TIF_NOTAKEINFINITE);
 		}
 		SG2F C 1 Offset(1,42) A_AlertMonsters
 		SG2F D 1 Offset(2,45) A_SetPitch(pitch - 2.0)
@@ -120,15 +123,17 @@ ACTOR DoubleShotgun : DNWeapon replaces Shotgun
 		}
 		SG2R IJKLMNOPQRS 1
 		SG2R T 1 {
-			if ( CountInv("DoubleShotgunLoad") == 1 )
+			if ( CountInv("DoubleShotgunLoad") == 0 && CountInv("NewShell") > 1 )
+			{
+				A_GiveInventory("DoubleShotgunLoad", 2);
+				A_TakeInventory("NewShell", 2,TIF_NOTAKEINFINITE);
+			}
+			else
 			{
 				A_TakeInventory("NewShell", 1, TIF_NOTAKEINFINITE);
 				A_GiveInventory("DoubleShotgunLoad", 1);
 			}
-			else {
-				A_GiveInventory("DoubleShotgunLoad", 2);
-				A_TakeInventory("NewShell", 2,TIF_NOTAKEINFINITE);
-			}
+			
 			A_StartSound("Weapons/Sawedoff/In", 5, CHANF_OVERLAP);
 		}
 		SG2R UVWXYZ 1
