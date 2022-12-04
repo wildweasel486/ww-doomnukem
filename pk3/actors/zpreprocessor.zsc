@@ -1,0 +1,72 @@
+/*==============================================================================
+	Level Pre-Processor: DoomNukem Edition
+	Developed by Major Cooke
+	
+In general, LevelPostProcessor was designed for compatibility on old WADs that 
+are no longer maintained to ensure some things run smoothly and progression isn't
+blocked.
+
+For WildWeasel's mod, this particular processor is used to allow BFG and Revolver
+ammo to spawn, by signifying to the static event handler the items have spawned.
+==============================================================================*/
+Class DNProcessor : LevelPostProcessor
+{
+	protected void Apply(Name checksum, String mapname)
+	{
+		if (mapname ~== "TITLEMAP")	return;
+		
+		let SE = DNBFGHandler.Fetch();
+		if (!SE) return;
+		
+		uint tc = GetThingCount();
+		
+		// Set up the spawn filters. First, go with flags.
+		bool spawnmulti = sv_alwaysspawnmulti;
+		
+								int flagmask = MTF_SINGLE;
+		if (deathmatch) 			flagmask = MTF_DEATHMATCH;
+		else if (multiplayer)		flagmask = MTF_COOPERATIVE;
+		else if (spawnmulti)		flagmask = MTF_COOPERATIVE|MTF_SINGLE;
+		int skillmask = G_SkillPropertyInt(SKILLP_SpawnFilter);
+		
+		bool FoundBFG = false;
+		for (uint i = 0; i < tc; i++)
+		{
+			if (!CheckFlagSkills(i, flagmask, skillmask))
+				continue;
+				
+			uint ednum = GetThingEdNum(i);
+			if (ednum == 2006 && !SE.BFGSpawned) // BFG DoomEdNum
+			{
+				// It's able to spawn, so tell the static event handler and end it.
+				SE.BFGSpawned = true;
+			}
+			else if (ednum == 2007 || ednum == 2005) // Clip or Chainsaw
+			{
+				if (ednum == 2007) // This code only for clip
+				{
+					int rng = (SE.RevolverSpawned) ? 512 : 256;
+					
+					if (random(1,rng) > 1)
+						continue;
+					SE.AddSpawn('Revolver', GetThingPos(i));
+				}
+				SE.RevolverSpawned = true;
+				
+			}
+		}
+	}
+	
+	private bool CheckFlagSkills(int i, uint flagmask, uint skillmask)
+	{
+		// See if it spawns at all.
+		uint tflag = GetThingFlags(i);
+		if (!(tflag & flagmask))	return false;
+	
+		// Make sure it fits the skill.
+		uint tskill = GetThingSkills(i);
+		if (!(tskill & skillmask))	return false;
+		
+		return true;
+	}
+}

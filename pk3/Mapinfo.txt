@@ -1,5 +1,5 @@
 gameinfo
 {
 	playerclasses="DoomNukem"
-	EventHandlers = "DoesBFGExist"
+	AddEventHandlers = "DNBFGHandler"
 }

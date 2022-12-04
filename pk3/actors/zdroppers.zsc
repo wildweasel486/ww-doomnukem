@@ -1,10 +1,26 @@
+/*==============================================================================
+	Special Ammo Conditions Event
+	Developed by Major Cooke
+	
+This is designed for ammo conditions based on certain weapon spawns, so far for
+the Revolver and BFG.
+==============================================================================*/
+
+#include "./zpreprocessor.zsc"
+
 // We use a static handler here because it transfers across map transitions, allowing
 // for replacing properly so hacks aren't used. Remember, TID/action/etc are assigned
 // the moment something is spawned, so you want this performed BEFORE that happens!
 Class DNBFGHandler : StaticEventHandler
 {
-	bool BFGSpawned;
-	private Array<Actor> BFGs; // May need to change Actor to DNBFG if it doesn't compile.
+	bool 	BFGSpawned,
+			RevolverSpawned;
+			
+	private Array<Actor> 
+			BFGs,
+			Revolvers;
+			
+	private Array<DNThingsToSpawn> Spawns;
 	
 	// Shortcut for ensuring the handler found is *always* of the proper type.
 	// let event = DNBFGHandler.Fetch();
@@ -20,6 +36,11 @@ Class DNBFGHandler : StaticEventHandler
 		{
 			BFGSpawned = true;
 			BFGs.Push(e.Thing);
+		}
+		else if (e.thing is 'Revolver')
+		{
+			RevolverSpawned = true;
+			Revolvers.Push(e.Thing);
 		}
 	}
 	
@@ -39,30 +60,71 @@ Class DNBFGHandler : StaticEventHandler
 		return BFGSpawned; // Handle corner case to ensure BFG ammo spawns.
 	}
 	
-	// Just some book keeping, don't mind this.
+	bool CheckRevolvers()
+	{
+		if (RevolverSpawned)	return true;
+		for (int i = 0; i < Revolvers.Size(); i++)
+		{
+			let mo = Revolvers[i];
+			if (mo)
+			{
+				RevolverSpawned = true;
+				return true;
+			}
+		}
+		return RevolverSpawned;
+	}
+	
 	override void WorldLoaded(WorldEvent e)
 	{
 		if (e.IsSaveGame)
 			return;
-			
+		
+		// Just some book keeping, dont mind this.
 		Array<Actor> temp; temp.Clear();
+		
 		for (int i = 0; i < BFGs.Size(); i++)
-		{
-			if (BFGs[i])	temp.Push(BFGs[i]);
-		}
+		{	if (BFGs[i])	temp.Push(BFGs[i]);		}
 		BFGs.Move(temp);
+		
+		for (int i = 0; i < Revolvers.Size(); i++)
+		{	if (Revolvers[i])	temp.Push(Revolvers[i]);		}
+		Revolvers.Move(temp);
+		
+		// Don't spawn anything on re-entering a hub map.
+		if (e.IsReopen)
+		{
+			Spawns.Clear();
+			return;
+		}
+		
+		// Spawn the things.
+		for (int i = 0; i < Spawns.Size(); i++)
+		{
+			Actor.Spawn(Spawns[i].Thing, Spawns[i].pos, ALLOW_REPLACE);
+		}
+		Spawns.Clear();
+	}
+	
+	void AddSpawn(Class<Actor> th, Vector3 p)
+	{
+		let list = DNThingsToSpawn.Create(th, p);
+		if (list)	Spawns.Push(list);
 	}
 		
 	// If the player misses the BFG, it doesn't make sense to spawn ammo.
 	override void WorldUnloaded(WorldEvent e)
 	{
 		BFGSpawned = false;
+		RevolverSpawned = false;
 	}
 	
 	// New game so naturally set this off.
 	override void NewGame()
 	{
 		BFGs.Clear();
+		Spawns.Clear();
+		BFGSpawned = RevolverSpawned = false;
 	}
 	
 	// REPLACEMENTS! Comment out if you wish to continue using the 'replaces' keyword
@@ -73,93 +135,148 @@ Class DNBFGHandler : StaticEventHandler
 		Class<Actor> rep = e.Replacee;
 		if (!rep)	return;
 		
-		// Mainly to avoid tons of needless checks and comparisons if the thing
-		// isn't an inventory item.
-		let defs = GetDefaultByType(rep);
-		
-		if (defs is 'Inventory')
+		Name repn = rep.GetClassName();
+		if (rep is 'Inventory')
 		{
-			Name repn = rep.GetClassName();
 			Switch(repn)
 			{
-				Case 'BFG9000':		e.Replacement = 'DNBFG';	return;
-				Case 'Cell':
+				Case 'Clip':
 				{
-					if (CheckBFGs)	e.Replacement = 'BFGCell';	return;
+					if (CheckRevolvers())	e.Replacement = 'DNClipSpawnerRevolver';
+					else					e.Replacement = 'DNClipSpawnerNoRevolver';
+					return;
+				}
+				Case 'BFG9000':		e.Replacement = 'DNBFG';	return;
+				Case 'CellPack':
+				{
+					e.Replacement = 'ChaingunAmmo';
+					if (CheckBFGs() && random(1,3) <= 1)	
+						e.Replacement = 'BFGCell';	
+					return;
 				}
 			}
 		}
-	
 	}
 
-	// So GetReplacee works and points to DNBFG. 
+	// So GetReplacee works and points to their appropriate type.
+	// Syntax is as follows.
+	// Case '<replacement name': e.Replacee = '<Replaced actor name>';	return;
 	override void CheckReplacee(ReplacedEvent e)
 	{
 		Name rep = e.Replacement.GetClassName();
-		
-			 if (rep == 'BFG9000')	e.Replacee = 'DNBFG';
-		else if (rep == 'BFGCell')	e.Replacee = 'Cell';
-	}
-}
-
-// The point of this is to make sure it's detected *BEFORE* anything else happens,
-// because this prevents possible screw-ups with TID/Action/Argument assignments.
-Class DNProcessor : LevelPostProcessor
-{
-	protected void Apply(Name checksum, String mapname)
-	{
-		if (mapname ~== "TITLEMAP")	return;
-		
-		let SE = DNBFGHandler.Fetch();
-		if (!SE) return;
-		
-		uint tc = GetThingCount();
-		
-		// Set up the spawn filters. First, go with flags.
-		bool spawnmulti = sv_alwaysspawnmulti;
-		
-								int flagmask = MTF_SINGLE;
-		if (deathmatch) 			flagmask = MTF_DEATHMATCH;
-		else if (multiplayer)		flagmask = MTF_COOPERATIVE;
-		else if (spawnmulti)		flagmask = MTF_COOPERATIVE|MTF_SINGLE;
-		
-		for (uint i = 0; i < tc; i++)
+		Switch(rep)
 		{
-			uint ednum = GetThingEdNum(i);
-			if (ednum == 2006) // BFG DoomEdNum
-			{
-				// See if it spawns at all.
-				uint tflag = GetThingFlags(i);
-				if (!(tflag & flagmask))	continue;
+			Case 'Revolver':				e.Replacee = 'Chainsaw';	return;
+			Case 'BFG9000':					e.Replacee = 'DNBFG';		return;
 			
-				// Make sure it fits the skill.
-				uint tskill = GetThingSkills(i);
-				if (!(tskill & skillmask))	continue;
-				
-				// It's able to spawn, so tell the static event handler and end it.
-				SE.BFGSpawned = true;
-				return;
-			}
+			Case 'ChaingunAmmo': 			// Treat the same as CellPack.
+			Case 'BFGCell':					e.Replacee = 'CellPack';	return;
+			
+			Case 'DNClipSpawnerRevolver':	
+			Case 'DNClipSpawnerNoRevolver':	
+			Case 'RevolverAmmo':
+			Case 'DNPistolAmmoPickup':
+											e.Replacee = 'Clip';		return;
 		}
 	}
 }
 
-class ClipDrop : RandomSpawner replaces Clip
+Class DNClipSpawnerNoRevolver : RandomSpawner
 {
-	default
+	Default
 	{
-		DropItem "DNPistolAmmoPickup";
-		DropItem "DNPistolAmmoPickup";
-		DropItem "RevolverAmmoPickup";
+		DropItem "DNPistolAmmoPickup",	256, 48;
+		DropItem "Revolver", 			256, 2;
+		DropItem "DNDualPistolPickup",		256, 1;
+	}
+}
+Class DNClipSpawnerRevolver : RandomSpawner
+{
+	Default
+	{
+		DropItem "DNPistolAmmoPickup",	256, 64;
+		DropItem "RevolverAmmoPickup",		256, 8;
+		DropItem "Revolver", 			256, 1;
+		DropItem "DNDualPistolPickup",		256, 2;
 	}
 }
 
-class ImpDropper : RandomSpawner replaces DoomImp
+Class DNThingsToSpawn play
 {
-	default
+	Class<Actor> Thing;
+	Vector3 pos;
+	
+	static DNThingsToSpawn Create(Class<Actor> th, Vector3 p)
 	{
-		DropItem "DNImpVariant1";
-		DropItem "DNImpVariant2";
-		DropItem "DNImpVariant3";
+		if (!th)	return null;
+		let s = new('DNThingsToSpawn');
+		s.Thing = th;
+		s.pos = p;
+		return s;
 	}
 }
+/*
+// Gets a random spawner and returns a random selection based on the class type
+// provided.
+Class DNRSGenerator play
+{
+	static Name Get(Class<RandomSpawner> cls)
+	{
+		if (!cls)	return 'None';
+		
+		let def = GetDefaultByType(cls);
+		int RecursionCount = RandomSpawner.MAX_RANDOMSPAWNERS_RECURSION;
+		
+		if (def)
+		{
+			// Copied from RandomSpawner
+			DropItem di;   // di will be our drop item list iterator
+			DropItem drop; // while drop stays as the reference point.
+			int n = 0;
+
+			drop = di = GetDropItems();
+			
+			while (di != null)
+			{
+				bool shouldSkip = (di.Name == 'None'));
+				
+				if (!shouldSkip)
+				{
+					int amt = di.Amount;
+					if (amt < 0) amt = 1; // default value is -1, we need a positive value.
+					n += amt; // this is how we can weight the list.
+				}
+
+				di = di.Next;
+			}
+			
+			if (n == 0) // Nothing left to spawn. They must have all been monsters, and monsters are disabled.
+				return 'None';
+			
+			// Then we reset the iterator to the start position...
+			di = drop;
+			// Take a random number...
+			n = random[randomspawn](0, n-1);
+			// And iterate in the array up to the random number chosen.
+			while (n > -1 && di != null)
+			{
+				if (di.Name != 'None')
+				{
+					int amt = di.Amount;
+					if (amt < 0) amt = 1;
+					n -= amt;
+					if ((di.Next != null) && (n > -1))
+						di = di.Next;
+					else
+						n = -1;
+				}
+				else
+				{
+					di = di.Next;
+				}
+			}
+			return di.Name;
+		}
+		return 'None';
+	}
+}*/

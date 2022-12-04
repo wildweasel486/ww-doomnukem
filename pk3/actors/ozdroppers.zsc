@@ -1,0 +1,60 @@
+class DoesBFGExist : EventHandler
+{
+    play bool BFGExists;
+}
+
+class CellDrop : Actor replaces CellPack
+{
+    static bool PlayerHasBFG()
+    {
+        for(int i = 0; i < MAXPLAYERS; i++)
+        {
+            if(!PlayerInGame[i]) continue; // This is needed 
+            if(players[i].mo.CountInv("DNBFG") > 0)
+                return true;
+        }
+        return false;
+    }
+    
+    DoesBFGExist BFGState;
+    override void BeginPlay()
+    {
+        super.BeginPlay();
+        
+        BFGState = DoesBFGExist(EventHandler.Find("DoesBFGExist"));
+        if (BFGState) BFGState.BFGExists = PlayerHasBFG();
+    }
+    
+    States
+    {
+    Spawn:
+        TNT1 A 1 NoDelay {
+			if(BFGState)
+			{
+				console.printf("BFG exists? %d", BFGState.BFGExists);
+				if (BFGState.BFGExists) A_DropItem("BFGCell");
+			}
+        }
+        Stop;
+    }
+}
+
+class ClipDrop : RandomSpawner replaces Clip
+{
+	default
+	{
+		DropItem "DNPistolAmmoPickup";
+		DropItem "DNPistolAmmoPickup";
+		DropItem "RevolverAmmoPickup";
+	}
+}
+
+class ImpDropper : RandomSpawner replaces DoomImp
+{
+	default
+	{
+		DropItem "DNImpVariant1";
+		DropItem "DNImpVariant2";
+		DropItem "DNImpVariant3";
+	}
+}
