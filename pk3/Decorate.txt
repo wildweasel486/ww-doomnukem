@@ -28,6 +28,7 @@ ACTOR PressingZoom : Inventory{}
 #include "actors/weapons/chaingun.txt"
 #include "actors/weapons/bfg.txt"
 
+/* Disabled for now.
 #include "actors/Droplets/Pools.txt" // Droplets by SidDoyle.
 #include "actors/Droplets/Droplets.txt"
 #include "actors/Droplets/gibs.txt"
@@ -35,6 +36,7 @@ ACTOR PressingZoom : Inventory{}
 #include "actors/Droplets/Ceiling.txt"
 #include "actors/Droplets/Liquid.txt"
 #include "actors/Droplets/gore.txt"
+*/
 
 #include "actors/enemies/zombies.txt"
 #include "actors/enemies/imps.txt"
@@ -53,7 +55,7 @@ ACTOR PressingZoom : Inventory{}
 
 #include "actors/bueller.txt"
 #include "actors/casings.txt"
-#include "actors/droppers.txt"
+// #include "actors/droppers.txt" //replaced with zscript version
 #include "actors/misc.txt"
 #include "actors/items.txt"
 

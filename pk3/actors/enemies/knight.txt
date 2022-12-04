@@ -59,6 +59,14 @@ ACTOR TribalKnight replaces HellKnight
 		BOS3 K 2 A_Pain
 		goto See
 	Death:
+		BOS3 L 8
+		BOS3 M 8 A_Scream
+		BOS3 N 8
+		BOS3 O 8 A_NoBlocking
+		BOS3 PQ 8
+		BOS3 R -1
+		Stop
+	/* Death:
 		BOS3 L 8 A_SpawnItemEx("GreenSquirt",0,0,32)
 		TNT1 L 0 A_SpawnItemEx("GreenSquirt",0,0,32)
 		BOS3 M 8 A_Scream
@@ -70,8 +78,16 @@ ACTOR TribalKnight replaces HellKnight
 		Wait
 	Pool:
 		"####" "#" -1 A_SpawnItemEx("GreenPool",0,0,8)
-		Stop
+		Stop */
 	XDeath:
+		XARC A 7
+		XARC B 7 A_XScream
+		XARC C 7
+		XARC D 7 A_NoBlocking
+		XARC EFGH 7
+		XARC I -1
+		Stop
+	/*XDeath:
 		XARC A 7 A_SpawnItemEx("GreenSquirt",0,0,32)
 		XARC A 0 A_SpawnItemEx("GreenSquirt",0,0,32)
 		XARC B 7 A_XScream
@@ -80,7 +96,7 @@ ACTOR TribalKnight replaces HellKnight
 		XARC D 7 A_NoBlocking
 		XARC EFGH 7 A_SpawnItemEx("GreenSquirt",0,0,32)
 		XARC I 1 A_JumpIf(velx + vely + velz == 0,"Pool")
-		Wait
+		Wait*/
 	Raise:
 		BOS3 ONMLKJI 8
 		goto See
