@@ -1,0 +1,165 @@
+// We use a static handler here because it transfers across map transitions, allowing
+// for replacing properly so hacks aren't used. Remember, TID/action/etc are assigned
+// the moment something is spawned, so you want this performed BEFORE that happens!
+Class DNBFGHandler : StaticEventHandler
+{
+	bool BFGSpawned;
+	private Array<Actor> BFGs; // May need to change Actor to DNBFG if it doesn't compile.
+	
+	// Shortcut for ensuring the handler found is *always* of the proper type.
+	// let event = DNBFGHandler.Fetch();
+	static clearscope DNBFGHandler Fetch()
+	{
+		return DNBFGHandler(Find("DNBFGHandler"));
+	}
+	
+	// Normal map spawning, useful for when BFGs are spawned in via 
+	override void WorldThingSpawned(WorldEvent e)
+	{
+		if (e.thing is 'BFG9000' || e.thing is 'DNBFG')
+		{
+			BFGSpawned = true;
+			BFGs.Push(e.Thing);
+		}
+	}
+	
+	// Here's the main checker. Call this to check for BFGs.
+	bool CheckBFGs()
+	{
+		if (BFGSpawned)	return true;
+		for (int i = 0; i < BFGs.Size(); i++)
+		{
+			let mo = BFGs[i];
+			if (mo)	
+			{
+				BFGSpawned = true;
+				return true;
+			}
+		}
+		return BFGSpawned; // Handle corner case to ensure BFG ammo spawns.
+	}
+	
+	// Just some book keeping, don't mind this.
+	override void WorldLoaded(WorldEvent e)
+	{
+		if (e.IsSaveGame)
+			return;
+			
+		Array<Actor> temp; temp.Clear();
+		for (int i = 0; i < BFGs.Size(); i++)
+		{
+			if (BFGs[i])	temp.Push(BFGs[i]);
+		}
+		BFGs.Move(temp);
+	}
+		
+	// If the player misses the BFG, it doesn't make sense to spawn ammo.
+	override void WorldUnloaded(WorldEvent e)
+	{
+		BFGSpawned = false;
+	}
+	
+	// New game so naturally set this off.
+	override void NewGame()
+	{
+		BFGs.Clear();
+	}
+	
+	// REPLACEMENTS! Comment out if you wish to continue using the 'replaces' keyword
+	// or if too confusing.
+	// Has higher priority over 'Replaces' keyword.
+	override void CheckReplacement(ReplaceEvent e)
+	{
+		Class<Actor> rep = e.Replacee;
+		if (!rep)	return;
+		
+		// Mainly to avoid tons of needless checks and comparisons if the thing
+		// isn't an inventory item.
+		let defs = GetDefaultByType(rep);
+		
+		if (defs is 'Inventory')
+		{
+			Name repn = rep.GetClassName();
+			Switch(repn)
+			{
+				Case 'BFG9000':		e.Replacement = 'DNBFG';	return;
+				Case 'Cell':
+				{
+					if (CheckBFGs)	e.Replacement = 'BFGCell';	return;
+				}
+			}
+		}
+	
+	}
+
+	// So GetReplacee works and points to DNBFG. 
+	override void CheckReplacee(ReplacedEvent e)
+	{
+		Name rep = e.Replacement.GetClassName();
+		
+			 if (rep == 'BFG9000')	e.Replacee = 'DNBFG';
+		else if (rep == 'BFGCell')	e.Replacee = 'Cell';
+	}
+}
+
+// The point of this is to make sure it's detected *BEFORE* anything else happens,
+// because this prevents possible screw-ups with TID/Action/Argument assignments.
+Class DNProcessor : LevelPostProcessor
+{
+	protected void Apply(Name checksum, String mapname)
+	{
+		if (mapname ~== "TITLEMAP")	return;
+		
+		let SE = DNBFGHandler.Fetch();
+		if (!SE) return;
+		
+		uint tc = GetThingCount();
+		
+		// Set up the spawn filters. First, go with flags.
+		bool spawnmulti = sv_alwaysspawnmulti;
+		
+								int flagmask = MTF_SINGLE;
+		if (deathmatch) 			flagmask = MTF_DEATHMATCH;
+		else if (multiplayer)		flagmask = MTF_COOPERATIVE;
+		else if (spawnmulti)		flagmask = MTF_COOPERATIVE|MTF_SINGLE;
+		
+		for (uint i = 0; i < tc; i++)
+		{
+			uint ednum = GetThingEdNum(i);
+			if (ednum == 2006) // BFG DoomEdNum
+			{
+				// See if it spawns at all.
+				uint tflag = GetThingFlags(i);
+				if (!(tflag & flagmask))	continue;
+			
+				// Make sure it fits the skill.
+				uint tskill = GetThingSkills(i);
+				if (!(tskill & skillmask))	continue;
+				
+				// It's able to spawn, so tell the static event handler and end it.
+				SE.BFGSpawned = true;
+				return;
+			}
+		}
+	}
+}
+
+class ClipDrop : RandomSpawner replaces Clip
+{
+	default
+	{
+		DropItem "DNPistolAmmoPickup";
+		DropItem "DNPistolAmmoPickup";
+		DropItem "RevolverAmmoPickup";
+	}
+}
+
+class ImpDropper : RandomSpawner replaces DoomImp
+{
+	default
+	{
+		DropItem "DNImpVariant1";
+		DropItem "DNImpVariant2";
+		DropItem "DNImpVariant3";
+	}
+}
