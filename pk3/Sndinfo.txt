@@ -5,7 +5,7 @@ $playeralias doomnukem male *pain100 doomnukem/lowpain
 $playeralias doomnukem male *pain75 doomnukem/lowpain
 $playeralias doomnukem male *pain50 doomnukem/medpain
 $playeralias doomnukem male *pain25 doomnukem/hipain
-$playeralias doomnukem male *grunt doomnukem/land
+$playeralias doomnukem male *grunt doomnukem/landhard
 $playeralias doomnukem male *land doomnukem/land
 $playersound doomnukem male *usefail DSNOWAY
 $playersound doomnukem male *poison DSCOUGH
@@ -33,6 +33,7 @@ dnland2 FTPOLY2
 dnland3 FTPOLY3
 dnland4 FTPOLY4
 dnland5 FTPOLY5
+doomnukem/landhard FTTILJ
 $random doomnukem/fleshhit { dnhit1 dnhit2 dnhit3 dnhit4 }
 dnhit1 HWREFLE1
 dnhit2 HWREFLE2
