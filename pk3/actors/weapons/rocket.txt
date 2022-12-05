@@ -175,7 +175,7 @@ actor NebRocket
 	{
 	Spawn:
 		MNSS A 0 A_SpawnItemEx("DN_MissileTrail",-15)
-		MNSS A 1 bright A_Weave(4, 4, 1.2, 1.2)
+		MNSS A 1 bright A_Weave(random(-4,4), random(-4,4), frandom(-1.2,1.2), frandom(-1.2,1.2))
 		loop
 	Death:
 		TNT1 A 0 A_PlaySound("Weapons/Rocket/Explode", CHAN_BODY, 2.0, 0, 0.25)
@@ -202,9 +202,11 @@ ACTOR DN_MissileTrail
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_SpawnItemEx("DNMissile_Smoke2",0,random(5,-5),random(5,-5),frandom(-0.5,-0.25),frandom(0.1,0.05),frandom(0.1,0.05),random(135,225),SXF_CLIENTSIDE,20)
-		TNT1 A 0 A_SpawnItemEx("DNMissile_Flame2",0,random(5,-5),random(5,-5),frandom(-0.5,-0.25),frandom(0.1,0.05),frandom(0.1,0.05),random(135,225),SXF_CLIENTSIDE,20)
-		TNT1 A 1 A_SpawnItemEx("DNMissile_FlightFlare",0,random(5,-5),random(5,-5),frandom(-0.5,-0.25),frandom(0.1,0.05),frandom(0.1,0.05),random(135,225),SXF_CLIENTSIDE,20)
+		TNT1 A 1 NODELAY {
+			A_SpawnItemEx("DNMissile_Smoke2",0,random(5,-5),random(5,-5),frandom(-0.5,-0.25),frandom(0.1,0.05),frandom(0.1,0.05),random(135,225),SXF_CLIENTSIDE,20);
+			A_SpawnItemEx("DNMissile_Flame2",0,random(5,-5),random(5,-5),frandom(-0.5,-0.25),frandom(0.1,0.05),frandom(0.1,0.05),random(135,225),SXF_CLIENTSIDE,20);
+			A_SpawnItemEx("DNMissile_FlightFlare",0,random(5,-5),random(5,-5),frandom(-0.5,-0.25),frandom(0.1,0.05),frandom(0.1,0.05),random(135,225),SXF_CLIENTSIDE,20);
+		}
 		Stop
 	}
 }
@@ -214,14 +216,16 @@ Actor DN_Blastage : DN_MissileTrail
 	States
 	{
 	Spawn:	//That's a lot of gobshite to spawn... and often it spawns even more gobshite!
-		TNT1 A 0 NODELAY A_SpawnItemEx("DNMissile_Flare")
-		TNT1 A 0 A_SpawnItemEx("DNMissile_ReverseFlare")
-		TNT1 A 0 A_SpawnItemEx("DNMissile_Shockwave")
-		TNT1 A 0 A_SpawnItemEx("DNMissile_Blast")
-		TNT1 A 0 A_SpawnItemEx("DNMissile_Cloud_Spawner")
-		TNT1 A 0 A_SpawnItemEx("DNMissile_Flame_Spawner")
-		TNT1 A 0 A_SpawnItemEx("DNMissile_Ember_Spawner")
-		TNT1 A 1 A_SpawnItemEx("DNMissile_Smoke_Spawner")
+		TNT1 A 1 NODELAY {
+			A_SpawnItemEx("DNMissile_Flare");
+			A_SpawnItemEx("DNMissile_ReverseFlare");
+			A_SpawnItemEx("DNMissile_Shockwave");
+			A_SpawnItemEx("DNMissile_Blast");
+			A_SpawnItemEx("DNMissile_Cloud_Spawner");
+			A_SpawnItemEx("DNMissile_Flame_Spawner");
+			A_SpawnItemEx("DNMissile_Ember_Spawner");
+			A_SpawnItemEx("DNMissile_Smoke_Spawner");
+		}
 		Stop
 	}
 }
