@@ -15,7 +15,7 @@ ACTOR Tomato replaces Cacodemon
 	ActiveSound "CacoLich/Active"
 	PainSound "CacoLich/Pain"
 	DeathSound "CacoLich/Death"
-	BloodType BlueSquirt
+	//BloodType BlueSquirt
 	BloodColor "000080"
 	Var Int User_Deflate;
     States

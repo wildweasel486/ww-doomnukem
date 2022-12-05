@@ -12,7 +12,7 @@ ACTOR TribalKnight replaces HellKnight
 	deathsound "tribalknight/death"
 	activesound "tribalknight/active"
 	Obituary "%o was savaged by a Tribal Knight."
-	BloodType GreenSquirt
+	//BloodType GreenSquirt
 	BloodColor "58 73 22"
 	MONSTER
 	+FLOORCLIP

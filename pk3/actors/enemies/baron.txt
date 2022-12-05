@@ -18,7 +18,7 @@ ACTOR HZBaronOfHell replaces BaronOfHell
 	Obituary "%o was brutalized by the Baron of Hell."
 	HitObituary "%o was severed by the Baron of Hell."
 	ActiveSound "baron/sight"
-	BloodType GreenSquirt
+	//BloodType GreenSquirt
 	BloodColor "58 73 22"
 	States
 	{
