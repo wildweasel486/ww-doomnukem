@@ -20,16 +20,18 @@ ACTOR WWDN_ExplosiveBarrel : ExplosiveBarrel replaces ExplosiveBarrel
 	Death:
 		"####" "#" 5 Bright A_Scream
 		BAR1 Y 0 A_PlaySound("world/barrelx", Chan_Weapon)
-		BAR1 Y 5 A_SpawnItemEx("DN_Blastage",0,0,16)
-		BAR1 Y 0 A_SpawnItemEx("BarrelDebris1",0,0,16,FRandom(-8,8),FRandom(-8,8),FRandom(4,20),Random(0,359))
-		BAR1 Y 0 A_SpawnItemEx("BarrelDebris2",0,0,16,FRandom(-8,8),FRandom(-8,8),FRandom(4,20),Random(0,359))
-		BAR1 Y 0 A_SpawnItemEx("BarrelDebris3",0,0,16,FRandom(-8,8),FRandom(-8,8),FRandom(4,20),Random(0,359))
-		BAR1 Y 0 A_SpawnItemEx("BarrelDebris4",0,0,16,FRandom(-8,8),FRandom(-8,8),FRandom(4,20),Random(0,359))
-		BAR1 Y 0 A_SpawnItemEx("BarrelDebris5",0,0,16,FRandom(-8,8),FRandom(-8,8),FRandom(4,20),Random(0,359))
-		BAR1 Y 0 A_SpawnItemEx("BarrelDebris6",0,0,16,FRandom(-8,8),FRandom(-8,8),FRandom(4,20),Random(0,359))
-		BAR1 Y 0 A_SpawnItemEx("BarrelDebris7",0,0,16,FRandom(-8,8),FRandom(-8,8),FRandom(4,20),Random(0,359))
-		BAR1 Y 0 A_SpawnItemEx("BarrelDebris8",0,0,16,FRandom(-8,8),FRandom(-8,8),FRandom(4,20),Random(0,359))
-		BAR1 Y 0 A_SpawnItemEx("BarrelDebris9",0,0,16,FRandom(-8,8),FRandom(-8,8),FRandom(4,20),Random(0,359))
+		BAR1 Y 5 {
+			A_SpawnItemEx("DN_Blastage",0,0,16);
+			A_SpawnItemEx("BarrelDebris1",0,0,16,FRandom(-8,8),FRandom(-8,8),FRandom(4,20),Random(0,359));
+			A_SpawnItemEx("BarrelDebris2",0,0,16,FRandom(-8,8),FRandom(-8,8),FRandom(4,20),Random(0,359));
+			A_SpawnItemEx("BarrelDebris3",0,0,16,FRandom(-8,8),FRandom(-8,8),FRandom(4,20),Random(0,359));
+			A_SpawnItemEx("BarrelDebris4",0,0,16,FRandom(-8,8),FRandom(-8,8),FRandom(4,20),Random(0,359));
+			A_SpawnItemEx("BarrelDebris5",0,0,16,FRandom(-8,8),FRandom(-8,8),FRandom(4,20),Random(0,359));
+			A_SpawnItemEx("BarrelDebris6",0,0,16,FRandom(-8,8),FRandom(-8,8),FRandom(4,20),Random(0,359));
+			A_SpawnItemEx("BarrelDebris7",0,0,16,FRandom(-8,8),FRandom(-8,8),FRandom(4,20),Random(0,359));
+			A_SpawnItemEx("BarrelDebris8",0,0,16,FRandom(-8,8),FRandom(-8,8),FRandom(4,20),Random(0,359));
+			A_SpawnItemEx("BarrelDebris9",0,0,16,FRandom(-8,8),FRandom(-8,8),FRandom(4,20),Random(0,359));
+		}
 		BAR1 Y 5 BRIGHT A_SpawnItemEx("BarrelDebris0",0,0,16,FRandom(-8,8),FRandom(-8,8),FRandom(4,20),Random(0,359))
 		BAR1 Y 5 BRIGHT A_Explode
 		BAR1 Y 5 BRIGHT A_NoBlocking
