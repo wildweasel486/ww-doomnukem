@@ -9,6 +9,7 @@ ACTOR BlueSparkSpawner
 	+NOINTERACTION
 	+CLIENTSIDEONLY
 	+NOCLIP
+	+FORCEXYBILLBOARD
 	States
 	{
 	Spawn:
@@ -71,6 +72,7 @@ ACTOR SparkFlare_B
 	+NOCLIP
 	+NOGRAVITY
 	+NOINTERACTION
+	+FORCEXYBILLBOARD
 	RenderStyle Add
 	Scale .25
 	States
@@ -105,6 +107,7 @@ ACTOR Spark_B1
 	Speed .25
 	+MISSILE
 	+NOBLOCKMAP
+	+FORCEXYBILLBOARD
 	Gravity .6
 	RenderStyle Add
 	Scale .025
