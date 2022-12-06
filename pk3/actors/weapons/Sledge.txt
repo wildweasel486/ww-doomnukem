@@ -90,16 +90,20 @@ ACTOR SledgePuff
 	+NOBLOCKMAP
 	+NOGRAVITY
 	+PUFFONACTORS
+	+PUFFGETSOWNER
 	+FORCEPAIN
 	RenderStyle Add
 	states
 	{
 	Spawn:
 	Melee:
-		POOF AA 0 A_PlaySound("Weapons/Sledge/Hit",5)
+		POOF A 0 NoDelay A_PlaySound("Weapons/Sledge/Hit",CHAN_AUTO)
 		Goto Actualpuff
 	Crash:
-		POOF AA 0 A_PlaySound("Weapons/Sledge/Wall",5)
+		POOF A 0 {
+			A_PlaySound("Weapons/Sledge/Wall",CHAN_AUTO);
+			A_Explode(16,48,0);
+		}
 		Goto Actualpuff
 	ActualPuff:
 		POOF AA 0 A_Quake(3,10,0,100,"")
@@ -114,10 +118,13 @@ ACTOR ElectricSledgePuff : SledgePuff
 	{
 	Spawn:
 	Melee:
-		POOF AA 0 A_PlaySound("Weapons/ESledge/Hit",5)
+		POOF A 0 NoDelay A_PlaySound("Weapons/ESledge/Hit",CHAN_AUTO)
 		Goto Actualpuff
 	Crash:
-		POOF AA 0 A_PlaySound("Weapons/ESledge/Wall",5)
+		POOF A 0 {
+			A_PlaySound("Weapons/ESledge/Wall",CHAN_AUTO);
+			A_Explode(16,96,0);
+		}
 		Goto Actualpuff
 	ActualPuff:
 		POOF AA 0 A_Quake(3,10,0,100,"")
