@@ -82,6 +82,21 @@ ACTOR DoomNukem : DoomPlayer
 	Player.GruntSpeed 1.0
 	States
 	{
+	See:
+		See:
+		PLAY A 7
+		PLAY B 7 {
+			if ( z > floorz ) { return("null"); }
+			else { A_PlaySound("doomnukem/land",CHAN_AUTO); }
+			return("null");
+		}
+		PLAY C 7
+		PLAY D 7 {
+			if ( z > floorz ) { return("null"); }
+			else { A_PlaySound("doomnukem/land",CHAN_AUTO); }
+			return("null");
+		}
+		Goto Spawn
 	Pain:
 		PLAY G 4 A_SetBlend("FF 00 00", 0.3, 35)
 		PLAY G 4 A_Pain
